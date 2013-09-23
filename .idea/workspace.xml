@@ -12,10 +12,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8fcbb2e2-212b-4f52-8b99-bc1f80a68db0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFC_ver2.iml" afterPath="$PROJECT_DIR$/NFC_ver2.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/CountTimeAllUser.java" afterPath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/CountTimeAllUser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/Nfc_simple.java" afterPath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/Nfc_simple.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/ReceiveDataService.java" afterPath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/ReceiveDataService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/SendDataService.java" afterPath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/SendDataService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/TemporaryUsersDatabaseHelper.java" afterPath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/TemporaryUsersDatabaseHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/UsersDatabaseHelper.java" afterPath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/UsersDatabaseHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/nfc_main_first.xml" afterPath="$PROJECT_DIR$/res/layout/nfc_main_first.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/nfc_main_start.xml" afterPath="$PROJECT_DIR$/res/layout/nfc_main_start.xml" />
     </list>
     <ignored path="NFC_ver2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -130,25 +134,24 @@
       <file leaf-file-name="Nfc_simple.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/Nfc_simple.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="4" selection-start="1633" selection-end="1633" vertical-scroll-proportion="1.36" vertical-offset="68" max-vertical-offset="12393">
+            <state line="30" column="25" selection-start="929" selection-end="929" vertical-scroll-proportion="0.76869565" vertical-offset="68" max-vertical-offset="12325">
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6294#7100#0" expanded="true" />
-                <element signature="e#7085#7086#0" expanded="true" />
-                <element signature="e#7142#7364#0" expanded="true" />
-                <element signature="e#7349#7350#0" expanded="true" />
-                <element signature="e#8611#8917#0" expanded="true" />
-                <element signature="e#8902#8903#0" expanded="true" />
-                <element signature="e#8955#9432#0" expanded="true" />
-                <element signature="e#9417#9418#0" expanded="true" />
-                <element signature="e#9471#9948#0" expanded="true" />
-                <element signature="e#9933#9934#0" expanded="true" />
-                <element signature="e#10814#11119#0" expanded="true" />
-                <element signature="e#11104#11105#0" expanded="true" />
-                <element signature="e#11157#11634#0" expanded="true" />
-                <element signature="e#11619#11620#0" expanded="true" />
-                <element signature="e#11673#12150#0" expanded="true" />
-                <element signature="e#12135#12136#0" expanded="true" />
+                <element signature="e#6155#6961#0" expanded="true" />
+                <element signature="e#6946#6947#0" expanded="true" />
+                <element signature="e#7003#7225#0" expanded="true" />
+                <element signature="e#7210#7211#0" expanded="true" />
+                <element signature="e#8472#8778#0" expanded="true" />
+                <element signature="e#8763#8764#0" expanded="true" />
+                <element signature="e#8816#9293#0" expanded="true" />
+                <element signature="e#9278#9279#0" expanded="true" />
+                <element signature="e#9332#9809#0" expanded="true" />
+                <element signature="e#9794#9795#0" expanded="true" />
+                <element signature="e#10675#10980#0" expanded="true" />
+                <element signature="e#10965#10966#0" expanded="true" />
+                <element signature="e#11018#11495#0" expanded="true" />
+                <element signature="e#11480#11481#0" expanded="true" />
+                <element signature="e#11534#12011#0" expanded="true" />
+                <element signature="e#11996#11997#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -875,7 +878,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="147" y="196" width="1495" height="1013" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -894,7 +897,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24882314" sideWeight="0.67114097" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24882314" sideWeight="0.67114097" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -949,23 +952,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="0" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="12393">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6294#7100#0" expanded="true" />
-            <element signature="e#7085#7086#0" expanded="true" />
-            <element signature="e#7142#7364#0" expanded="true" />
-            <element signature="e#7349#7350#0" expanded="true" />
-            <element signature="e#8611#8917#0" expanded="true" />
-            <element signature="e#8902#8903#0" expanded="true" />
-            <element signature="e#8955#9432#0" expanded="true" />
-            <element signature="e#9417#9418#0" expanded="true" />
-            <element signature="e#9471#9948#0" expanded="true" />
-            <element signature="e#9933#9934#0" expanded="true" />
-            <element signature="e#10814#11119#0" expanded="true" />
-            <element signature="e#11104#11105#0" expanded="true" />
-            <element signature="e#11157#11634#0" expanded="true" />
-            <element signature="e#11619#11620#0" expanded="true" />
-            <element signature="e#11673#12150#0" expanded="true" />
-            <element signature="e#12135#12136#0" expanded="true" />
+            <element signature="e#6155#6961#0" expanded="true" />
+            <element signature="e#6946#6947#0" expanded="true" />
+            <element signature="e#7003#7225#0" expanded="true" />
+            <element signature="e#7210#7211#0" expanded="true" />
+            <element signature="e#8472#8778#0" expanded="true" />
+            <element signature="e#8763#8764#0" expanded="true" />
+            <element signature="e#8816#9293#0" expanded="true" />
+            <element signature="e#9278#9279#0" expanded="true" />
+            <element signature="e#9332#9809#0" expanded="true" />
+            <element signature="e#9794#9795#0" expanded="true" />
+            <element signature="e#10675#10980#0" expanded="true" />
+            <element signature="e#10965#10966#0" expanded="true" />
+            <element signature="e#11018#11495#0" expanded="true" />
+            <element signature="e#11480#11481#0" expanded="true" />
+            <element signature="e#11534#12011#0" expanded="true" />
+            <element signature="e#11996#11997#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1048,25 +1050,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/Nfc_simple.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="4" selection-start="1633" selection-end="1633" vertical-scroll-proportion="1.36" vertical-offset="68" max-vertical-offset="12393">
+        <state line="30" column="25" selection-start="929" selection-end="929" vertical-scroll-proportion="0.76869565" vertical-offset="68" max-vertical-offset="12325">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6294#7100#0" expanded="true" />
-            <element signature="e#7085#7086#0" expanded="true" />
-            <element signature="e#7142#7364#0" expanded="true" />
-            <element signature="e#7349#7350#0" expanded="true" />
-            <element signature="e#8611#8917#0" expanded="true" />
-            <element signature="e#8902#8903#0" expanded="true" />
-            <element signature="e#8955#9432#0" expanded="true" />
-            <element signature="e#9417#9418#0" expanded="true" />
-            <element signature="e#9471#9948#0" expanded="true" />
-            <element signature="e#9933#9934#0" expanded="true" />
-            <element signature="e#10814#11119#0" expanded="true" />
-            <element signature="e#11104#11105#0" expanded="true" />
-            <element signature="e#11157#11634#0" expanded="true" />
-            <element signature="e#11619#11620#0" expanded="true" />
-            <element signature="e#11673#12150#0" expanded="true" />
-            <element signature="e#12135#12136#0" expanded="true" />
+            <element signature="e#6155#6961#0" expanded="true" />
+            <element signature="e#6946#6947#0" expanded="true" />
+            <element signature="e#7003#7225#0" expanded="true" />
+            <element signature="e#7210#7211#0" expanded="true" />
+            <element signature="e#8472#8778#0" expanded="true" />
+            <element signature="e#8763#8764#0" expanded="true" />
+            <element signature="e#8816#9293#0" expanded="true" />
+            <element signature="e#9278#9279#0" expanded="true" />
+            <element signature="e#9332#9809#0" expanded="true" />
+            <element signature="e#9794#9795#0" expanded="true" />
+            <element signature="e#10675#10980#0" expanded="true" />
+            <element signature="e#10965#10966#0" expanded="true" />
+            <element signature="e#11018#11495#0" expanded="true" />
+            <element signature="e#11480#11481#0" expanded="true" />
+            <element signature="e#11534#12011#0" expanded="true" />
+            <element signature="e#11996#11997#0" expanded="true" />
           </folding>
         </state>
       </provider>
