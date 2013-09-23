@@ -12,6 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8fcbb2e2-212b-4f52-8b99-bc1f80a68db0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitattributes" afterPath="$PROJECT_DIR$/.gitattributes" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/CountTimeAllUser.java" afterPath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/CountTimeAllUser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/Nfc_simple.java" afterPath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/Nfc_simple.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/ReceiveDataService.java" afterPath="$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/ReceiveDataService.java" />
@@ -37,6 +38,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -73,7 +75,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -98,7 +99,7 @@
       <file leaf-file-name="ActLogDatabase.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/ActLogDatabase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="13" selection-start="224" selection-end="224" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="799">
+            <state line="9" column="13" selection-start="224" selection-end="224" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="799">
               <folding />
             </state>
           </provider>
@@ -107,7 +108,7 @@
       <file leaf-file-name="SendDataService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/SendDataService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="13" selection-start="529" selection-end="529" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2533">
+            <state line="19" column="13" selection-start="529" selection-end="529" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="2533">
               <folding />
             </state>
           </provider>
@@ -134,25 +135,8 @@
       <file leaf-file-name="Nfc_simple.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/Nfc_simple.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="25" selection-start="929" selection-end="929" vertical-scroll-proportion="0.76869565" vertical-offset="68" max-vertical-offset="12325">
-              <folding>
-                <element signature="e#6155#6961#0" expanded="true" />
-                <element signature="e#6946#6947#0" expanded="true" />
-                <element signature="e#7003#7225#0" expanded="true" />
-                <element signature="e#7210#7211#0" expanded="true" />
-                <element signature="e#8472#8778#0" expanded="true" />
-                <element signature="e#8763#8764#0" expanded="true" />
-                <element signature="e#8816#9293#0" expanded="true" />
-                <element signature="e#9278#9279#0" expanded="true" />
-                <element signature="e#9332#9809#0" expanded="true" />
-                <element signature="e#9794#9795#0" expanded="true" />
-                <element signature="e#10675#10980#0" expanded="true" />
-                <element signature="e#10965#10966#0" expanded="true" />
-                <element signature="e#11018#11495#0" expanded="true" />
-                <element signature="e#11480#11481#0" expanded="true" />
-                <element signature="e#11534#12011#0" expanded="true" />
-                <element signature="e#11996#11997#0" expanded="true" />
-              </folding>
+            <state line="30" column="25" selection-start="929" selection-end="929" vertical-scroll-proportion="0.78647685" vertical-offset="68" max-vertical-offset="11917">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -559,7 +543,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="147" />
+    <option name="x" value="405" />
     <option name="y" value="196" />
     <option name="width" value="1495" />
     <option name="height" value="1013" />
@@ -732,8 +716,8 @@
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
@@ -877,12 +861,13 @@
     <option name="totallyTimeSpent" value="1041000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="147" y="196" width="1495" height="1013" extended-state="0" />
-    <editor active="true" />
+    <frame x="405" y="196" width="1495" height="1013" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32952252" sideWeight="0.67114097" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -897,13 +882,12 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24882314" sideWeight="0.67114097" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24882314" sideWeight="0.67114097" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -951,24 +935,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/Nfc_simple.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="0" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="12393">
-          <folding>
-            <element signature="e#6155#6961#0" expanded="true" />
-            <element signature="e#6946#6947#0" expanded="true" />
-            <element signature="e#7003#7225#0" expanded="true" />
-            <element signature="e#7210#7211#0" expanded="true" />
-            <element signature="e#8472#8778#0" expanded="true" />
-            <element signature="e#8763#8764#0" expanded="true" />
-            <element signature="e#8816#9293#0" expanded="true" />
-            <element signature="e#9278#9279#0" expanded="true" />
-            <element signature="e#9332#9809#0" expanded="true" />
-            <element signature="e#9794#9795#0" expanded="true" />
-            <element signature="e#10675#10980#0" expanded="true" />
-            <element signature="e#10965#10966#0" expanded="true" />
-            <element signature="e#11018#11495#0" expanded="true" />
-            <element signature="e#11480#11481#0" expanded="true" />
-            <element signature="e#11534#12011#0" expanded="true" />
-            <element signature="e#11996#11997#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1050,25 +1017,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gmail/matsushige/nfcv2/Nfc_simple.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="25" selection-start="929" selection-end="929" vertical-scroll-proportion="0.76869565" vertical-offset="68" max-vertical-offset="12325">
-          <folding>
-            <element signature="e#6155#6961#0" expanded="true" />
-            <element signature="e#6946#6947#0" expanded="true" />
-            <element signature="e#7003#7225#0" expanded="true" />
-            <element signature="e#7210#7211#0" expanded="true" />
-            <element signature="e#8472#8778#0" expanded="true" />
-            <element signature="e#8763#8764#0" expanded="true" />
-            <element signature="e#8816#9293#0" expanded="true" />
-            <element signature="e#9278#9279#0" expanded="true" />
-            <element signature="e#9332#9809#0" expanded="true" />
-            <element signature="e#9794#9795#0" expanded="true" />
-            <element signature="e#10675#10980#0" expanded="true" />
-            <element signature="e#10965#10966#0" expanded="true" />
-            <element signature="e#11018#11495#0" expanded="true" />
-            <element signature="e#11480#11481#0" expanded="true" />
-            <element signature="e#11534#12011#0" expanded="true" />
-            <element signature="e#11996#11997#0" expanded="true" />
-          </folding>
+        <state line="30" column="25" selection-start="929" selection-end="929" vertical-scroll-proportion="0.78647685" vertical-offset="68" max-vertical-offset="11917">
+          <folding />
         </state>
       </provider>
     </entry>
