@@ -1,0 +1,97 @@
+package com.gmail.matsushige.nfcv2;
+
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
+
+import android.app.IntentService;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.hardware.usb.UsbAccessory;
+import android.hardware.usb.UsbManager;
+import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore.Files;
+import android.util.Log;
+
+
+public class CountRelayTime extends IntentService{
+	private static String TAG = "CountRelayTime";
+	private int count = 0;
+	public long startTime = 0;
+	public static boolean isUsed = false;
+	public static boolean finish = false;
+	public static int maxCount = 15;
+	
+//	private UsbManager mUsbManager;
+//	private ParcelFileDescriptor mFileDescriptor;
+//	private UsbAccessory mUsbAccessory;
+//	private FileInputStream mfiFileInputStream;
+//	private FileOutputStream mFileOutputStream;
+	
+	public CountRelayTime() {
+		super(TAG);
+		// TODO Auto-generated constructor stub
+	}// CountTime
+
+	@Override
+	protected void onHandleIntent(Intent intent) {
+		// TODO Auto-generated method stub
+		Log.d(TAG, "serviceStart");
+		isUsed = true;
+		startTime = Calendar.getInstance().getTimeInMillis();
+		
+		for(count = 0; count < maxCount; count++){
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}// catch
+			if(finish){
+				break;
+			}else{
+//				Log.d(TAG, "test");
+
+				Intent broadcastIntent = new Intent();
+				broadcastIntent.putExtra("count", count + 1);
+				broadcastIntent.setAction("TEST_RECEIVE_ACTION");
+				sendBroadcast(broadcastIntent);
+				
+//				long thisTime = Calendar.getInstance().getTimeInMillis();
+//				Log.d(TAG, count +":"+(thisTime - startTime));
+			}
+		}// for
+		long endTime = Calendar.getInstance().getTimeInMillis();
+		Log.d(TAG, "" +(endTime - startTime));
+		Log.d(TAG, "serviceEnd");
+		
+		Relay.getRelay(0).open();
+		Relay.getRelay(1).open();
+		Relay.closeAccessory();
+		
+		isUsed = false;
+		finish = false;
+		resetUserPreference();
+//		isUsed = false;
+	}// onHandleIntent
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		Log.d(TAG, "onDestroy");
+	}// onDestroy
+	
+	private void resetUserPreference(){
+		SharedPreferences sdf = getSharedPreferences("SNS_OUTLET", MODE_PRIVATE);
+		Editor edit = sdf.edit();
+		edit.putString("userType", "");
+		edit.putString("userId", "");
+		edit.commit();
+	}// resetUserPreference
+
+}

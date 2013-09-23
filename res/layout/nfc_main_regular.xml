@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textViewUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="ゲストさん、こんにちは。"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ToggleButton
+            android:id="@+id/toggleRelay1"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_weight="0.99"
+            android:textOff="リレー1OFF"
+            android:textOn="リレー1ON" />
+
+        <ToggleButton
+            android:id="@+id/toggleRelay2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.00"
+            android:textOff="リレー2OFF"
+            android:textOn="リレー2ON" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonPowerCancel"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:text="何もしないで終了" />
+
+</LinearLayout>
