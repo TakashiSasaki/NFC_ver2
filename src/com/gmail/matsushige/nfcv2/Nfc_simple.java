@@ -132,7 +132,7 @@ public class Nfc_simple extends Activity {
 		menu.add(Menu.NONE, 0, 0, "usersDatabase");
 		menu.add(Menu.NONE, 1, 0, "logDatabase");
 		menu.add(Menu.NONE, 2, 0, "actlogDatabase");
-		menu.add(Menu.NONE, 3, 0, "ƒXƒ^[ƒg‰æ–Ê");
+		menu.add(Menu.NONE, 3, 0, "ã‚¹ã‚¿ãƒ¼ãƒˆç”»é¢");
 		menu.add(Menu.NONE, 4, 0, "tempusersDatabase");
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -251,12 +251,12 @@ public class Nfc_simple extends Activity {
 		
 		CountRelayTime.maxCount = 10;
 		
-		//TODO ˆÈ‰º‘€ì•”•ª
+		//TODO ä»¥ä¸‹æ“ä½œéƒ¨åˆ†
 		TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
 		TextView explainText = (TextView) findViewById(R.id.textViewExplain);
-		userNameText.setText("ƒ†[ƒU[“o˜^”Ô†‚ÍA\nu"+ regCode +"v‚Å‚·B");
+		userNameText.setText("ãƒ¦ãƒ¼ã‚¶ãƒ¼ç™»éŒ²ç•ªå·ã¯ã€\nã€Œ"+ regCode +"ã€ã§ã™ã€‚");
 		userNameText.setTextColor(Color.RED);
-		explainText.setText("‚İ‚ñ‚È‚Å‚¨‚Å‚ñ‚«\n(http://odenki.org)\n‚ÉƒAƒNƒZƒX‚µ‚Äƒ†[ƒU“o˜^”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢");
+		explainText.setText("ã¿ã‚“ãªã§ãŠã§ã‚“ã\n(http://odenki.org)\nã«ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ãƒ¦ãƒ¼ã‚¶ç™»éŒ²ç•ªå·ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„");
 		ImageView qrCode = (ImageView) findViewById(R.id.imageViewQR);
 		qrCode.setImageBitmap(MakeQRCode.getQRCode("http://odenki.org/api/outlet/" + regCode));
 		
@@ -264,7 +264,7 @@ public class Nfc_simple extends Activity {
 		ToggleButton relay1Toggle = (ToggleButton)findViewById(R.id.toggleRelay1);
 		ToggleButton relay2Toggle = (ToggleButton)findViewById(R.id.toggleRelay2);
 		
-		/** ‚·‚Å‚ÉƒŠƒŒ[g—p’†‚Å‚ ‚ê‚ÎƒgƒOƒ‹ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½ó‘Ô‚É‚·‚é */
+		/** ã™ã§ã«ãƒªãƒ¬ãƒ¼ä½¿ç”¨ä¸­ã§ã‚ã‚Œã°ãƒˆã‚°ãƒ«ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸçŠ¶æ…‹ã«ã™ã‚‹ */
 		if(Relay.getRelay(0).isClosed()){
 			relay1Toggle.setChecked(true);
 		}
@@ -338,13 +338,13 @@ public class Nfc_simple extends Activity {
 		screenState = REGULAR_USER;
 		
 		TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
-		userNameText.setText(cardOwner + "‚³‚ñA‚±‚ñ‚É‚¿‚ÍB");
+		userNameText.setText(cardOwner + "ã•ã‚“ã€ã“ã‚“ã«ã¡ã¯ã€‚");
 
 		Button powerCancelButton = (Button) findViewById(R.id.buttonPowerCancel);
 		ToggleButton relay1Toggle = (ToggleButton)findViewById(R.id.toggleRelay1);
 		ToggleButton relay2Toggle = (ToggleButton)findViewById(R.id.toggleRelay2);
 		
-		/** ‚·‚Å‚ÉƒŠƒŒ[g—p’†‚Å‚ ‚ê‚ÎƒgƒOƒ‹ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½ó‘Ô‚É‚·‚é */
+		/** ã™ã§ã«ãƒªãƒ¬ãƒ¼ä½¿ç”¨ä¸­ã§ã‚ã‚Œã°ãƒˆã‚°ãƒ«ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸçŠ¶æ…‹ã«ã™ã‚‹ */
 		if(Relay.getRelay(0).isClosed()){
 			relay1Toggle.setChecked(true);
 		}
@@ -411,7 +411,7 @@ public class Nfc_simple extends Activity {
 		});
 	}// reguUsersPic	
 	
-	public void changeMainXto0() { // ƒXƒ^[ƒg‰æ–Ê‚Ö
+	public void changeMainXto0() { // ã‚¹ã‚¿ãƒ¼ãƒˆç”»é¢ã¸
 		timeText = (TextView) findViewById(R.id.textViewTime);
 		timeText.setText("");
 		linearLayout.removeAllViews();
@@ -445,7 +445,7 @@ public class Nfc_simple extends Activity {
 			recordId(type, hex(id).toUpperCase());
 		}// else if <NfcA>
 		else {
-			Toast.makeText(getApplicationContext(), "‘Î‰‚µ‚Ä‚¢‚È‚¢ƒJ[ƒh‚Å‚·",
+			Toast.makeText(getApplicationContext(), "å¯¾å¿œã—ã¦ã„ãªã„ã‚«ãƒ¼ãƒ‰ã§ã™",
 					Toast.LENGTH_SHORT).show();
 		}// else
 	}// readNfc
@@ -463,38 +463,38 @@ public class Nfc_simple extends Activity {
 		long timestamp = Calendar.getInstance().getTimeInMillis();
 		Database.write(this, type, id, timestamp);
 		
-		//TODO ƒvƒŠƒtƒ@ƒŒƒ“ƒXƒ`ƒFƒbƒN
+		//TODO ãƒ—ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 		SharedPreferences pref = getSharedPreferences("SNS_OUTLET", MODE_PRIVATE);
 		String userType = pref.getString("userType", "");
 		String userId = pref.getString("userId", "");
 		if(userType.equals("") && userId.equals("")){
 			recordPreference(type, id);
 		}else if(type.equals(userType) && id.equals(userId)){
-			Toast.makeText(getApplicationContext(), "‚ ‚È‚½‚Íg—p’†‚Å‚·", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "ã‚ãªãŸã¯ä½¿ç”¨ä¸­ã§ã™", Toast.LENGTH_SHORT).show();
 		}else{
-			Toast.makeText(getApplicationContext(), "‚Ù‚©‚Ìƒ†[ƒU‚ªg—p’†‚Å‚·", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "ã»ã‹ã®ãƒ¦ãƒ¼ã‚¶ãŒä½¿ç”¨ä¸­ã§ã™", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		
 		UsersDatabase.checkResist(this, type, id);
 		
 		if (!("".equals(cardOwner))) {
-			ActLogDatabase.write(this, id, cardOwner, "ƒ^ƒbƒ`", timestamp);
+			ActLogDatabase.write(this, id, cardOwner, "ã‚¿ãƒƒãƒ", timestamp);
 			reguUsersPic();
 		} else {
 			TemporaryUsersDatabaseOperate.checkRegisteredData(getApplicationContext(), type, id);
 			if(!("".equals(cardOwner))){
-				ActLogDatabase.write(getApplicationContext(), id, cardOwner, "ƒ^ƒbƒ`", timestamp);
+				ActLogDatabase.write(getApplicationContext(), id, cardOwner, "ã‚¿ãƒƒãƒ", timestamp);
 				tempUsersPic();
 			}else{
-				cardOwner = "–¢“o˜^Ò";
-				ActLogDatabase.write(getApplicationContext(), id, cardOwner, "ƒ^ƒbƒ`", timestamp);
+				cardOwner = "æœªç™»éŒ²è€…";
+				ActLogDatabase.write(getApplicationContext(), id, cardOwner, "ã‚¿ãƒƒãƒ", timestamp);
 				firstUsersPic();
 			}// else
 		}// else
 	}// recordId
 	
-	/** outletIdiƒvƒŠƒtƒ@ƒŒƒ“ƒX•Û‘¶j‚ğ"AB"‚É•ÏX */
+	/** outletIdï¼ˆãƒ—ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ä¿å­˜ï¼‰ã‚’"AB"ã«å¤‰æ›´ */
 	private void checkOutletId(){
 		SharedPreferences pref = getSharedPreferences("SNS_OUTLET", MODE_PRIVATE);
 		String outletId = pref.getString("outletId", "AA");
@@ -508,14 +508,14 @@ public class Nfc_simple extends Activity {
 		}// else
 	}// checkOutletId
 	
-	/** TemporaryUsersDatabase‚É‹L˜^ */
+	/** TemporaryUsersDatabaseã«è¨˜éŒ² */
 	public void usersInput(String type, String id){
 		TemporaryUsersDatabaseOperate.write(getApplicationContext(), type, id, regCode);
-		Toast.makeText(getApplicationContext(), "“o˜^‚µ‚Ü‚µ‚½" + "(" +regCode + ")", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), "ç™»éŒ²ã—ã¾ã—ãŸ" + "(" +regCode + ")", Toast.LENGTH_SHORT).show();
 		
 		TemporaryUsersDatabaseOperate.checkRegisteredData(getApplicationContext(), type, id);
 		long time = Calendar.getInstance().getTimeInMillis();
-		ActLogDatabase.write(this, id, cardOwner, "“o˜^", time);
+		ActLogDatabase.write(this, id, cardOwner, "ç™»éŒ²", time);
 	}// usersInput
 	
 	public void relayState(int target){
@@ -526,14 +526,14 @@ public class Nfc_simple extends Activity {
 			state = " OFF";
 		}
 		long time = Calendar.getInstance().getTimeInMillis();
-		ActLogDatabase.write(this, hex(id).toUpperCase(), cardOwner, "ƒŠƒŒ[" + (target + 1)+ state, time);
+		ActLogDatabase.write(this, hex(id).toUpperCase(), cardOwner, "ãƒªãƒ¬ãƒ¼" + (target + 1)+ state, time);
 	}// relayState
 		
-	/** ƒ†[ƒU“o˜^”Ô†ì¬è‡
-	 *@1.ƒvƒŠƒtƒ@ƒŒƒ“ƒX‚É•Û‘¶‚³‚ê‚½ƒRƒ“ƒZƒ“ƒgID‚ğæ“¾‚µA‰pš•”•ª‚Æ‚·‚é
-	 *@2.‰¼“o˜^ƒ†[ƒUƒf[ƒ^ƒx[ƒX‚Ì"register_code"‚©‚çÅŒã‚É”­s‚³‚ê‚½”š‚ğæ“¾‚·‚é
-	 *@3.æ“¾‚µ‚½”š‚É1‘«‚µ‚½’l‚ğƒ†[ƒU“o˜^”Ô†‚Ì”š•”•ª‚Æ‚·‚é
-	 *@4.‰pš•”•ª‚Æ”š•”•ª‚ğ‘g‚İ‡‚í‚¹‚é */
+	/** ãƒ¦ãƒ¼ã‚¶ç™»éŒ²ç•ªå·ä½œæˆæ‰‹é †
+	 *ã€€1.ãƒ—ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã«ä¿å­˜ã•ã‚ŒãŸã‚³ãƒ³ã‚»ãƒ³ãƒˆIDã‚’å–å¾—ã—ã€è‹±å­—éƒ¨åˆ†ã¨ã™ã‚‹
+	 *ã€€2.ä»®ç™»éŒ²ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®"register_code"ã‹ã‚‰æœ€å¾Œã«ç™ºè¡Œã•ã‚ŒãŸæ•°å­—ã‚’å–å¾—ã™ã‚‹
+	 *ã€€3.å–å¾—ã—ãŸæ•°å­—ã«1è¶³ã—ãŸå€¤ã‚’ãƒ¦ãƒ¼ã‚¶ç™»éŒ²ç•ªå·ã®æ•°å­—éƒ¨åˆ†ã¨ã™ã‚‹
+	 *ã€€4.è‹±å­—éƒ¨åˆ†ã¨æ•°å­—éƒ¨åˆ†ã‚’çµ„ã¿åˆã‚ã›ã‚‹ */
 	private String GenerateRegisterCode(){
 		String outletCode = generateOutletCode();
 		String preNumber = getPreviousNumber(outletCode);
@@ -543,17 +543,17 @@ public class Nfc_simple extends Activity {
 		return registerCode;
 	}
 	
-	/** ‰pš•”•ªì¬ */
+	/** è‹±å­—éƒ¨åˆ†ä½œæˆ */
 	private String generateOutletCode(){
 		SharedPreferences pref = getSharedPreferences("SNS_OUTLET", MODE_PRIVATE);
 		String outletCode = pref.getString("outletId", "AA");
 		return outletCode;
 	}
-	/** ‰¼“o˜^ƒf[ƒ^ƒx[ƒX‚©‚çÅŒã‚É”­s‚³‚ê‚½”š‚ğæ“¾ */
+	/** ä»®ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰æœ€å¾Œã«ç™ºè¡Œã•ã‚ŒãŸæ•°å­—ã‚’å–å¾— */
 	private String getPreviousNumber(String outletCode){
 		String preNumber = "";
 		SQLiteDatabase db = (new TemporaryUsersDatabaseHelper(this)).getReadableDatabase();
-		/** "temporary_users"‚Ì"register_time"—ñ‚Ìƒf[ƒ^‚ğ~‡‚É‚µACursor‚ğæ“¾ */
+		/** "temporary_users"ã®"register_time"åˆ—ã®ãƒ‡ãƒ¼ã‚¿ã‚’é™é †ã«ã—ã€Cursorã‚’å–å¾— */
 		String[] columns = {"register_code", "register_time"};
 		Cursor c = db.query("tempusers", columns, null, null, null, null, "register_time desc");
 		if (c.getCount() > 0) {
@@ -570,11 +570,11 @@ public class Nfc_simple extends Activity {
 		return preNumber;
 	}// getPreviousNumber
 
-	/** ”š•”•ª‚Ìì¬ */
+	/** æ•°å­—éƒ¨åˆ†ã®ä½œæˆ */
 	private String generateNumberCode(String preNumber){
 	    int intNumber = 0;
 	    String numberCode = "";
-	    /** String ¨ int•ÏŠ· */
+	    /** String â†’ intå¤‰æ› */
 	    try{
 		int intPreNumber = Integer.parseInt(preNumber);
 		if(intPreNumber >9998){
@@ -589,7 +589,7 @@ public class Nfc_simple extends Activity {
 		return numberCode;
 	}// generateNuberCode
 	
-	/** ”š‚ğ4Œ…‚É‚·‚é */
+	/** æ•°å­—ã‚’4æ¡ã«ã™ã‚‹ */
 	private String adjust4digit(int rawData){
 		String newData = "";
 		if(rawData < 10){
@@ -660,15 +660,15 @@ public class Nfc_simple extends Activity {
 			// TODO Auto-generated method stub
 			Bundle bundle = intent.getExtras();
 			int count = bundle.getInt("count");
-			/** –{“o˜^ƒ†[ƒU‰æ–Ê‚Å‚ ‚ê‚ÎƒeƒLƒXƒg•\¦ */
+			/** æœ¬ç™»éŒ²ãƒ¦ãƒ¼ã‚¶ç”»é¢ã§ã‚ã‚Œã°ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤º */
 			if (screenState == REGULAR_USER || screenState == TEMPORARY_USER) {
 				timeText = (TextView) findViewById(R.id.textViewTime);
-//				timeText.setText("‚ ‚Æ"+(CountRelayTime.maxCount - count)+"•b‚ÅI—¹‚µ‚Ü‚·");
-				timeText.setText("‚ ‚Æ" + secToMin(CountRelayTime.maxCount - count) +"‚ÅI—¹‚µ‚Ü‚·");
+//				timeText.setText("ã‚ã¨"+(CountRelayTime.maxCount - count)+"ç§’ã§çµ‚äº†ã—ã¾ã™");
+				timeText.setText("ã‚ã¨" + secToMin(CountRelayTime.maxCount - count) +"ã§çµ‚äº†ã—ã¾ã™");
 			}// if
 			if(count == CountRelayTime.maxCount){
 				resetPreference();
-				Toast.makeText(getApplicationContext(), "g—p‰Â”\ŠÔ‚ª‰ß‚¬‚Ü‚µ‚½", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "ä½¿ç”¨å¯èƒ½æ™‚é–“ãŒéãã¾ã—ãŸ", Toast.LENGTH_SHORT).show();
 				changeMainXto0();
 			}// if
 		}// onReceive
@@ -676,18 +676,18 @@ public class Nfc_simple extends Activity {
 		private String secToMin(int sec){
 			String minSecData = "";
 			if(sec > 59){
-				int syou = sec / 60; // "/":¤
-				int amari = sec % 60; //  "%":—]
-				minSecData = syou + "•ª" + amari + "•b";
+				int syou = sec / 60; // "/":å•†
+				int amari = sec % 60; //  "%":ä½™
+				minSecData = syou + "åˆ†" + amari + "ç§’";
 			}else{
-				minSecData = sec + "•b";
+				minSecData = sec + "ç§’";
 			}// else
 			return minSecData;
 		}// secToMin
 		
 	}// testBroadcastReceiver
 	
-	/** CountTime2‚©‚çó‚¯æ‚é */
+	/** CountTime2ã‹ã‚‰å—ã‘å–ã‚‹ */
 	public class test2BroadcastReceiver extends BroadcastReceiver{
 
 		@Override
@@ -699,8 +699,8 @@ public class Nfc_simple extends Activity {
 				int count = bundle.getInt("count");
 				if (screenState == REGULAR_USER || screenState == TEMPORARY_USER) {
 					timeText = (TextView) findViewById(R.id.textViewTime);
-					timeText.setText("‚ ‚Æ" + (CountTimeAllUser.maxCount - count)
-							+ "•b‚ÅƒXƒ^[ƒg‰æ–Ê‚É–ß‚è‚Ü‚·");
+					timeText.setText("ã‚ã¨" + (CountTimeAllUser.maxCount - count)
+							+ "ç§’ã§ã‚¹ã‚¿ãƒ¼ãƒˆç”»é¢ã«æˆ»ã‚Šã¾ã™");
 				}
 				if (count == CountTimeAllUser.maxCount) {
 					// resetPreference();
@@ -710,7 +710,7 @@ public class Nfc_simple extends Activity {
 				int count = bundle.getInt("count");
 				if(screenState == FIRST_USER){
 					timeText = (TextView) findViewById(R.id.textViewTime);
-					timeText.setText("‚ ‚Æ" + (CountTimeFirstUser.maxCount - count) + "•b‚ÅƒXƒ^[ƒg‰æ–Ê‚É–ß‚è‚Ü‚·");
+					timeText.setText("ã‚ã¨" + (CountTimeFirstUser.maxCount - count) + "ç§’ã§ã‚¹ã‚¿ãƒ¼ãƒˆç”»é¢ã«æˆ»ã‚Šã¾ã™");
 				}
 				if(count == CountTimeFirstUser.maxCount){
 					changeMainXto0();
