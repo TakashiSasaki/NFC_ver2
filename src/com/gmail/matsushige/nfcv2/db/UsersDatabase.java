@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.gmail.matsushige.nfcv2.Nfc_simple;
-import com.gmail.matsushige.nfcv2.UsersDatabaseHelper;
 
 public class UsersDatabase {
 	public static String usersText = "";
