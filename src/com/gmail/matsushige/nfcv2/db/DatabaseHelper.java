@@ -1,4 +1,4 @@
-package com.gmail.matsushige.nfcv2;
+package com.gmail.matsushige.nfcv2.db;
 
 import android.content.ContentValues;
 import android.content.Context;
