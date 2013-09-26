@@ -1,6 +1,5 @@
 package com.gmail.matsushige.nfcv2;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +14,6 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -33,8 +30,7 @@ import com.gmail.matsushige.nfcv2.db.UsersDatabase;
 
 import java.util.Calendar;
 
-public class Nfc_simple extends Activity {
-	private LinearLayout linearLayout;
+public class Nfc_simple extends BaseActivity {
 	private TextView timeText;
 	private byte[] id;
 //	private String tech = "";
@@ -126,69 +122,7 @@ public class Nfc_simple extends Activity {
 		Relay.unRegisterReceiver(getApplicationContext());
 	}// onDestroy
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(Menu.NONE, 0, 0, "usersDatabase");
-		menu.add(Menu.NONE, 1, 0, "logDatabase");
-		menu.add(Menu.NONE, 2, 0, "actlogDatabase");
-		menu.add(Menu.NONE, 3, 0, "スタート画面");
-		menu.add(Menu.NONE, 4, 0, "tempusersDatabase");
-		return super.onCreateOptionsMenu(menu);
-	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem mi) {
-		Relay.getRelay(0).open();
-		Relay.getRelay(1).open();
-		if (CountTimeAllUser.isUsed) {
-			CountTimeAllUser.finish = true;
-		}
-		if (CountRelayTime.isUsed) {
-			CountRelayTime.finish = true;
-		}
-		switch (mi.getItemId()) {
-		case 0:
-			setContentView(R.layout.check_users);
-			TextView checkUsersText = (TextView) findViewById(R.id.textViewCheckUsers);
-			UsersDatabase.read(this);
-			checkUsersText.setText(UsersDatabase.usersText);
-			break;
-			
-		case 1:
-			setContentView(R.layout.check_log);
-			TextView checkLogText = (TextView) findViewById(R.id.textViewCheckLog);
-			Database.read(this);
-			checkLogText.setText(Database.logText);
-			break;
-			
-		case 2:
-			setContentView(R.layout.check_act_log);
-			TextView checkActLogText = (TextView) findViewById(R.id.textViewCheckActLog);
-			checkActLogText.setText(ActLogDatabase.getTheInstance(this).read(this));
-			break;
-			
-		case 3:
-			setContentView(R.layout.nfc_main);
-			linearLayout = (LinearLayout) findViewById(R.id.linearLayoutMain);
-			LayoutInflater li = getLayoutInflater();
-			li.inflate(R.layout.nfc_main_start, linearLayout);
-			break;
-
-		case 4:
-			setContentView(R.layout.check_temp_users);
-			TextView tempusersText = (TextView) findViewById(R.id.textViewCheckTempUsers);
-			TemporaryUsersDatabaseOperate.read(this);
-			tempusersText.setText(TemporaryUsersDatabaseOperate.tempText);
-			break;
-			
-		default:
-			Toast.makeText(getApplicationContext(), "fault", Toast.LENGTH_SHORT)
-					.show();
-			break;
-		}
-		return true;
-	}
-	
 	private void firstUsersPic(){
 		linearLayout.removeAllViews();
 		LayoutInflater li = getLayoutInflater();
