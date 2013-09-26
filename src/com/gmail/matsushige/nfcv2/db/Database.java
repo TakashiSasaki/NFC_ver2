@@ -1,9 +1,11 @@
-package com.gmail.matsushige.nfcv2;
+package com.gmail.matsushige.nfcv2.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.gmail.matsushige.nfcv2.DatabaseHelper;
 
 public class Database {
 	public static String logText = "";
