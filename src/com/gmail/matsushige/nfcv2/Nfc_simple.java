@@ -27,6 +27,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.gmail.matsushige.R;
+import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 
 import java.util.Calendar;
 
