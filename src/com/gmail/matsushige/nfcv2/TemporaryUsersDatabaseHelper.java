@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/** 仮登録ユーザーデータベース  */
+/** 莉ｮ逋ｻ骭ｲ繝ｦ繝ｼ繧ｶ繝ｼ繝�繝ｼ繧ｿ繝吶�ｼ繧ｹ  */
 public class TemporaryUsersDatabaseHelper extends SQLiteOpenHelper {
 
 	public TemporaryUsersDatabaseHelper(Context context) {
