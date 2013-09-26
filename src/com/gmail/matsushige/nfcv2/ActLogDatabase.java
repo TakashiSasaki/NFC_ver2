@@ -1,29 +1,47 @@
 package com.gmail.matsushige.nfcv2;
 
-import java.util.Date;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.Date;
 
 public class ActLogDatabase {
-	public static String actLogText = "";
+    private static ActLogDatabase theInstance;
 
-	public static void write(Context context, String id, String user, String how, long time){
+	private static String actLogText = "";
+
+    public static ActLogDatabase getTheInstance(Context context){
+        if (theInstance==null){
+            theInstance = new ActLogDatabase(context);
+            return theInstance;
+        } else {
+            return theInstance;
+        }
+    }
+
+    private SQLiteOpenHelper sqliteOpenHelper;
+
+    private ActLogDatabase(Context context){
+        sqliteOpenHelper = new ActLogDatabaseHelper(context);
+    }
+
+	public void write(Context context, String id, String user, String how, long time){
 		ContentValues cv = new ContentValues();
 		cv.put("ID", id);
 		cv.put("user_name", user);
 		cv.put("howAct", how);
 		cv.put("timestamp", time);
-		SQLiteDatabase db = (new ActLogDatabaseHelper(context)).getReadableDatabase();
+		SQLiteDatabase db = sqliteOpenHelper.getReadableDatabase();
 		db.insert("actlog", null, cv);
 		db.close();
 	}// write
 	
-	public static void read(Context context){
-		actLogText = "";
-		SQLiteDatabase db = (new ActLogDatabaseHelper(context)).getReadableDatabase();
+	public String read(Context context){
+		String actLogText = "";
+		SQLiteDatabase db = sqliteOpenHelper.getReadableDatabase();
 		Cursor c = db.query("actlog", null, null, null, null, null, null);
 		c.moveToFirst();
 		for (int i = 0; i < c.getCount(); ++i) {
@@ -37,5 +55,6 @@ public class ActLogDatabase {
 			c.moveToNext();
 		}// for
 		db.close();
+        return actLogText;
 	}// read
 }// ActLogDatabase

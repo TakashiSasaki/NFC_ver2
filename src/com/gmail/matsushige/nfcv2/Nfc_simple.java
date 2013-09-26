@@ -1,12 +1,6 @@
 package com.gmail.matsushige.nfcv2;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import com.gmail.matsushige.R;
-
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,8 +10,6 @@ import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.hardware.usb.UsbAccessory;
-import android.hardware.usb.UsbManager;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -33,6 +25,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.gmail.matsushige.R;
+
+import java.util.Calendar;
 
 public class Nfc_simple extends Activity {
 	private LinearLayout linearLayout;
@@ -165,8 +161,7 @@ public class Nfc_simple extends Activity {
 		case 2:
 			setContentView(R.layout.check_act_log);
 			TextView checkActLogText = (TextView) findViewById(R.id.textViewCheckActLog);
-			ActLogDatabase.read(this);
-			checkActLogText.setText(ActLogDatabase.actLogText);
+			checkActLogText.setText(ActLogDatabase.getTheInstance(this).read(this));
 			break;
 			
 		case 3:
@@ -479,16 +474,16 @@ public class Nfc_simple extends Activity {
 		UsersDatabase.checkResist(this, type, id);
 		
 		if (!("".equals(cardOwner))) {
-			ActLogDatabase.write(this, id, cardOwner, "タッチ", timestamp);
+			ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
 			reguUsersPic();
 		} else {
 			TemporaryUsersDatabaseOperate.checkRegisteredData(getApplicationContext(), type, id);
 			if(!("".equals(cardOwner))){
-				ActLogDatabase.write(getApplicationContext(), id, cardOwner, "タッチ", timestamp);
+				ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
 				tempUsersPic();
 			}else{
 				cardOwner = "未登録者";
-				ActLogDatabase.write(getApplicationContext(), id, cardOwner, "タッチ", timestamp);
+				ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
 				firstUsersPic();
 			}// else
 		}// else
@@ -515,7 +510,7 @@ public class Nfc_simple extends Activity {
 		
 		TemporaryUsersDatabaseOperate.checkRegisteredData(getApplicationContext(), type, id);
 		long time = Calendar.getInstance().getTimeInMillis();
-		ActLogDatabase.write(this, id, cardOwner, "登録", time);
+		ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "登録", time);
 	}// usersInput
 	
 	public void relayState(int target){
@@ -526,7 +521,7 @@ public class Nfc_simple extends Activity {
 			state = " OFF";
 		}
 		long time = Calendar.getInstance().getTimeInMillis();
-		ActLogDatabase.write(this, hex(id).toUpperCase(), cardOwner, "リレー" + (target + 1)+ state, time);
+		ActLogDatabase.getTheInstance(this).write(this, hex(id).toUpperCase(), cardOwner, "リレー" + (target + 1)+ state, time);
 	}// relayState
 		
 	/** ユーザ登録番号作成手順
