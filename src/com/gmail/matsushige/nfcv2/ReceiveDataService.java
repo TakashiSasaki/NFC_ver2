@@ -18,6 +18,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.gmail.matsushige.nfcv2.db.UsersDatabase;
+
 public class ReceiveDataService extends IntentService{
 	private static String TAG = "ReceiveDataService";
 	private static String fileName = "usersData.csv";
@@ -130,8 +132,8 @@ public class ReceiveDataService extends IntentService{
 				while((str = bufRead.readLine()) != null){
 					Log.d(TAG, str);
 					String[] strSplit = str.split(",", 7);
-					/** OpenOffice‚Åcsvƒtƒ@ƒCƒ‹‚ğì¬‚·‚é‚Æ•¶š‚Í""‚ÅˆÍ‚Ü‚ê‚é‚½‚ßA
-					 * ‚±‚ê‚ğæ‚èœ‚­•K—v‚ª‚ ‚é */
+					/** OpenOfficeã§csvãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã™ã‚‹ã¨æ–‡å­—ã¯""ã§å›²ã¾ã‚Œã‚‹ãŸã‚ã€
+					 * ã“ã‚Œã‚’å–ã‚Šé™¤ãå¿…è¦ãŒã‚ã‚‹ */
 					for(int i = 0; i< 7; i++){
 						if(strSplit[i].contains("\"")){
 							Log.d(TAG, "split");

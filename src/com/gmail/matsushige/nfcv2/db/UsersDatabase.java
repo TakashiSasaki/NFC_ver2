@@ -1,9 +1,12 @@
-package com.gmail.matsushige.nfcv2;
+package com.gmail.matsushige.nfcv2.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.gmail.matsushige.nfcv2.Nfc_simple;
+import com.gmail.matsushige.nfcv2.UsersDatabaseHelper;
 
 public class UsersDatabase {
 	public static String usersText = "";
@@ -59,13 +62,13 @@ public class UsersDatabase {
 				.getReadableDatabase();
 		String where = "ic_type = ?";
 		String[] where_arg = { type };
-		/** ˆê’v‚·‚étype‚ğŠm”F */
+		/** ä¸€è‡´ã™ã‚‹typeã‚’ç¢ºèª */
 		Cursor cursor = users.query("users", null, where, where_arg, null,
 				null, null);
 		Nfc_simple.cardOwner = "";
 		while (cursor.moveToNext()) {
 			String idre = cursor.getString(cursor.getColumnIndex("ic_id"));
-			/** ˆê’v‚·‚éid‚ğŠm”F */
+			/** ä¸€è‡´ã™ã‚‹idã‚’ç¢ºèª */
 			if (ID.equals(idre)) {
 				Nfc_simple.cardOwner = cursor.getString(cursor.getColumnIndex("user_name"));
 				break;
@@ -85,7 +88,7 @@ public class UsersDatabase {
 //		while (cursor.moveToNext()) {
 //			String idre = cursor.getString(cursor.getColumnIndex("ic_id"));
 //			if (idD.equals(idre)) {
-//				/** ˆê’v‚·‚éid‚ğŠm”F */
+//				/** ä¸€è‡´ã™ã‚‹idã‚’ç¢ºèª */
 //				serialN = cursor.getString(cursor.getColumnIndex("serial"));
 //			}// if
 //		}// while
