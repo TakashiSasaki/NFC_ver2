@@ -22,10 +22,13 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.gmail.matsushige.R;
+import com.gmail.matsushige.nfcv2.activity.BaseActivity;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 import com.gmail.matsushige.nfcv2.db.Database;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
+import com.gmail.matsushige.nfcv2.util.MakeQRCode;
+import com.gmail.matsushige.nfcv2.util.RegistrationCode;
 
 import java.util.Calendar;
 
@@ -86,15 +89,12 @@ public class Nfc_simple extends BaseActivity {
 		filter2.addAction("TEST3_RECEIVE_ACTION");
 		registerReceiver(test2Receiver, filter2);
 		
-		SharedPreferences pref = getSharedPreferences("SNS_OUTLET", MODE_PRIVATE);
-		if (!(pref.getBoolean("timerSet", false))) {
+		if (!(preference.getBoolean("timerSet", false))) {
 			DayAlarmManager.regularShortTimerSet(getApplicationContext());
-			Editor edit = pref.edit();
-			edit.putBoolean("timerSet", true);
-			edit.commit();
+			preference.putBoolean("timerSet", true);
 		}else{
 			Log.d("Activity", "already_set");
-		}
+		}//if
 
 		String action = getIntent().getAction();
 		if (action.equals(NfcAdapter.ACTION_TECH_DISCOVERED)) {
