@@ -3,5 +3,9 @@
 
     <string name="hello">Hello World, NFC1Activity!</string>
     <string name="app_name">SNS OUTLET_v2</string>
+    <string name="title_activity_unknown_user">Unknown User</string>
 
+    <string name="action_settings">Settings</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>

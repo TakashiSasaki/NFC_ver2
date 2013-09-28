@@ -45,6 +45,10 @@
         </activity>
         <activity android:name=".nfcv2.db.ActLogDatabaseActivity" android:launchMode="singleTop">
         </activity>
+        <activity android:name=".nfcv2.UnknownUserActivity" android:launchMode="singleTop"
+            android:label="@string/title_activity_unknown_user"
+            >
+        </activity>
         <service android:name=".nfcv2.SendDataService" />
         <service android:name=".nfcv2.ReceiveDataService"/>
         <service android:name=".nfcv2.CountRelayTime"/>
