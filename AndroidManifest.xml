@@ -43,6 +43,8 @@
                 android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
                 android:resource="@xml/accessory_filter" />
         </activity>
+        <activity android:name=".nfcv2.db.ActLogDatabaseActivity" android:launchMode="singleTop">
+        </activity>
         <service android:name=".nfcv2.SendDataService" />
         <service android:name=".nfcv2.ReceiveDataService"/>
         <service android:name=".nfcv2.CountRelayTime"/>

@@ -1,6 +1,7 @@
 package com.gmail.matsushige.nfcv2;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.matsushige.R;
-import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
+import com.gmail.matsushige.nfcv2.db.ActLogDatabaseActivity;
 import com.gmail.matsushige.nfcv2.db.Database;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
 
@@ -55,9 +56,9 @@ public class BaseActivity extends Activity{
                 break;
 
             case 2:
-                setContentView(R.layout.check_act_log);
-                TextView checkActLogText = (TextView) findViewById(R.id.textViewCheckActLog);
-                checkActLogText.setText(ActLogDatabase.getTheInstance(this).read(this));
+                Intent intent = new Intent();
+                intent.setClass(this, ActLogDatabaseActivity.class);
+                startActivity(intent);
                 break;
 
             case 3:
