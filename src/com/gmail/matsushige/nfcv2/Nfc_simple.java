@@ -416,7 +416,7 @@ public class Nfc_simple extends BaseActivity {
 			ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
 			reguUsersPic();
 		} else {
-			TemporaryUsersDatabaseOperate.checkRegisteredData(getApplicationContext(), type, id);
+			TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).checkRegisteredData(type, id);
 			if(!("".equals(cardOwner))){
 				ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
 				tempUsersPic();
@@ -444,10 +444,10 @@ public class Nfc_simple extends BaseActivity {
 	
 	/** TemporaryUsersDatabaseに記録 */
 	public void usersInput(String type, String id){
-		TemporaryUsersDatabaseOperate.write(getApplicationContext(), type, id, regCode);
+		TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).write(type, id, regCode);
 		Toast.makeText(getApplicationContext(), "登録しました" + "(" +regCode + ")", Toast.LENGTH_SHORT).show();
 		
-		TemporaryUsersDatabaseOperate.checkRegisteredData(getApplicationContext(), type, id);
+		TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).checkRegisteredData(type, id);
 		long time = Calendar.getInstance().getTimeInMillis();
 		ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "登録", time);
 	}// usersInput

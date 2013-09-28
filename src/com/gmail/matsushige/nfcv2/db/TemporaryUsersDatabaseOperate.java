@@ -20,7 +20,7 @@ public class TemporaryUsersDatabaseOperate {
     private SQLiteOpenHelper temporaryUserDatabaseHelper;
 
     private static TemporaryUsersDatabaseOperate theInstance;
-    public static TemporaryUsersDatabaseOperate getTheInstance(Context context){
+    synchronized public static TemporaryUsersDatabaseOperate getTheInstance(Context context){
         if(theInstance != null){
             return theInstance;
         }
@@ -31,8 +31,8 @@ public class TemporaryUsersDatabaseOperate {
 
     private Context context;
     private TemporaryUsersDatabaseOperate(Context context){
-        this.temporaryUserDatabaseHelper = new TemporaryUsersDatabaseHelper(this.context);
-    }//TemporaryUsersDatabaseOperate
+        this.temporaryUserDatabaseHelper = new TemporaryUsersDatabaseHelper(context);
+    }//TemporaryUsersDatabaseOperate (private constructor)
 
 	public void write(String type, String id, String regCode){
 		long regTime = Calendar.getInstance().getTimeInMillis();

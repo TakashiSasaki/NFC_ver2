@@ -72,7 +72,7 @@ public class BaseActivity extends Activity{
             case 4:
                 setContentView(R.layout.check_temp_users);
                 TextView tempusersText = (TextView) findViewById(R.id.textViewCheckTempUsers);
-                TemporaryUsersDatabaseOperate.read(this);
+                TemporaryUsersDatabaseOperate.getTheInstance(this).read();
                 tempusersText.setText(TemporaryUsersDatabaseOperate.tempText);
                 break;
 
