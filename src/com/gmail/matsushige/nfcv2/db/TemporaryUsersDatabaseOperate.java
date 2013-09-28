@@ -1,25 +1,42 @@
 package com.gmail.matsushige.nfcv2.db;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import android.app.AlarmManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.gmail.matsushige.nfcv2.Nfc_simple;
-import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseHelper;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class TemporaryUsersDatabaseOperate {
-	private static String TAG = "TemporaryUsersDatabaseOperate";
+
+	private final static String TAG = "TemporaryUsersDatabaseOperate";
 	public static String tempText = "";
-	
-	public static void write(Context context, String type, String id, String regCode){
+    private SQLiteOpenHelper temporaryUserDatabaseHelper;
+
+    private static TemporaryUsersDatabaseOperate theInstance;
+    public static TemporaryUsersDatabaseOperate getTheInstance(Context context){
+        if(theInstance != null){
+            return theInstance;
+        }
+        theInstance = new TemporaryUsersDatabaseOperate(context);
+        return theInstance;
+    }//getTheInstance
+
+
+    private Context context;
+    private TemporaryUsersDatabaseOperate(Context context){
+        this.temporaryUserDatabaseHelper = new TemporaryUsersDatabaseHelper(this.context);
+    }//TemporaryUsersDatabaseOperate
+
+	public void write(String type, String id, String regCode){
 		long regTime = Calendar.getInstance().getTimeInMillis();
-		SQLiteDatabase db = (new TemporaryUsersDatabaseHelper(context)).getWritableDatabase();
+		SQLiteDatabase db = this.temporaryUserDatabaseHelper.getWritableDatabase();
 		ContentValues cv = new ContentValues();
 		cv.put("card_type", type);
 		cv.put("card_id", id);
@@ -30,9 +47,9 @@ public class TemporaryUsersDatabaseOperate {
 		db.close();
 	}
 	
-	public static void read(Context context){
+	public void read(){
 		tempText = "";
-		SQLiteDatabase db = (new TemporaryUsersDatabaseHelper(context))
+		SQLiteDatabase db = this.temporaryUserDatabaseHelper
 				.getReadableDatabase();
 		Cursor c = db.query("tempusers", null, null, null, null, null, null);
 		c.moveToFirst();
@@ -51,9 +68,9 @@ public class TemporaryUsersDatabaseOperate {
 		db.close();
 	}
 	
-	public static void deleteOldData(Context context){
+	public void deleteOldData(){
 		long currentTime = Calendar.getInstance().getTimeInMillis();
-		SQLiteDatabase db = (new TemporaryUsersDatabaseHelper(context)).getReadableDatabase();
+		SQLiteDatabase db = temporaryUserDatabaseHelper.getReadableDatabase();
 		String[] key = {"1"}; // send_checkが"1"であるか 
 		Cursor cursor = db.query("tempusers", null, "send_check = ?", key, null, null, null);
 		cursor.moveToFirst();
@@ -74,9 +91,9 @@ public class TemporaryUsersDatabaseOperate {
 		db.close();
 	}// deleteOldData
 	
-	public static void checkRegisteredData(Context context, String type, String id){
+	public void checkRegisteredData(String type, String id){
 		Nfc_simple.cardOwner = "";
-		SQLiteDatabase db = (new TemporaryUsersDatabaseHelper(context)).getReadableDatabase();
+		SQLiteDatabase db = this.temporaryUserDatabaseHelper.getReadableDatabase();
 		String where = "card_type = ?";
 		String[] where_arg = {type};
 		Cursor cursor = db.query("tempusers", null, where, where_arg, null, null, null);
