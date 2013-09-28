@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.gmail.matsushige.R;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabaseActivity;
 import com.gmail.matsushige.nfcv2.db.Database;
+import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
 
 /**

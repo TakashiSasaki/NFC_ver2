@@ -1,7 +1,5 @@
-package com.gmail.matsushige.nfcv2;
+package com.gmail.matsushige.nfcv2.db;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -11,6 +9,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import com.gmail.matsushige.nfcv2.Nfc_simple;
+import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseHelper;
 
 public class TemporaryUsersDatabaseOperate {
 	private static String TAG = "TemporaryUsersDatabaseOperate";

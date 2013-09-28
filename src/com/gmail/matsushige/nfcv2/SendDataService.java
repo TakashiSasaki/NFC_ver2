@@ -17,6 +17,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseHelper;
+
 public class SendDataService extends IntentService{
 	HttpsURLConnection httpsConnect = null;
 	public static String readData = "";
