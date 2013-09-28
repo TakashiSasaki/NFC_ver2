@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.gmail.matsushige.R;
-import com.gmail.matsushige.nfcv2.BaseActivity;
+import com.gmail.matsushige.nfcv2.activity.BaseActivity;
 
 /**
  * Created by sasaki on 13/09/26.

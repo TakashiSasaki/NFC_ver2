@@ -1,7 +1,8 @@
-package com.gmail.matsushige.nfcv2;
+package com.gmail.matsushige.nfcv2.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,16 +11,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.matsushige.R;
+import com.gmail.matsushige.nfcv2.CountRelayTime;
+import com.gmail.matsushige.nfcv2.CountTimeAllUser;
+import com.gmail.matsushige.nfcv2.Relay;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabaseActivity;
 import com.gmail.matsushige.nfcv2.db.Database;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
+import com.gmail.matsushige.nfcv2.util.Preference;
 
 /**
  * Created by sasaki on 13/09/26.
  */
 public class BaseActivity extends Activity{
     protected LinearLayout linearLayout;
+    protected Preference preference;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.preference = Preference.getTheInstance(this);
+    }//onCreate
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -29,7 +41,7 @@ public class BaseActivity extends Activity{
         menu.add(Menu.NONE, 3, 0, "スタート画面");
         menu.add(Menu.NONE, 4, 0, "tempusersDatabase");
         return super.onCreateOptionsMenu(menu);
-    }
+    }//onCreateOptionsMenu
 
     @Override
     public boolean onOptionsItemSelected(MenuItem mi) {

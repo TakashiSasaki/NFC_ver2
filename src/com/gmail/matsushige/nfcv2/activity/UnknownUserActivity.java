@@ -1,4 +1,4 @@
-package com.gmail.matsushige.nfcv2;
+package com.gmail.matsushige.nfcv2.activity;
 
 import android.app.Activity;
 import android.os.Bundle;

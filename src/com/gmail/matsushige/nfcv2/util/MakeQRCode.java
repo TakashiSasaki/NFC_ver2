@@ -1,4 +1,4 @@
-package com.gmail.matsushige.nfcv2;
+package com.gmail.matsushige.nfcv2.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
