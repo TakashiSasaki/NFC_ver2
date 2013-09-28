@@ -69,7 +69,7 @@ public class SendDataService extends IntentService{
 			String outletId = pref.getString("outletId", "AA");
 			
 			String baseUrl = "https://odenkiapi.appspot.com/api/Card";
-			/** ‘—Mƒpƒ‰ƒ[ƒ^‚Ìæ“¾ */
+			/** é€ä¿¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å–å¾— */
 			String outletIdParameter = "outletId=" + outletId;
 			String regCodeParameter = "regCode=" + regCode;
 			String cardIdParameter = "cardId=" + id;
@@ -81,7 +81,7 @@ public class SendDataService extends IntentService{
 			httpsConnect = (HttpsURLConnection) connect;
 			httpsConnect.connect();
 			int response = httpsConnect.getResponseCode();
-			/** OK(200)‚Å‚ ‚é‚©”»’è */
+			/** OK(200)ã§ã‚ã‚‹ã‹åˆ¤å®š */
 			if (response == HttpURLConnection.HTTP_OK) {
 				returnValue = "OK";
 				Log.d("Service", "HTTP : OK (" + response + ")");
@@ -103,11 +103,11 @@ public class SendDataService extends IntentService{
 		return returnValue;
 	}// httpConnect
 	
-	/** ‘—M‚Ì‚½‚ß‚Ìƒf[ƒ^ƒx[ƒX“Ç‚İo‚µ(send_check‚ª0‚Ìs‚ğ1‚Âæ‚èo‚·) */
+	/** é€ä¿¡ã®ãŸã‚ã®ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹èª­ã¿å‡ºã—(send_checkãŒ0ã®è¡Œã‚’1ã¤å–ã‚Šå‡ºã™) */
 	public void readDatabase(Context context){
 		readData = "";
 		SQLiteDatabase db = (new TemporaryUsersDatabaseHelper(context)).getReadableDatabase();
-		/** –¢‘—M‚Ìƒf[ƒ^‚ğCursor‚Åæ“¾ */
+		/** æœªé€ä¿¡ã®ãƒ‡ãƒ¼ã‚¿ã‚’Cursorã§å–å¾— */
 		String selection = "send_check = ?";
 		String[] selectionArg = {"0"}; 
 		Cursor c = db.query("tempusers", null, selection, selectionArg, null, null, null);
@@ -125,7 +125,7 @@ public class SendDataService extends IntentService{
 		db.close();
 	}// readDatabase
 	
-	/** "send_check"ƒJƒ‰ƒ€‚Ì‘‚«Š·‚¦ */
+	/** "send_check"ã‚«ãƒ©ãƒ ã®æ›¸ãæ›ãˆ */
 	public void writeDatabase(Context context, String serial){
 		SQLiteDatabase db = (new TemporaryUsersDatabaseHelper(context)).getWritableDatabase();
 		String[] target = {serial};

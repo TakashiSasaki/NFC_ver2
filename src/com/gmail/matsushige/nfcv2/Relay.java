@@ -143,7 +143,7 @@ public class Relay{
 			});
 			thread.start();
 		} else {
-			// Accessory‚ª‘¶İ‚µ‚È‚¢
+			// AccessoryãŒå­˜åœ¨ã—ãªã„
 		}
 	}// openAccessory
 

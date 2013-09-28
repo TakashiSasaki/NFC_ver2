@@ -53,7 +53,7 @@ public class TemporaryUsersDatabaseOperate {
 	public static void deleteOldData(Context context){
 		long currentTime = Calendar.getInstance().getTimeInMillis();
 		SQLiteDatabase db = (new TemporaryUsersDatabaseHelper(context)).getReadableDatabase();
-		String[] key = {"1"}; // send_check‚ª"1"‚Å‚ ‚é‚© 
+		String[] key = {"1"}; // send_checkãŒ"1"ã§ã‚ã‚‹ã‹ 
 		Cursor cursor = db.query("tempusers", null, "send_check = ?", key, null, null, null);
 		cursor.moveToFirst();
 		for(int i = 0; i < cursor.getCount(); i++){
@@ -61,7 +61,7 @@ public class TemporaryUsersDatabaseOperate {
 			long register_time = cursor.getLong(cursor.getColumnIndex("register_time"));
 			long difference = currentTime - register_time;
 			if(difference > AlarmManager.INTERVAL_FIFTEEN_MINUTES){
-				String[] target = {"" + serial}; // ŠY“–‚·‚é’Ê‚µ”Ô†‚ğ‘ÎÛ‚Éw’è
+				String[] target = {"" + serial}; // è©²å½“ã™ã‚‹é€šã—ç•ªå·ã‚’å¯¾è±¡ã«æŒ‡å®š
 				db.delete("tempusers", "serial = ?", target);
 				Log.d(TAG, "DELETE");
 			}else{
@@ -84,7 +84,7 @@ public class TemporaryUsersDatabaseOperate {
 			if(id.equals(registeredId)){
 				String serial = cursor.getString(cursor.getColumnIndex("serial"));
 				String regcode = cursor.getString(cursor.getColumnIndex("register_code"));
-				Nfc_simple.cardOwner = "ƒQƒXƒg" + serial;
+				Nfc_simple.cardOwner = "ã‚²ã‚¹ãƒˆ" + serial;
 				Nfc_simple.regCode = regcode;
 				break;
 			}// if

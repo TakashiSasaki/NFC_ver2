@@ -20,7 +20,7 @@ public class CountTimeAllUser extends IntentService{
 	public static int maxCount = 20; 
 	public static boolean retainUserData = false;
 	
-	/** 利用画面からスタート画面に戻るまでの時間 */
+	/** 蛻ｩ逕ｨ逕ｻ髱｢縺九ｉ繧ｹ繧ｿ繝ｼ繝育判髱｢縺ｫ謌ｻ繧九∪縺ｧ縺ｮ譎る俣 */
 	public CountTimeAllUser() {
 		super(TAG);
 		// TODO Auto-generated constructor stub
