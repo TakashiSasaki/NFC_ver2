@@ -1,6 +1,5 @@
 package com.gmail.matsushige.nfcv2.activity;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -25,7 +24,7 @@ import com.gmail.matsushige.nfcv2.util.RegistrationCode;
 
 import java.util.Calendar;
 
-public class FirstUserActivity extends Activity{
+public class FirstUserActivity extends BaseActivity {
 
     public String getType() {
         return type;
@@ -37,7 +36,7 @@ public class FirstUserActivity extends Activity{
 
     private String type;
 
-    public String getId(){
+    public String getId() {
         return this.id;
     }
 
@@ -76,7 +75,7 @@ public class FirstUserActivity extends Activity{
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             Bundle bundle = intent.getExtras();
-            if(action.equals("TEST2_RECEIVE_ACTION")){
+            if (action.equals("TEST2_RECEIVE_ACTION")) {
                 int count = bundle.getInt("count");
                 TextView timeText = (TextView) findViewById(R.id.textViewTime);
                 timeText.setText("あと" + (CountTimeAllUser.maxCount - count)
@@ -97,7 +96,7 @@ public class FirstUserActivity extends Activity{
         unregisterReceiver(closeTimerBroadcastReceiver);
     }//onPause
 
-    private void firstUsersPic(){
+    private void firstUsersPic() {
 
         //screenState = FIRST_USER;
 
@@ -151,8 +150,10 @@ public class FirstUserActivity extends Activity{
     }// firstUsersPic
 
 
-    /** TemporaryUsersDatabaseに記録 */
-    public void usersInput(String type, String id){
+    /**
+     * TemporaryUsersDatabaseに記録
+     */
+    public void usersInput(String type, String id) {
         String registration_code = RegistrationCode.getTheInstance(getApplicationContext()).GenerateRegisterCode();
         Log.d(this.getLocalClassName() + "#userInput", registration_code);
 
