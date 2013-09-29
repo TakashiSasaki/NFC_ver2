@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.gmail.matsushige.nfcv2.Nfc_simple;
-
 import java.util.Calendar;
 import java.util.Date;
 
@@ -91,8 +89,8 @@ public class TemporaryUsersDatabaseOperate {
 		db.close();
 	}// deleteOldData
 	
-	public void checkRegisteredData(String type, String id){
-		Nfc_simple.cardOwner = "";
+	public TemporaryUser getRegisteredData(String type, String id){
+        TemporaryUser temporary_user = new TemporaryUser(type, id);
 		SQLiteDatabase db = this.temporaryUserDatabaseHelper.getReadableDatabase();
 		String where = "card_type = ?";
 		String[] where_arg = {type};
@@ -102,19 +100,14 @@ public class TemporaryUsersDatabaseOperate {
 			if(id.equals(registeredId)){
 				String serial = cursor.getString(cursor.getColumnIndex("serial"));
 				String regcode = cursor.getString(cursor.getColumnIndex("register_code"));
-				Nfc_simple.cardOwner = "ゲスト" + serial;
-				Nfc_simple.regCode = regcode;
-				break;
+                temporary_user.setOwnerName("ゲスト" + serial);
+                temporary_user.setRegistrationCode(regcode);
+                return temporary_user;
 			}// if
 		}// while
 		cursor.close();
 		db.close();
+        return temporary_user;
 	}// checkRegisteredData
-	
-	public static String getRegisterCode(Context context){
-		String registerCode = "";
-		SQLiteDatabase db = (new TemporaryUsersDatabaseHelper(context)).getReadableDatabase();
-		db.close();
-		return registerCode;
-	}// getRegisterCode
+
 }

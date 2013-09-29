@@ -1,12 +1,5 @@
 package com.gmail.matsushige.nfcv2;
 
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,11 +8,26 @@ import android.content.IntentFilter;
 import android.hardware.usb.UsbAccessory;
 import android.hardware.usb.UsbManager;
 import android.os.ParcelFileDescriptor;
-import android.widget.Toast;
+
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Relay{
 
-	private static Relay relay0;
+    static public String getRelayStateString(int target){
+        if(Relay.getRelay(target).isClosed()){
+            return " ON";
+        }else if(Relay.getRelay(target).isOpened()){
+            return " OFF";
+        }//if
+        return " UNKNOWN";
+    }
+
+    private static Relay relay0;
 	private static Relay relay1;
 	
 	private Date mLastClosed;

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.Color;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +21,12 @@ import android.widget.ToggleButton;
 
 import com.gmail.matsushige.R;
 import com.gmail.matsushige.nfcv2.activity.BaseActivity;
+import com.gmail.matsushige.nfcv2.activity.TempUserActivity;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 import com.gmail.matsushige.nfcv2.db.Database;
+import com.gmail.matsushige.nfcv2.db.TemporaryUser;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
-import com.gmail.matsushige.nfcv2.util.MakeQRCode;
 import com.gmail.matsushige.nfcv2.util.RegistrationCode;
 
 import java.util.Calendar;
@@ -43,8 +42,7 @@ public class Nfc_simple extends BaseActivity {
 	private static final int REGULAR_USER = 3;
 	
 	public static String cardOwner = "";
-	public static String regCode = "";
-	
+
 	public testBroadcastReceiver testReceiver;
 	public test2BroadcastReceiver test2Receiver;
 	public int screenState = 0;	
@@ -130,9 +128,9 @@ public class Nfc_simple extends BaseActivity {
 					CountTimeFirstUser.retainUserData = true;
 					CountTimeFirstUser.finish = true;
 				}
-                regCode = RegistrationCode.getTheInstance(getApplicationContext()).GenerateRegisterCode();
-				Log.d("Activity", regCode);
-				
+
+
+
 				usersInput(type, hex(id).toUpperCase());
 //				if (type.equals("f")) {
 //					usersInput(type, hex(id).toUpperCase());
@@ -146,7 +144,9 @@ public class Nfc_simple extends BaseActivity {
 							SendDataService.class);
 					startService(intent);
 				}
-				tempUsersPic();
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), TempUserActivity.class);
+                startActivity(intent);
 			}// onClick
 		});
 		
@@ -162,94 +162,7 @@ public class Nfc_simple extends BaseActivity {
 		});
 	}// firstUsersPic
 
-	private void tempUsersPic(){
-		linearLayout.removeAllViews();
-		LayoutInflater li = getLayoutInflater();
-		li.inflate(R.layout.nfc_main_temporary, linearLayout);
-		
-		screenState = TEMPORARY_USER;
-		
-		CountRelayTime.maxCount = 10;
-		
-		//TODO 以下操作部分
-		TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
-		TextView explainText = (TextView) findViewById(R.id.textViewExplain);
-		userNameText.setText("ユーザー登録番号は、\n「"+ regCode +"」です。");
-		userNameText.setTextColor(Color.RED);
-		explainText.setText("みんなでおでんき\n(http://odenki.org)\nにアクセスしてユーザ登録番号を入力してください");
-		ImageView qrCode = (ImageView) findViewById(R.id.imageViewQR);
-		qrCode.setImageBitmap(MakeQRCode.getQRCode("http://odenki.org/api/outlet/" + regCode));
-		
-		Button powerCancelButton = (Button) findViewById(R.id.buttonPowerCancel);
-		ToggleButton relay1Toggle = (ToggleButton)findViewById(R.id.toggleRelay1);
-		ToggleButton relay2Toggle = (ToggleButton)findViewById(R.id.toggleRelay2);
-		
-		/** すでにリレー使用中であればトグルボタンを押した状態にする */
-		if(Relay.getRelay(0).isClosed()){
-			relay1Toggle.setChecked(true);
-		}
-		if(Relay.getRelay(1).isClosed()){
-			relay2Toggle.setChecked(true);
-		}
 
-		startCountTimeAllUser();
-		
-		powerCancelButton.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				Relay.getRelay(0).open();
-				Relay.getRelay(1).open();
-				if(CountTimeAllUser.isUsed){
-					CountTimeAllUser.finish = true;
-				}
-				if(CountRelayTime.isUsed){
-					CountRelayTime.finish = true;
-				}
-				changeMainXto0();
-			}// onClick
-		});
-
-		relay1Toggle.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if(CountTimeAllUser.isUsed){
-					CountTimeAllUser.retainUserData = true;
-					CountTimeAllUser.finish = true;
-				}
-				if(!(CountRelayTime.isUsed)){
-					startCountRelayTime();
-				}
-				if(Relay.getRelay(0).isOpened()){
-					Relay.getRelay(0).close();
-				}else if(Relay.getRelay(0).isClosed()){
-					Relay.getRelay(0).open();
-				}
-				relayState(0);
-			}// onClick
-		});
-	
-		relay2Toggle.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if(CountTimeAllUser.isUsed){
-					CountTimeAllUser.retainUserData = true;
-					CountTimeAllUser.finish = true;
-				}
-				if(!(CountRelayTime.isUsed)){
-					startCountRelayTime();
-				}
-				if(Relay.getRelay(1).isOpened()){
-					Relay.getRelay(1).close();
-				}else if(Relay.getRelay(1).isClosed()){
-					Relay.getRelay(1).open();
-				}
-				relayState(1);
-			}// onClick
-		});
-	}// tempUsersPic
-	
 	private void reguUsersPic(){
 		linearLayout.removeAllViews();
 		LayoutInflater li = getLayoutInflater();
@@ -273,7 +186,7 @@ public class Nfc_simple extends BaseActivity {
 		}
 
 		CountRelayTime.maxCount = 120;
-		startCountTimeAllUser();
+		CountTimeAllUser.startCountTimeAllUser(this);
 		
 		powerCancelButton.setOnClickListener(new OnClickListener() {
 
@@ -299,14 +212,15 @@ public class Nfc_simple extends BaseActivity {
 					CountTimeAllUser.finish = true;
 				}
 				if(!(CountRelayTime.isUsed)){
-					startCountRelayTime();
+					CountRelayTime.startCountRelayTime(getApplicationContext());
 				}
 				if(Relay.getRelay(0).isOpened()){
 					Relay.getRelay(0).close();
 				}else if(Relay.getRelay(0).isClosed()){
 					Relay.getRelay(0).open();
 				}
-				relayState(0);
+                long time = Calendar.getInstance().getTimeInMillis();
+                ActLogDatabase.getTheInstance().write(getApplicationContext(), hex(id).toUpperCase(), cardOwner, "リレー0" + Relay.getRelayStateString(0), time);
 			}// onClick
 		});
 	
@@ -319,14 +233,15 @@ public class Nfc_simple extends BaseActivity {
 					CountTimeAllUser.finish = true;
 				}
 				if(!(CountRelayTime.isUsed)){
-					startCountRelayTime();
+					CountRelayTime.startCountRelayTime(getApplicationContext());
 				}
 				if(Relay.getRelay(1).isOpened()){
 					Relay.getRelay(1).close();
 				}else if(Relay.getRelay(1).isClosed()){
 					Relay.getRelay(1).open();
 				}
-				relayState(1);
+                long time = Calendar.getInstance().getTimeInMillis();
+                ActLogDatabase.getTheInstance().write(getApplicationContext(), hex(id).toUpperCase(), cardOwner, "リレー1" + Relay.getRelayStateString(1), time);
 			}// onClick
 		});
 	}// reguUsersPic	
@@ -402,10 +317,12 @@ public class Nfc_simple extends BaseActivity {
 			ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
 			reguUsersPic();
 		} else {
-			TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).checkRegisteredData(type, id);
-			if(!("".equals(cardOwner))){
+			TemporaryUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
+			if(temporary_user != null){
 				ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
-				tempUsersPic();
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), TempUserActivity.class);
+                startActivity(intent);
 			}else{
 				cardOwner = "未登録者";
 				ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
@@ -430,49 +347,16 @@ public class Nfc_simple extends BaseActivity {
 	
 	/** TemporaryUsersDatabaseに記録 */
 	public void usersInput(String type, String id){
-		TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).write(type, id, regCode);
-		Toast.makeText(getApplicationContext(), "登録しました" + "(" +regCode + ")", Toast.LENGTH_SHORT).show();
+        String registration_code = RegistrationCode.getTheInstance(getApplicationContext()).GenerateRegisterCode();
+        Log.d(this.getLocalClassName() + "#userInput", registration_code);
+
+        TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).write(type, id, registration_code);
+		Toast.makeText(getApplicationContext(), "登録しました" + "(" +registration_code + ")", Toast.LENGTH_SHORT).show();
 		
-		TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).checkRegisteredData(type, id);
+		TemporaryUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
 		long time = Calendar.getInstance().getTimeInMillis();
 		ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "登録", time);
 	}// usersInput
-	
-	public void relayState(int target){
-		String state ="";
-		if(Relay.getRelay(target).isClosed()){
-			state = " ON";
-		}else if(Relay.getRelay(target).isOpened()){
-			state = " OFF";
-		}
-		long time = Calendar.getInstance().getTimeInMillis();
-		ActLogDatabase.getTheInstance(this).write(this, hex(id).toUpperCase(), cardOwner, "リレー" + (target + 1)+ state, time);
-	}// relayState
-	
-	private void startCountRelayTime(){
-		if (!(CountRelayTime.isUsed)) {
-			Intent intent = new Intent(getApplicationContext(), CountRelayTime.class);
-//			intent.putExtra("cardType", type);
-			startService(intent);
-		}else{
-			Toast.makeText(getApplicationContext(), "CountRelayTimeisUsed", Toast.LENGTH_SHORT).show();
-		}// else
-	}// startCountTime
-	
-	private void startCountTimeAllUser(){
-		if (!(CountRelayTime.isUsed)) {
-			if (!(CountTimeAllUser.isUsed)) {
-				Intent intent = new Intent(getApplicationContext(),
-						CountTimeAllUser.class);
-				startService(intent);
-			} else {
-				Toast.makeText(getApplicationContext(), "CountTime2isUsed",
-						Toast.LENGTH_SHORT).show();
-			}// else
-		}else{
-			Toast.makeText(getApplicationContext(), "countTime > countTime2", Toast.LENGTH_SHORT).show();
-		} // else
-	}// startCountTimeAllUser
 	
 	private void startCountTimeFirstUser(){
 		if(!(CountTimeFirstUser.isUsed)){

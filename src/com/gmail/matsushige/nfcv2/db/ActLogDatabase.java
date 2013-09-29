@@ -22,6 +22,10 @@ public class ActLogDatabase {
         }
     }
 
+    public static ActLogDatabase getTheInstance(){
+        return theInstance;
+    }
+
     private SQLiteOpenHelper sqliteOpenHelper;
 
     private ActLogDatabase(Context context){

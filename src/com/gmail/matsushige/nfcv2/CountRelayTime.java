@@ -1,22 +1,14 @@
 package com.gmail.matsushige.nfcv2;
 
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Calendar;
-
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.hardware.usb.UsbAccessory;
-import android.hardware.usb.UsbManager;
-import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
-import android.provider.MediaStore.Files;
 import android.util.Log;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 
 public class CountRelayTime extends IntentService{
@@ -26,7 +18,19 @@ public class CountRelayTime extends IntentService{
 	public static boolean isUsed = false;
 	public static boolean finish = false;
 	public static int maxCount = 15;
-	
+
+    public static void startCountRelayTime(Context context){
+        if (!(CountRelayTime.isUsed)) {
+            Intent intent = new Intent(context, CountRelayTime.class);
+//			intent.putExtra("cardType", type);
+            context.startService(intent);
+        }else{
+            Toast.makeText(context, "CountRelayTimeisUsed", Toast.LENGTH_SHORT).show();
+        }// else
+    }// startCountTime
+
+
+
 //	private UsbManager mUsbManager;
 //	private ParcelFileDescriptor mFileDescriptor;
 //	private UsbAccessory mUsbAccessory;

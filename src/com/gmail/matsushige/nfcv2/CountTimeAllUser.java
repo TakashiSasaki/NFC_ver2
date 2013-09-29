@@ -1,14 +1,14 @@
 package com.gmail.matsushige.nfcv2;
 
-import java.util.Calendar;
-
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 
 public class CountTimeAllUser extends IntentService{
@@ -19,8 +19,23 @@ public class CountTimeAllUser extends IntentService{
 	public static boolean finish = false;
 	public static int maxCount = 20; 
 	public static boolean retainUserData = false;
-	
-	/** 利用画面からスタート画面に戻るまでの時間 */
+
+    static public void startCountTimeAllUser(Context context){
+        if (!(CountRelayTime.isUsed)) {
+            if (!(CountTimeAllUser.isUsed)) {
+                Intent intent = new Intent(context,
+                        CountTimeAllUser.class);
+                context.startService(intent);
+            } else {
+                Toast.makeText(context, "CountTime2isUsed",
+                        Toast.LENGTH_SHORT).show();
+            }// else
+        }else{
+            Toast.makeText(context, "countTime > countTime2", Toast.LENGTH_SHORT).show();
+        } // else
+    }// startCountTimeAllUser
+
+    /** 利用画面からスタート画面に戻るまでの時間 */
 	public CountTimeAllUser() {
 		super(TAG);
 		// TODO Auto-generated constructor stub
