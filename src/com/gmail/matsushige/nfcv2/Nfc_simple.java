@@ -26,7 +26,6 @@ import com.gmail.matsushige.nfcv2.db.Database;
 import com.gmail.matsushige.nfcv2.db.TemporaryUser;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
-import com.gmail.matsushige.nfcv2.util.Preference;
 
 import java.util.Calendar;
 
@@ -247,10 +246,10 @@ public class Nfc_simple extends BaseActivity {
 		Database.write(this, type, id, timestamp);
 		
 		//TODO プリファレンスチェック
-		String userType = Preference.getTheInstance(this).getUserType();
-		String userId = Preference.getTheInstance(this).getUserId();
-		if(userType.equals("") && userId.equals("")){
-            Preference.getTheInstance(this).setTypeAndId(type, id);
+		String userType = preference.getUserType();
+		String userId = preference.getUserId();
+		if(userType == null && userId == null){
+            preference.setTypeAndId(type, id);
 			//recordPreference(type, id);
 		}else if(type.equals(userType) && id.equals(userId)){
 			Toast.makeText(getApplicationContext(), "あなたは使用中です", Toast.LENGTH_SHORT).show();
@@ -267,7 +266,7 @@ public class Nfc_simple extends BaseActivity {
 		} else {
 			TemporaryUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
 			if(temporary_user != null){
-                Preference.getTheInstance(getApplication()).setTypeAndId(type, id);
+                preference.setTypeAndId(type, id);
 				ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), TempUserActivity.class);
@@ -288,9 +287,9 @@ public class Nfc_simple extends BaseActivity {
 	
 	/** outletId（プリファレンス保存）を"AB"に変更 */
 	private void checkOutletId(){
-		String outletId = Preference.getTheInstance(this).getOutletId();
+		String outletId = preference.getOutletId();
 		if (outletId == "AA"){
-            Preference.getTheInstance(this).setOutletId("AB");
+            preference.setOutletId("AB");
 		}else{
 			Log.d("Activity", "second~_pref");
 		}// else
@@ -320,7 +319,7 @@ public class Nfc_simple extends BaseActivity {
 				timeText.setText("あと" + secToMin(CountRelayTime.maxCount - count) +"で終了します");
 			}// if
 			if(count == CountRelayTime.maxCount){
-                Preference.getTheInstance(getApplicationContext()).resetPreference();
+                preference.resetPreference();
 				Toast.makeText(getApplicationContext(), "使用可能時間が過ぎました", Toast.LENGTH_SHORT).show();
 				changeMainXto0();
 			}// if
