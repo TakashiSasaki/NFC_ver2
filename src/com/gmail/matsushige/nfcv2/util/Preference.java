@@ -51,13 +51,13 @@ public class Preference {
 
     public String getOutletId() {
         return this.sharedPreferences.getString("outletId", "AA");
-    }
+    }//getOutletId
 
     public void setOutletId(String outlet_id) {
         SharedPreferences.Editor editor = this.sharedPreferences.edit();
         editor.putString("outletId", outlet_id);
         editor.commit();
-    }
+    }//setOutletId
 
     public void setTypeAndId(String type, String id) {
         if ("".equals(type))
@@ -79,5 +79,13 @@ public class Preference {
     public String getCardOwner() {
         return this.sharedPreferences.getString("cardOwner", null);
     }//getCardOwner
+
+    public void setCardOwner(String card_owner) {
+        if ("".equals(card_owner))
+            throw new IllegalArgumentException("card owner should not be empty string");
+        SharedPreferences.Editor edit = this.sharedPreferences.edit();
+        edit.putString("cardOwner", card_owner);
+        edit.commit();
+    }//setCardOwner
 
 }//Preference
