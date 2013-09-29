@@ -17,6 +17,7 @@ import com.gmail.matsushige.nfcv2.activity.BaseActivity;
 import com.gmail.matsushige.nfcv2.activity.FirstUserActivity;
 import com.gmail.matsushige.nfcv2.activity.RegularUserActivity;
 import com.gmail.matsushige.nfcv2.activity.TempUserActivity;
+import com.gmail.matsushige.nfcv2.activity.TimerActivity;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 import com.gmail.matsushige.nfcv2.db.TouchLogDatabase;
 import com.gmail.matsushige.nfcv2.db.CardUser;
@@ -25,7 +26,7 @@ import com.gmail.matsushige.nfcv2.db.UsersDatabase;
 
 import java.util.Calendar;
 
-public class Nfc_simple extends BaseActivity {
+public class Nfc_simple extends TimerActivity {
 	private TextView timeText;
 	private byte[] id;
 //	private String tech = "";
@@ -57,7 +58,7 @@ public class Nfc_simple extends BaseActivity {
 		//testReceiver = new testBroadcastReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("TEST_RECEIVE_ACTION");
-		registerReceiver(testReceiver, filter);
+		registerReceiver(countRelayTimeReceiver, filter);
 
 		if (!(preference.getBoolean("timerSet", false))) {
 			DayAlarmManager.regularShortTimerSet(getApplicationContext());
@@ -83,7 +84,7 @@ public class Nfc_simple extends BaseActivity {
 		if (!(CountRelayTime.isUsed)) {
 			Relay.closeAccessory();
 		}
-		unregisterReceiver(testReceiver);
+		unregisterReceiver(countRelayTimeReceiver);
 	}// onPause
 
 	@Override
@@ -187,41 +188,6 @@ public class Nfc_simple extends BaseActivity {
 			}// if
 		}// if
 	}// recordId
-
-
-
-    public BroadcastReceiver testReceiver = new BroadcastReceiver() {
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			Bundle bundle = intent.getExtras();
-			int count = bundle.getInt("count");
-			/** 本登録ユーザ画面であればテキスト表示 */
-			if (screenState == REGULAR_USER || screenState == TEMPORARY_USER) {
-				timeText = (TextView) findViewById(R.id.textViewRelayCountdown);
-				timeText.setText("使用中です。\nあと" + secToMin(CountRelayTime.getMaxCount() - count) +"で通電を終了します");
-			}// if
-			if(count >= CountRelayTime.getMaxCount()){
-                preference.resetPreference();
-                ((TextView) findViewById(R.id.textViewRelayCountdown)).setText("使用可能です。");
-				Toast.makeText(getApplicationContext(), "使用可能時間が過ぎました", Toast.LENGTH_SHORT).show();
-				//changeMainXto0();
-			}// if
-		}// onReceive
-
-		private String secToMin(int sec){
-			String minSecData = "";
-			if(sec > 59){
-				int syou = sec / 60; // "/":商
-				int amari = sec % 60; //  "%":余
-				minSecData = syou + "分" + amari + "秒";
-			}else{
-				minSecData = sec + "秒";
-			}// else
-			return minSecData;
-		}// secToMin
-
-	};// testBroadcastReceiver
 
 }// Nfc_simple
 
