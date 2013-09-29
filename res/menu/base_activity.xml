@@ -15,7 +15,7 @@
         android:title="actlogDatabase" />
     <item
         android:id="@+id/start"
-        android:title="スタート画面" />
+        android:title="スタート画面に戻る" />
     <item
         android:id="@+id/tempusersDatabase"
         android:title="tempusersDatabase" />

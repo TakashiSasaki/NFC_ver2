@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.gmail.matsushige.R;
 import com.gmail.matsushige.nfcv2.CountRelayTime;
 import com.gmail.matsushige.nfcv2.CountTimeAllUser;
+import com.gmail.matsushige.nfcv2.Nfc_simple;
 import com.gmail.matsushige.nfcv2.Relay;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabaseActivity;
 import com.gmail.matsushige.nfcv2.db.Database;
@@ -22,9 +23,6 @@ import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
 import com.gmail.matsushige.nfcv2.util.Preference;
 
-/**
- * Created by sasaki on 13/09/26.
- */
 public class BaseActivity extends Activity {
     protected LinearLayout linearLayout;
     protected Preference preference;
@@ -40,25 +38,21 @@ public class BaseActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menu_inflater = getMenuInflater();
         menu_inflater.inflate(R.menu.base_activity, menu);
-//        menu.add(Menu.NONE, 0, 0, "usersDatabase");
-//        menu.add(Menu.NONE, 1, 0, "logDatabase");
-//        menu.add(Menu.NONE, 2, 0, "actlogDatabase");
-//        menu.add(Menu.NONE, 3, 0, "スタート画面");
-//        menu.add(Menu.NONE, 4, 0, "tempusersDatabase");
         //return super.onCreateOptionsMenu(menu);
         return true;
     }//onCreateOptionsMenu
 
     @Override
     public boolean onOptionsItemSelected(MenuItem mi) {
-        Relay.getRelay(0).open();
-        Relay.getRelay(1).open();
-        if (CountTimeAllUser.isUsed) {
-            CountTimeAllUser.stop();
-        }
-        if (CountRelayTime.isUsed) {
-            CountRelayTime.stop();
-        }
+//        Relay.getRelay(0).open();
+//        Relay.getRelay(1).open();
+//        if (CountTimeAllUser.isUsed) {
+//            CountTimeAllUser.stop();
+//        }
+//        if (CountRelayTime.isUsed) {
+//            CountRelayTime.stop();
+//        }
+        Intent intent = new Intent();
         switch (mi.getItemId()) {
             case R.id.usersDatabase:
                 setContentView(R.layout.check_users);
@@ -75,16 +69,13 @@ public class BaseActivity extends Activity {
                 break;
 
             case R.id.actlogDatabase:
-                Intent intent = new Intent();
                 intent.setClass(this, ActLogDatabaseActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.start:
-                setContentView(R.layout.nfc_main);
-                linearLayout = (LinearLayout) findViewById(R.id.linearLayoutMain);
-                LayoutInflater li = getLayoutInflater();
-                li.inflate(R.layout.nfc_main_start, linearLayout);
+                intent.setClass(this, Nfc_simple.class);
+                startActivity(intent);
                 break;
 
             case R.id.tempusersDatabase:
