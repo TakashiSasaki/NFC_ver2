@@ -41,7 +41,7 @@ public class TempUserActivity extends BaseActivity {
 
         //screenState = TEMPORARY_USER;
 
-        CountRelayTime.maxCount = 10;
+        //CountRelayTime.maxCount = 10;
 
         //TODO 以下操作部分
         TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
@@ -92,7 +92,7 @@ public class TempUserActivity extends BaseActivity {
                     CountTimeAllUser.stop();
                 }
                 if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext());
+                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60*10);
                 }
                 if (Relay.getRelay(0).isOpened()) {
                     Relay.getRelay(0).close();
@@ -114,7 +114,7 @@ public class TempUserActivity extends BaseActivity {
                     CountTimeAllUser.stop();
                 }
                 if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext());
+                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60*10);
                 }
                 if (Relay.getRelay(1).isOpened()) {
                     Relay.getRelay(1).close();

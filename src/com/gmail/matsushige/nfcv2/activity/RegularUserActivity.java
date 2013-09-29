@@ -50,7 +50,7 @@ public class RegularUserActivity extends BaseActivity {
             relay2Toggle.setChecked(true);
         }//if
 
-        CountRelayTime.maxCount = 120;
+        //CountRelayTime.maxCount = 120;
         CountTimeAllUser.startCountTimeAllUser(this);
 
         powerCancelButton.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +78,7 @@ public class RegularUserActivity extends BaseActivity {
                     CountTimeAllUser.stop();
                 }
                 if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext());
+                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60*60);
                 }
                 if (Relay.getRelay(0).isOpened()) {
                     Relay.getRelay(0).close();
@@ -99,7 +99,7 @@ public class RegularUserActivity extends BaseActivity {
                     CountTimeAllUser.stop();
                 }
                 if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext());
+                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60*60);
                 }
                 if (Relay.getRelay(1).isOpened()) {
                     Relay.getRelay(1).close();

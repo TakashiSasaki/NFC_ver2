@@ -17,9 +17,10 @@ public class CountRelayTime extends IntentService {
     public long startTime = 0;
     public static boolean isUsed = false;
     private static boolean finish = false;
-    public static int maxCount = 15;
+    private static int maxCount = 15;
 
-    public static void startCountRelayTime(Context context) {
+    public static void startCountRelayTime(Context context, int seconds) {
+        maxCount = seconds;
         if (!(CountRelayTime.isUsed)) {
             Intent intent = new Intent(context, CountRelayTime.class);
 //			intent.putExtra("cardType", type);
