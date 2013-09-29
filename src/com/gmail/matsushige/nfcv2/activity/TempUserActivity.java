@@ -33,7 +33,7 @@ public class TempUserActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_temporary);
-        setTitle(this.getLocalClassName());
+        setTitle("仮登録ユーザー");
         tempUsersPic();
     }//onCreate
 

@@ -34,14 +34,13 @@ public class Nfc_simple extends BaseActivity {
 //	private String tech = "";
 	private String type = "";
 
-	private static final int FIRST_USER = 1;
+	//private static final int FIRST_USER = 1;
 	private static final int TEMPORARY_USER = 2;
 	private static final int REGULAR_USER = 3;
 
 	public static String cardOwner = "";
 
 	public testBroadcastReceiver testReceiver;
-	public CloseCountdownTimerBroadcastReceiver closeCountdownTimerBroadcastReceiver;
 	public int screenState = 0;
 
 	@Override
@@ -63,11 +62,6 @@ public class Nfc_simple extends BaseActivity {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("TEST_RECEIVE_ACTION");
 		registerReceiver(testReceiver, filter);
-
-		IntentFilter filter2 = new IntentFilter();
-		//filter2.addAction("TEST2_RECEIVE_ACTION");
-		filter2.addAction("TEST3_RECEIVE_ACTION");
-		registerReceiver(closeCountdownTimerBroadcastReceiver, filter2);
 
 		if (!(preference.getBoolean("timerSet", false))) {
 			DayAlarmManager.regularShortTimerSet(getApplicationContext());
@@ -317,27 +311,5 @@ public class Nfc_simple extends BaseActivity {
 
 	}// testBroadcastReceiver
 
-	/** CountTime2から受け取る */
-	//public class test2BroadcastReceiver extends BroadcastReceiver{
-    public class CloseCountdownTimerBroadcastReceiver extends BroadcastReceiver{
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			// TODO Auto-generated method stub
-			String action = intent.getAction();
-			Bundle bundle = intent.getExtras();
-			if(action.equals("TEST3_RECEIVE_ACTION")){
-				int count = bundle.getInt("count");
-				if(screenState == FIRST_USER){
-					timeText = (TextView) findViewById(R.id.textViewTime);
-					timeText.setText("あと" + (CountTimeAllUser.maxCount - count) + "秒でスタート画面に戻ります");
-				}
-				if(count == CountTimeAllUser.maxCount){
-					changeMainXto0();
-				}
-			}
-		}// onReceive
-
-	}// test2BroadcastReceiver
 }// Nfc_simple
 
