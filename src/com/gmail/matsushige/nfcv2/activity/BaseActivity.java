@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class BaseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.preference = Preference.getTheInstance(this);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }//onCreate
 
     @Override
@@ -97,7 +99,7 @@ public class BaseActivity extends Activity {
                 break;
 
             case R.id.removeTempUser:
-                TemporaryUsersDatabaseOperate.getTheInstance(this).delete(preference.getUserType(),preference.getUserId());
+                TemporaryUsersDatabaseOperate.getTheInstance(this).delete(preference.getUserType(), preference.getUserId());
                 preference.resetPreference();
 
             default:

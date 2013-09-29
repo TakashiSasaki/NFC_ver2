@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +49,6 @@ public class Nfc_simple extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.nfc_main_start);
         setTitle("ソーシャルコンセント");
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		Relay.test(getApplicationContext());
 	}// onCreate
