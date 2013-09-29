@@ -3,10 +3,12 @@ package com.gmail.matsushige.nfcv2;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
+//import android.content.SharedPreferences;
+//import android.content.SharedPreferences.Editor;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.gmail.matsushige.nfcv2.util.Preference;
 
 import java.util.Calendar;
 
@@ -81,7 +83,7 @@ public class CountTimeAllUser extends IntentService{
 			Log.d(TAG, "retainUserData");
 			retainUserData = false;
 		} else {
-			resetUserPreference();
+            Preference.getTheInstance(getApplicationContext()).resetPreference();
 //			retainUserData = false;
 		}
 //		isUsed = false;
@@ -93,12 +95,4 @@ public class CountTimeAllUser extends IntentService{
 		Log.d(TAG, "onDestroy");
 	}// onDestroy
 	
-	private void resetUserPreference(){
-		SharedPreferences sdf = getSharedPreferences("SNS_OUTLET", MODE_PRIVATE);
-		Editor edit = sdf.edit();
-		edit.putString("userType", "");
-		edit.putString("userId", "");
-		edit.commit();
-	}// resetUserPreference
-
 }//CountTimeAllUser
