@@ -72,12 +72,11 @@ public class TempUserActivity extends Activity {
                 Relay.getRelay(0).open();
                 Relay.getRelay(1).open();
                 if(CountTimeAllUser.isUsed){
-                    CountTimeAllUser.finish = true;
+                    CountTimeAllUser.stop();
                 }
                 if(CountRelayTime.isUsed){
-                    CountRelayTime.finish = true;
+                    CountRelayTime.stop();
                 }
-                //changeMainXto0();
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), Nfc_simple.class);
                 startActivity(intent);
@@ -90,7 +89,7 @@ public class TempUserActivity extends Activity {
                 // TODO Auto-generated method stub
                 if(CountTimeAllUser.isUsed){
                     CountTimeAllUser.retainUserData = true;
-                    CountTimeAllUser.finish = true;
+                    CountTimeAllUser.stop();
                 }
                 if(!(CountRelayTime.isUsed)){
                     CountRelayTime.startCountRelayTime(getApplicationContext());
@@ -112,7 +111,7 @@ public class TempUserActivity extends Activity {
                 // TODO Auto-generated method stub
                 if(CountTimeAllUser.isUsed){
                     CountTimeAllUser.retainUserData = true;
-                    CountTimeAllUser.finish = true;
+                    CountTimeAllUser.stop();
                 }
                 if(!(CountRelayTime.isUsed)){
                     CountRelayTime.startCountRelayTime(getApplicationContext());
@@ -159,6 +158,7 @@ public class TempUserActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        CountTimeAllUser.stop();
         unregisterReceiver(closeTimerBroadcastReceiver);
     }
 }//TempUserActivity
