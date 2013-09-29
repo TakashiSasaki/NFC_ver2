@@ -54,12 +54,24 @@
             android:textOn="リレー2ON" />
     </LinearLayout>
 
-
-    <Button
-        android:id="@+id/buttonPowerCancel"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:text="何もしないで終了" />
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/buttonPowerCancel"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="90dp"
+            android:text="何もしないで終了" />
+
+        <Button
+            android:id="@+id/buttonDeleteUser"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="90dp"
+            android:text="ユーザーを削除して終了" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewTime"
