@@ -30,11 +30,11 @@ public class Preference {
     }//putBoolean
 
     public String getUserType() {
-        return this.sharedPreferences.getString("userType", "");
+        return this.sharedPreferences.getString("userType", null);
     }
 
     public String getUserId() {
-        return this.sharedPreferences.getString("userId", "");
+        return this.sharedPreferences.getString("userId", null);
     }
 
     public String getOutletId() {
@@ -48,6 +48,8 @@ public class Preference {
     }
 
     public void setTypeAndId(String type, String id) {
+        if("".equals(type)) throw new IllegalArgumentException("card type should not be empty string");
+        if("".equals(id)) throw new IllegalArgumentException("card id should not be empty string");
         SharedPreferences.Editor edit = this.sharedPreferences.edit();
         edit.putString("userType", type);
         edit.putString("userId", id);
@@ -56,8 +58,8 @@ public class Preference {
 
     public void resetPreference(){
         SharedPreferences.Editor edit = this.sharedPreferences.edit();
-        edit.putString("userType", "");
-        edit.putString("userId", "");
+        edit.putString("userType", null);
+        edit.putString("userId", null);
         edit.commit();
     }// resetPreference
 
