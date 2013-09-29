@@ -17,14 +17,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="このカードでの利用記録はありません。このカードのID番号を登録してよいですか？"
+        android:text="このカードで使用した記録はありません。このカードのID番号を登録してよいですか？"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ソーシャルコンセントの利用状況を知るため、いつ、どのカードで利用したかを記録しています。ID番号を登録していないカードでは使えません。"
+        android:text="ソーシャルコンセントの使用状況を知るため、いつ、どのカードで使用したかを記録しています。ID番号を登録していないカードでは使えません。"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <LinearLayout

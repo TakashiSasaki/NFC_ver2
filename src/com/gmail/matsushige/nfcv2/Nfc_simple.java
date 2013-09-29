@@ -199,11 +199,11 @@ public class Nfc_simple extends BaseActivity {
 			/** 本登録ユーザ画面であればテキスト表示 */
 			if (screenState == REGULAR_USER || screenState == TEMPORARY_USER) {
 				timeText = (TextView) findViewById(R.id.textViewRelayCountdown);
-				timeText.setText("利用中です。\nあと" + secToMin(CountRelayTime.getMaxCount() - count) +"で通電を終了します");
+				timeText.setText("使用中です。\nあと" + secToMin(CountRelayTime.getMaxCount() - count) +"で通電を終了します");
 			}// if
 			if(count >= CountRelayTime.getMaxCount()){
                 preference.resetPreference();
-                ((TextView) findViewById(R.id.textViewRelayCountdown)).setText("利用可能です。");
+                ((TextView) findViewById(R.id.textViewRelayCountdown)).setText("使用可能です。");
 				Toast.makeText(getApplicationContext(), "使用可能時間が過ぎました", Toast.LENGTH_SHORT).show();
 				//changeMainXto0();
 			}// if
