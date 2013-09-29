@@ -63,6 +63,7 @@ public class Nfc_simple extends BaseActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
+
 		Relay.setRelayOnResume();
 		
 		testReceiver = new testBroadcastReceiver();
@@ -83,7 +84,10 @@ public class Nfc_simple extends BaseActivity {
 			Log.d("Activity", "already_set");
 		}//if
 
+        // when invoked by startActivity, it gets no intent..
 		String action = getIntent().getAction();
+
+        if(action == null) return;
 		if (action.equals(NfcAdapter.ACTION_TECH_DISCOVERED)) {
 			readNfc();
 		} else if (action.equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
