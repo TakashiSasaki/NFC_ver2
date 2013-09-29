@@ -27,7 +27,8 @@ public class Relay{
         return " UNKNOWN";
     }
 
-    static public void closeAll(){
+    // 'open' relay means cutting off current
+    static public void openAll(){
         getRelay(0).close();
         getRelay(1).close();
     }//closeAll
