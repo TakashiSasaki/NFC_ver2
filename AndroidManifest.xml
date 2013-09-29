@@ -64,7 +64,6 @@
         <service android:name=".nfcv2.ReceiveDataService" />
         <service android:name=".nfcv2.CountRelayTime" />
         <service android:name=".nfcv2.CountTimeAllUser" />
-        <service android:name=".nfcv2.CountTimeFirstUser" />
     </application>
 
 </manifest>

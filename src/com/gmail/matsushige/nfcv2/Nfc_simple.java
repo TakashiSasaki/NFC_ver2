@@ -297,16 +297,6 @@ public class Nfc_simple extends BaseActivity {
 		}// else
 	}// checkOutletId
 
-	private void startCountTimeFirstUser(){
-		if(!(CountTimeFirstUser.isUsed)){
-			Intent intent = new Intent(getApplicationContext(),
-					CountTimeFirstUser.class);
-			startService(intent);
-		}// if
-	}// startCountTimeFirstUser
-	
-
-
 	public class testBroadcastReceiver extends BroadcastReceiver {
 
 		@Override
@@ -354,9 +344,9 @@ public class Nfc_simple extends BaseActivity {
 				int count = bundle.getInt("count");
 				if(screenState == FIRST_USER){
 					timeText = (TextView) findViewById(R.id.textViewTime);
-					timeText.setText("あと" + (CountTimeFirstUser.maxCount - count) + "秒でスタート画面に戻ります");
+					timeText.setText("あと" + (CountTimeAllUser.maxCount - count) + "秒でスタート画面に戻ります");
 				}
-				if(count == CountTimeFirstUser.maxCount){
+				if(count == CountTimeAllUser.maxCount){
 					changeMainXto0();
 				}
 			}

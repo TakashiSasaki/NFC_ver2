@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.gmail.matsushige.R;
 import com.gmail.matsushige.nfcv2.CountTimeAllUser;
-import com.gmail.matsushige.nfcv2.CountTimeFirstUser;
 import com.gmail.matsushige.nfcv2.Nfc_simple;
 import com.gmail.matsushige.nfcv2.SendDataService;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
@@ -108,10 +107,10 @@ public class FirstUserActivity extends BaseActivity {
 
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                if (CountTimeFirstUser.isUsed) {
-                    CountTimeFirstUser.retainUserData = true;
-                    CountTimeFirstUser.finish = true;
-                }
+                if (CountTimeAllUser.isUsed) {
+                    CountTimeAllUser.retainUserData = true;
+                    CountTimeAllUser.stop();
+                }//if
 
                 usersInput(getType(), getId());
 //				if (type.equals("f")) {
@@ -137,8 +136,8 @@ public class FirstUserActivity extends BaseActivity {
 
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                if (CountTimeFirstUser.isUsed) {
-                    CountTimeFirstUser.finish = true;
+                if (CountTimeAllUser.isUsed) {
+                    CountTimeAllUser.stop();
                 }
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), Nfc_simple.class);
