@@ -1,7 +1,6 @@
 package com.gmail.matsushige.nfcv2.util;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -32,22 +31,13 @@ public class RegistrationCode {
      * 　4.英字部分と数字部分を組み合わせる
      */
     public String GenerateRegisterCode() {
-        String outletCode = generateOutletCode();
+        String outletCode = Preference.getTheInstance(this.context).getOutletId();
         String preNumber = getPreviousNumber(outletCode);
         String numberCode = generateNumberCode(preNumber);
         String registerCode = outletCode + numberCode;
         Log.d("AService", registerCode);
         return registerCode;
     }
-
-    /**
-     * 英字部分作成
-     */
-    private String generateOutletCode() {
-        SharedPreferences pref = this.context.getSharedPreferences("SNS_OUTLET", Context.MODE_PRIVATE);
-        String outletCode = pref.getString("outletId", "AA");
-        return outletCode;
-    }//generateOutletCode
 
     /**
      * 仮登録データベースから最後に発行された数字を取得
