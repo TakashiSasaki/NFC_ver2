@@ -4,8 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -27,6 +25,7 @@ import com.gmail.matsushige.nfcv2.db.Database;
 import com.gmail.matsushige.nfcv2.db.TemporaryUser;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
+import com.gmail.matsushige.nfcv2.util.Preference;
 import com.gmail.matsushige.nfcv2.util.RegistrationCode;
 
 import java.util.Calendar;
@@ -299,11 +298,11 @@ public class Nfc_simple extends BaseActivity {
 		Database.write(this, type, id, timestamp);
 		
 		//TODO プリファレンスチェック
-		SharedPreferences pref = getSharedPreferences("SNS_OUTLET", MODE_PRIVATE);
-		String userType = pref.getString("userType", "");
-		String userId = pref.getString("userId", "");
+		String userType = Preference.getTheInstance(this).getUserType();
+		String userId = Preference.getTheInstance(this).getUserId();
 		if(userType.equals("") && userId.equals("")){
-			recordPreference(type, id);
+            Preference.getTheInstance(this).setTypeAndId(type, id);
+			//recordPreference(type, id);
 		}else if(type.equals(userType) && id.equals(userId)){
 			Toast.makeText(getApplicationContext(), "あなたは使用中です", Toast.LENGTH_SHORT).show();
 		}else{
@@ -333,13 +332,9 @@ public class Nfc_simple extends BaseActivity {
 	
 	/** outletId（プリファレンス保存）を"AB"に変更 */
 	private void checkOutletId(){
-		SharedPreferences pref = getSharedPreferences("SNS_OUTLET", MODE_PRIVATE);
-		String outletId = pref.getString("outletId", "AA");
+		String outletId = Preference.getTheInstance(this).getOutletId();
 		if (outletId == "AA"){
-			Log.d("Activity", "first_pref");
-			Editor edit = pref.edit();
-			edit.putString("outletId", "AB");
-			edit.commit();
+            Preference.getTheInstance(this).setOutletId("AB");
 		}else{
 			Log.d("Activity", "second~_pref");
 		}// else
@@ -366,22 +361,8 @@ public class Nfc_simple extends BaseActivity {
 		}// if
 	}// startCountTimeFirstUser
 	
-	private void recordPreference(String type, String id){
-		SharedPreferences sdf = getSharedPreferences("SNS_OUTLET", MODE_PRIVATE);
-		Editor edit = sdf.edit();
-		edit.putString("userType", type);
-		edit.putString("userId", id);
-		edit.commit();
-	}// recordPreference
-	
-	private void resetPreference(){
-		SharedPreferences sdf = getSharedPreferences("SNS_OUTLET", MODE_PRIVATE);
-		Editor edit = sdf.edit();
-		edit.putString("userType", "");
-		edit.putString("userId", "");
-		edit.commit();
-	}// resetPreference
-	
+
+
 	public class testBroadcastReceiver extends BroadcastReceiver {
 
 		@Override
@@ -396,7 +377,7 @@ public class Nfc_simple extends BaseActivity {
 				timeText.setText("あと" + secToMin(CountRelayTime.maxCount - count) +"で終了します");
 			}// if
 			if(count == CountRelayTime.maxCount){
-				resetPreference();
+                Preference.getTheInstance(getApplicationContext()).resetPreference();
 				Toast.makeText(getApplicationContext(), "使用可能時間が過ぎました", Toast.LENGTH_SHORT).show();
 				changeMainXto0();
 			}// if

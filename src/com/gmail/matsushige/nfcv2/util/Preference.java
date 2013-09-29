@@ -28,4 +28,37 @@ public class Preference {
         editor.putBoolean(key, value);
         editor.commit();
     }//putBoolean
+
+    public String getUserType() {
+        return this.sharedPreferences.getString("userType", "");
+    }
+
+    public String getUserId() {
+        return this.sharedPreferences.getString("userId", "");
+    }
+
+    public String getOutletId() {
+        return this.sharedPreferences.getString("outletId", "AA");
+    }
+
+    public void setOutletId(String outlet_id) {
+        SharedPreferences.Editor editor = this.sharedPreferences.edit();
+        editor.putString("outletId", outlet_id);
+        editor.commit();
+    }
+
+    public void setTypeAndId(String type, String id) {
+        SharedPreferences.Editor edit = this.sharedPreferences.edit();
+        edit.putString("userType", type);
+        edit.putString("userId", id);
+        edit.commit();
+    }//setTypeAndId
+
+    public void resetPreference(){
+        SharedPreferences.Editor edit = this.sharedPreferences.edit();
+        edit.putString("userType", "");
+        edit.putString("userId", "");
+        edit.commit();
+    }// resetPreference
+
 }//Preference
