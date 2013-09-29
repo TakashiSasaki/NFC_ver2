@@ -34,6 +34,14 @@ public class TemporaryUsersDatabaseOperate {
         this.temporaryUserDatabaseHelper = new TemporaryUsersDatabaseHelper(context);
     }//TemporaryUsersDatabaseOperate (private constructor)
 
+
+    public int delete(String card_type, String card_id) {
+        SQLiteDatabase db = this.temporaryUserDatabaseHelper.getReadableDatabase();
+        int rows = db.delete("tempusers", "card_type=? AND card_id=?", new String[]{card_type, card_id});
+        db.close();
+        return rows;
+    }//delete
+
     public void write(String type, String id, String regCode) {
         long regTime = Calendar.getInstance().getTimeInMillis();
         SQLiteDatabase db = this.temporaryUserDatabaseHelper.getWritableDatabase();
@@ -92,7 +100,6 @@ public class TemporaryUsersDatabaseOperate {
     }// deleteOldData
 
     public TemporaryUser getRegisteredData(String type, String id) {
-        TemporaryUser temporary_user = new TemporaryUser(type, id);
         SQLiteDatabase db = this.temporaryUserDatabaseHelper.getReadableDatabase();
         String where = "card_type = ?";
         String[] where_arg = {type};
@@ -102,6 +109,7 @@ public class TemporaryUsersDatabaseOperate {
             if (id.equals(registeredId)) {
                 String serial = cursor.getString(cursor.getColumnIndex("serial"));
                 String regcode = cursor.getString(cursor.getColumnIndex("register_code"));
+                TemporaryUser temporary_user = new TemporaryUser(type, id);
                 temporary_user.setOwnerName("ゲスト" + serial);
                 temporary_user.setRegistrationCode(regcode);
                 return temporary_user;
@@ -109,7 +117,7 @@ public class TemporaryUsersDatabaseOperate {
         }// while
         cursor.close();
         db.close();
-        return temporary_user;
-    }// checkRegisteredData
+        return null;
+    }// getRegisteredData
 
-}
+}//TemporaryUsersDatabaseOperate
