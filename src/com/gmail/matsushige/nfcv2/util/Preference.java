@@ -76,4 +76,8 @@ public class Preference {
         edit.commit();
     }// resetPreference
 
+    public String getCardOwner() {
+        return this.sharedPreferences.getString("cardOwner", null);
+    }//getCardOwner
+
 }//Preference

@@ -9,16 +9,13 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.gmail.matsushige.R;
 import com.gmail.matsushige.nfcv2.activity.BaseActivity;
 import com.gmail.matsushige.nfcv2.activity.FirstUserActivity;
+import com.gmail.matsushige.nfcv2.activity.RegularUserActivity;
 import com.gmail.matsushige.nfcv2.activity.TempUserActivity;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 import com.gmail.matsushige.nfcv2.db.Database;
@@ -96,91 +93,6 @@ public class Nfc_simple extends BaseActivity {
 		Relay.unRegisterReceiver(getApplicationContext());
 	}// onDestroy
 
-
-
-	private void reguUsersPic(){
-		linearLayout.removeAllViews();
-		LayoutInflater li = getLayoutInflater();
-		li.inflate(R.layout.nfc_main_regular, linearLayout);
-
-		screenState = REGULAR_USER;
-
-		TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
-		userNameText.setText(cardOwner + "さん、こんにちは。");
-
-		Button powerCancelButton = (Button) findViewById(R.id.buttonPowerCancel);
-		ToggleButton relay1Toggle = (ToggleButton)findViewById(R.id.toggleRelay1);
-		ToggleButton relay2Toggle = (ToggleButton)findViewById(R.id.toggleRelay2);
-
-		/** すでにリレー使用中であればトグルボタンを押した状態にする */
-		if(Relay.getRelay(0).isClosed()){
-			relay1Toggle.setChecked(true);
-		}
-		if(Relay.getRelay(1).isClosed()){
-			relay2Toggle.setChecked(true);
-		}
-
-		CountRelayTime.maxCount = 120;
-		CountTimeAllUser.startCountTimeAllUser(this);
-
-		powerCancelButton.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				Relay.getRelay(0).open();
-				Relay.getRelay(1).open();
-				if(CountTimeAllUser.isUsed){
-					CountTimeAllUser.stop();
-				}
-				if(CountRelayTime.isUsed){
-					CountRelayTime.stop();
-				}
-				changeMainXto0();
-			}// onClick
-		});
-
-		relay1Toggle.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if(CountTimeAllUser.isUsed){
-					CountTimeAllUser.retainUserData = true;
-					CountTimeAllUser.stop();
-				}
-				if(!(CountRelayTime.isUsed)){
-					CountRelayTime.startCountRelayTime(getApplicationContext());
-				}
-				if(Relay.getRelay(0).isOpened()){
-					Relay.getRelay(0).close();
-				}else if(Relay.getRelay(0).isClosed()){
-					Relay.getRelay(0).open();
-				}
-                long time = Calendar.getInstance().getTimeInMillis();
-                ActLogDatabase.getTheInstance().write(getApplicationContext(), hex(id).toUpperCase(), cardOwner, "リレー0" + Relay.getRelayStateString(0), time);
-			}// onClick
-		});
-
-		relay2Toggle.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if(CountTimeAllUser.isUsed){
-					CountTimeAllUser.retainUserData = true;
-					CountTimeAllUser.stop();
-				}
-				if(!(CountRelayTime.isUsed)){
-					CountRelayTime.startCountRelayTime(getApplicationContext());
-				}
-				if(Relay.getRelay(1).isOpened()){
-					Relay.getRelay(1).close();
-				}else if(Relay.getRelay(1).isClosed()){
-					Relay.getRelay(1).open();
-				}
-                long time = Calendar.getInstance().getTimeInMillis();
-                ActLogDatabase.getTheInstance().write(getApplicationContext(), hex(id).toUpperCase(), cardOwner, "リレー1" + Relay.getRelayStateString(1), time);
-			}// onClick
-		});
-	}// reguUsersPic
-
 	public void changeMainXto0() { // スタート画面へ
 		timeText = (TextView) findViewById(R.id.textViewTime);
 		timeText.setText("");
@@ -250,7 +162,9 @@ public class Nfc_simple extends BaseActivity {
 
 		if (!("".equals(cardOwner))) {
 			ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
-			reguUsersPic();
+            Intent intent = new Intent();
+            intent.setClass(getApplicationContext(), RegularUserActivity.class);
+            startActivity(intent);
 		} else {
 			TemporaryUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
 			if(temporary_user != null){
