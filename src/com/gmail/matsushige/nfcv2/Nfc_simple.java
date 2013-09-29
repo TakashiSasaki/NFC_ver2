@@ -34,7 +34,7 @@ public class Nfc_simple extends BaseActivity {
 	private TextView timeText;
 	private byte[] id;
 //	private String tech = "";
-	private String type = "";
+	//private String type = "";
 
 	private static final int FIRST_USER = 1;
 	private static final int TEMPORARY_USER = 2;
@@ -254,7 +254,7 @@ public class Nfc_simple extends BaseActivity {
 		screenState = 0;
 	}// changeMainXto0
 
-	public void readNfc() {
+	private void readNfc() {
 		Intent intent = getIntent();
 		id = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
 		Tag tag = (Tag) intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
@@ -284,7 +284,7 @@ public class Nfc_simple extends BaseActivity {
 		}// else
 	}// readNfc
 
-	public String hex(byte[] data) {
+	private String hex(byte[] data) {
 		String hexText = "";
 		for (byte v : data) {
 			hexText += String.format("%02x", new Object[] { v });
@@ -292,7 +292,7 @@ public class Nfc_simple extends BaseActivity {
 		return hexText;
 	}// hex
 
-	public void recordId(String type, String id) {
+	private void recordId(String type, String id) {
 
 		long timestamp = Calendar.getInstance().getTimeInMillis();
 		Database.write(this, type, id, timestamp);
