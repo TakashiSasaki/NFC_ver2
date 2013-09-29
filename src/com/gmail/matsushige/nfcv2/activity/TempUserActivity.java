@@ -1,7 +1,10 @@
 package com.gmail.matsushige.nfcv2.activity;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -126,4 +129,36 @@ public class TempUserActivity extends Activity {
         });
     }// tempUsersPic
 
+    BroadcastReceiver closeTimerBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Bundle bundle = intent.getExtras();
+            if(action.equals("TEST2_RECEIVE_ACTION")){
+                int count = bundle.getInt("count");
+                    TextView timeText = (TextView) findViewById(R.id.textViewTime);
+                    timeText.setText("あと" + (CountTimeAllUser.maxCount - count)
+                            + "秒でスタート画面に戻ります");
+                if (count == CountTimeAllUser.maxCount) {
+                    Intent intent_to_send = new Intent();
+                    intent_to_send.setClass(getApplicationContext(), Nfc_simple.class);
+                    startActivity(intent_to_send);
+                }// if
+            }
+        }// onReceive
+    };// closeCountdownBroadcastReceiver
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter intent_filter = new IntentFilter();
+        intent_filter.addAction("TEST2_RECEIVE_ACTION");
+        registerReceiver(closeTimerBroadcastReceiver, intent_filter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(closeTimerBroadcastReceiver);
+    }
 }//TempUserActivity

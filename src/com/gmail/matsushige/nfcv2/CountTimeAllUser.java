@@ -96,4 +96,4 @@ public class CountTimeAllUser extends IntentService{
 		edit.commit();
 	}// resetUserPreference
 
-}
+}//CountTimeAllUser

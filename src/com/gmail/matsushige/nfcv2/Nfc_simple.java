@@ -43,7 +43,7 @@ public class Nfc_simple extends BaseActivity {
 	public static String cardOwner = "";
 
 	public testBroadcastReceiver testReceiver;
-	public test2BroadcastReceiver test2Receiver;
+	public CloseCountdownTimerBroadcastReceiver closeCountdownTimerBroadcastReceiver;
 	public int screenState = 0;	
 	
 	@Override
@@ -71,11 +71,10 @@ public class Nfc_simple extends BaseActivity {
 		filter.addAction("TEST_RECEIVE_ACTION");
 		registerReceiver(testReceiver, filter);
 		
-		test2Receiver = new test2BroadcastReceiver();
 		IntentFilter filter2 = new IntentFilter();
-		filter2.addAction("TEST2_RECEIVE_ACTION");
+		//filter2.addAction("TEST2_RECEIVE_ACTION");
 		filter2.addAction("TEST3_RECEIVE_ACTION");
-		registerReceiver(test2Receiver, filter2);
+		registerReceiver(closeCountdownTimerBroadcastReceiver, filter2);
 		
 		if (!(preference.getBoolean("timerSet", false))) {
 			DayAlarmManager.regularShortTimerSet(getApplicationContext());
@@ -102,7 +101,6 @@ public class Nfc_simple extends BaseActivity {
 			Relay.closeAccessory();
 		}
 		unregisterReceiver(testReceiver);
-		unregisterReceiver(test2Receiver);
 	}// onPause
 
 	@Override
@@ -402,25 +400,15 @@ public class Nfc_simple extends BaseActivity {
 	}// testBroadcastReceiver
 	
 	/** CountTime2から受け取る */
-	public class test2BroadcastReceiver extends BroadcastReceiver{
+	//public class test2BroadcastReceiver extends BroadcastReceiver{
+    public class CloseCountdownTimerBroadcastReceiver extends BroadcastReceiver{
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
 			String action = intent.getAction();
 			Bundle bundle = intent.getExtras();
-			if(action.equals("TEST2_RECEIVE_ACTION")){
-				int count = bundle.getInt("count");
-				if (screenState == REGULAR_USER || screenState == TEMPORARY_USER) {
-					timeText = (TextView) findViewById(R.id.textViewTime);
-					timeText.setText("あと" + (CountTimeAllUser.maxCount - count)
-							+ "秒でスタート画面に戻ります");
-				}
-				if (count == CountTimeAllUser.maxCount) {
-					// resetPreference();
-					changeMainXto0();
-				}// if
-			}else if(action.equals("TEST3_RECEIVE_ACTION")){
+			if(action.equals("TEST3_RECEIVE_ACTION")){
 				int count = bundle.getInt("count");
 				if(screenState == FIRST_USER){
 					timeText = (TextView) findViewById(R.id.textViewTime);
