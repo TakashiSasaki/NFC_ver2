@@ -33,8 +33,8 @@ public class Nfc_simple extends TimerActivity {
 	private String type = "";
 
 	//private static final int FIRST_USER = 1;
-	private static final int TEMPORARY_USER = 2;
-	private static final int REGULAR_USER = 3;
+	//private static final int TEMPORARY_USER = 2;
+	//private static final int REGULAR_USER = 3;
 
 	//public static String cardOwner = "";
 
@@ -58,7 +58,7 @@ public class Nfc_simple extends TimerActivity {
 		//testReceiver = new testBroadcastReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("TEST_RECEIVE_ACTION");
-		registerReceiver(countRelayTimeReceiver, filter);
+		registerReceiver(countRelayTimerReceiver, filter);
 
 		if (!(preference.getBoolean("timerSet", false))) {
 			DayAlarmManager.regularShortTimerSet(getApplicationContext());
@@ -84,7 +84,7 @@ public class Nfc_simple extends TimerActivity {
 		if (!(CountRelayTime.isUsed)) {
 			Relay.closeAccessory();
 		}
-		unregisterReceiver(countRelayTimeReceiver);
+		unregisterReceiver(countRelayTimerReceiver);
 	}// onPause
 
 	@Override
