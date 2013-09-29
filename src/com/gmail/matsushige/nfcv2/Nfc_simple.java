@@ -11,8 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -38,43 +38,39 @@ public class Nfc_simple extends BaseActivity {
 	private static final int FIRST_USER = 1;
 	private static final int TEMPORARY_USER = 2;
 	private static final int REGULAR_USER = 3;
-	
+
 	public static String cardOwner = "";
 
 	public testBroadcastReceiver testReceiver;
 	public CloseCountdownTimerBroadcastReceiver closeCountdownTimerBroadcastReceiver;
-	public int screenState = 0;	
-	
+	public int screenState = 0;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.nfc_main);
+		setContentView(R.layout.nfc_main_start);
+        setTitle("ソーシャルコンセント");
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		Relay.test(getApplicationContext());
-
-		linearLayout = (LinearLayout) findViewById(R.id.linearLayoutMain);
-		LayoutInflater li = getLayoutInflater();
-		li.inflate(R.layout.nfc_main_start, linearLayout);
-		
-		checkOutletId();
 	}// onCreate
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
 
 		Relay.setRelayOnResume();
-		
+
 		testReceiver = new testBroadcastReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("TEST_RECEIVE_ACTION");
 		registerReceiver(testReceiver, filter);
-		
+
 		IntentFilter filter2 = new IntentFilter();
 		//filter2.addAction("TEST2_RECEIVE_ACTION");
 		filter2.addAction("TEST3_RECEIVE_ACTION");
 		registerReceiver(closeCountdownTimerBroadcastReceiver, filter2);
-		
+
 		if (!(preference.getBoolean("timerSet", false))) {
 			DayAlarmManager.regularShortTimerSet(getApplicationContext());
 			preference.putBoolean("timerSet", true);
@@ -114,16 +110,16 @@ public class Nfc_simple extends BaseActivity {
 		linearLayout.removeAllViews();
 		LayoutInflater li = getLayoutInflater();
 		li.inflate(R.layout.nfc_main_regular, linearLayout);
-		
+
 		screenState = REGULAR_USER;
-		
+
 		TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
 		userNameText.setText(cardOwner + "さん、こんにちは。");
 
 		Button powerCancelButton = (Button) findViewById(R.id.buttonPowerCancel);
 		ToggleButton relay1Toggle = (ToggleButton)findViewById(R.id.toggleRelay1);
 		ToggleButton relay2Toggle = (ToggleButton)findViewById(R.id.toggleRelay2);
-		
+
 		/** すでにリレー使用中であればトグルボタンを押した状態にする */
 		if(Relay.getRelay(0).isClosed()){
 			relay1Toggle.setChecked(true);
@@ -134,7 +130,7 @@ public class Nfc_simple extends BaseActivity {
 
 		CountRelayTime.maxCount = 120;
 		CountTimeAllUser.startCountTimeAllUser(this);
-		
+
 		powerCancelButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -151,7 +147,7 @@ public class Nfc_simple extends BaseActivity {
 		});
 
 		relay1Toggle.setOnClickListener(new OnClickListener() {
-			
+
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if(CountTimeAllUser.isUsed){
@@ -170,9 +166,9 @@ public class Nfc_simple extends BaseActivity {
                 ActLogDatabase.getTheInstance().write(getApplicationContext(), hex(id).toUpperCase(), cardOwner, "リレー0" + Relay.getRelayStateString(0), time);
 			}// onClick
 		});
-	
+
 		relay2Toggle.setOnClickListener(new OnClickListener() {
-			
+
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if(CountTimeAllUser.isUsed){
@@ -191,8 +187,8 @@ public class Nfc_simple extends BaseActivity {
                 ActLogDatabase.getTheInstance().write(getApplicationContext(), hex(id).toUpperCase(), cardOwner, "リレー1" + Relay.getRelayStateString(1), time);
 			}// onClick
 		});
-	}// reguUsersPic	
-	
+	}// reguUsersPic
+
 	public void changeMainXto0() { // スタート画面へ
 		timeText = (TextView) findViewById(R.id.textViewTime);
 		timeText.setText("");
@@ -244,7 +240,7 @@ public class Nfc_simple extends BaseActivity {
 
 		long timestamp = Calendar.getInstance().getTimeInMillis();
 		Database.write(this, type, id, timestamp);
-		
+
 		//TODO プリファレンスチェック
 		String userType = preference.getUserType();
 		String userId = preference.getUserId();
@@ -257,9 +253,9 @@ public class Nfc_simple extends BaseActivity {
 			Toast.makeText(getApplicationContext(), "ほかのユーザが使用中です", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		
+
 		UsersDatabase.checkResist(this, type, id);
-		
+
 		if (!("".equals(cardOwner))) {
 			ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
 			reguUsersPic();
@@ -286,16 +282,8 @@ public class Nfc_simple extends BaseActivity {
 			}// else
 		}// else
 	}// recordId
-	
-	/** outletId（プリファレンス保存）を"AB"に変更 */
-	private void checkOutletId(){
-		String outletId = preference.getOutletId();
-		if (outletId == "AA"){
-            preference.setOutletId("AB");
-		}else{
-			Log.d("Activity", "second~_pref");
-		}// else
-	}// checkOutletId
+
+
 
 	public class testBroadcastReceiver extends BroadcastReceiver {
 
@@ -316,7 +304,7 @@ public class Nfc_simple extends BaseActivity {
 				changeMainXto0();
 			}// if
 		}// onReceive
-		
+
 		private String secToMin(int sec){
 			String minSecData = "";
 			if(sec > 59){
@@ -328,9 +316,9 @@ public class Nfc_simple extends BaseActivity {
 			}// else
 			return minSecData;
 		}// secToMin
-		
+
 	}// testBroadcastReceiver
-	
+
 	/** CountTime2から受け取る */
 	//public class test2BroadcastReceiver extends BroadcastReceiver{
     public class CloseCountdownTimerBroadcastReceiver extends BroadcastReceiver{

@@ -2,6 +2,7 @@ package com.gmail.matsushige.nfcv2.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class Preference {
     static Preference thePreference;
@@ -17,6 +18,13 @@ public class Preference {
 
     private Preference(Context context) {
         sharedPreferences = context.getSharedPreferences("SNS_OUTLET", Context.MODE_PRIVATE);
+        /** outletId（プリファレンス保存）を"AB"に変更 */
+        String outletId = this.getOutletId();
+        if (outletId == "AA") {
+            this.setOutletId("AB");
+        } else {
+            Log.d("Activity", "second~_pref");
+        }// else
     }//Preference (private constructor)
 
     public boolean getBoolean(String key, boolean default_value) {
