@@ -28,4 +28,11 @@
         android:text="カードを識別するためにカードのID番号を読み取ります。なお、カードに記録されているその他の情報は読み取りません。カードへの書き込みも行いません。"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <TextView
+        android:id="@+id/textViewRelayCountdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </LinearLayout>

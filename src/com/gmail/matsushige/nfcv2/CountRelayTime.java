@@ -76,8 +76,7 @@ public class CountRelayTime extends IntentService {
         Log.d(TAG, "" + (endTime - startTime));
         Log.d(TAG, "serviceEnd");
 
-        Relay.getRelay(0).open();
-        Relay.getRelay(1).open();
+        Relay.openAll();
         Relay.closeAccessory();
 
         isUsed = false;

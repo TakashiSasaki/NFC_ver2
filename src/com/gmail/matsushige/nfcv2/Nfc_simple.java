@@ -37,7 +37,6 @@ public class Nfc_simple extends BaseActivity {
 
 	public static String cardOwner = "";
 
-	public testBroadcastReceiver testReceiver;
 	public int screenState = 0;
 
 	@Override
@@ -55,7 +54,7 @@ public class Nfc_simple extends BaseActivity {
 
 		Relay.setRelayOnResume();
 
-		testReceiver = new testBroadcastReceiver();
+		//testReceiver = new testBroadcastReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("TEST_RECEIVE_ACTION");
 		registerReceiver(testReceiver, filter);
@@ -185,29 +184,28 @@ public class Nfc_simple extends BaseActivity {
                 intent.putExtra("cardOwner", "未登録");
                 startActivity(intent);
 				//firstUsersPic();
-			}// else
-		}// else
+			}// if
+		}// if
 	}// recordId
 
 
 
-	public class testBroadcastReceiver extends BroadcastReceiver {
+    public BroadcastReceiver testReceiver = new BroadcastReceiver() {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			// TODO Auto-generated method stub
 			Bundle bundle = intent.getExtras();
 			int count = bundle.getInt("count");
 			/** 本登録ユーザ画面であればテキスト表示 */
 			if (screenState == REGULAR_USER || screenState == TEMPORARY_USER) {
-				timeText = (TextView) findViewById(R.id.textViewTime);
-//				timeText.setText("あと"+(CountRelayTime.maxCount - count)+"秒で終了します");
-				timeText.setText("あと" + secToMin(CountRelayTime.maxCount - count) +"で終了します");
+				timeText = (TextView) findViewById(R.id.textViewRelayCountdown);
+				timeText.setText("利用中です。\nあと" + secToMin(CountRelayTime.maxCount - count) +"で通電を終了します");
 			}// if
-			if(count == CountRelayTime.maxCount){
+			if(count >= CountRelayTime.maxCount){
                 preference.resetPreference();
+                ((TextView) findViewById(R.id.textViewRelayCountdown)).setText("利用可能です。");
 				Toast.makeText(getApplicationContext(), "使用可能時間が過ぎました", Toast.LENGTH_SHORT).show();
-				changeMainXto0();
+				//changeMainXto0();
 			}// if
 		}// onReceive
 
@@ -223,7 +221,7 @@ public class Nfc_simple extends BaseActivity {
 			return minSecData;
 		}// secToMin
 
-	}// testBroadcastReceiver
+	};// testBroadcastReceiver
 
 }// Nfc_simple
 
