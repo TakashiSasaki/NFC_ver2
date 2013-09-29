@@ -30,6 +30,7 @@ public class TempUserActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_temporary);
+        setTitle(this.getLocalClassName());
         tempUsersPic();
     }//onCreate
 
