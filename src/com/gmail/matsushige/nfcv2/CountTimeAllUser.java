@@ -21,6 +21,7 @@ public class CountTimeAllUser extends IntentService{
 	public static boolean retainUserData = false;
 
     static public void startCountTimeAllUser(Context context){
+        finish = false;
         if (!(CountRelayTime.isUsed)) {
             if (!(CountTimeAllUser.isUsed)) {
                 Intent intent = new Intent(context,
