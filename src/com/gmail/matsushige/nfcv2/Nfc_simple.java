@@ -37,10 +37,6 @@ public class Nfc_simple extends BaseActivity {
 	private byte[] id;
 //	private String tech = "";
 	private String type = "";
-//	public static UsbManager mUsbManager;
-//	public static PendingIntent mPermissionIntent;
-//	public static final String ACTION_USB_PERMISSION = "com.gmail.matsushige.RelaySample.action.USB_PERMISSION";
-//	public static UsbAccessory mAccessory;
 
 	private static final int FIRST_USER = 1;
 	private static final int TEMPORARY_USER = 2;
@@ -57,15 +53,9 @@ public class Nfc_simple extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.nfc_main);
-		
-//		mUsbManager = (UsbManager) getSystemService(USB_SERVICE);
-//		mPermissionIntent = PendingIntent.getBroadcast(this, 0, new Intent(
-//				ACTION_USB_PERMISSION), 0);
-//		IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
-//		filter.addAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED);
-//		registerReceiver(Relay.mUsbReceiver, filter);
+
 		Relay.test(getApplicationContext());
-		
+
 		linearLayout = (LinearLayout) findViewById(R.id.linearLayoutMain);
 		LayoutInflater li = getLayoutInflater();
 		li.inflate(R.layout.nfc_main_start, linearLayout);
@@ -117,7 +107,6 @@ public class Nfc_simple extends BaseActivity {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-//		unregisterReceiver(Relay.mUsbReceiver);
 		Relay.unRegisterReceiver(getApplicationContext());
 	}// onDestroy
 
