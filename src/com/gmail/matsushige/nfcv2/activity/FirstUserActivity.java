@@ -19,7 +19,6 @@ import com.gmail.matsushige.nfcv2.SendDataService;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 import com.gmail.matsushige.nfcv2.db.TemporaryUser;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
-import com.gmail.matsushige.nfcv2.util.Preference;
 import com.gmail.matsushige.nfcv2.util.RegistrationCode;
 
 import java.util.Calendar;
@@ -127,7 +126,7 @@ public class FirstUserActivity extends BaseActivity {
                             SendDataService.class);
                     startService(intent);
                 }
-                Preference.getTheInstance(getApplicationContext()).setTypeAndId(getType(), getId());
+                preference.setTypeAndId(getType(), getId());
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), TempUserActivity.class);
                 startActivity(intent);
