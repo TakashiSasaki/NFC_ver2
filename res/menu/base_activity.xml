@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/reset"
+        android:title="リセット" />
+    <item
+        android:id="@+id/usersDatabase"
+        android:title="usersDatabase" />
+    <item
+        android:id="@+id/logDatabase"
+        android:title="logDatabase" />
+    <item
+        android:id="@+id/actlogDatabase"
+        android:title="actlogDatabase" />
+    <item
+        android:id="@+id/start"
+        android:title="スタート画面" />
+    <item
+        android:id="@+id/tempusersDatabase"
+        android:title="tempusersDatabase" />
+</menu>

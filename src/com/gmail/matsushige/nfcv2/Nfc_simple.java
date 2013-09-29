@@ -34,7 +34,7 @@ public class Nfc_simple extends BaseActivity {
 	private TextView timeText;
 	private byte[] id;
 //	private String tech = "";
-	//private String type = "";
+	private String type = "";
 
 	private static final int FIRST_USER = 1;
 	private static final int TEMPORARY_USER = 2;

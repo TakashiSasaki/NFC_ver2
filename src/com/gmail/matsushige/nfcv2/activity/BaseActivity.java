@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ import com.gmail.matsushige.nfcv2.util.Preference;
 /**
  * Created by sasaki on 13/09/26.
  */
-public class BaseActivity extends Activity{
+public class BaseActivity extends Activity {
     protected LinearLayout linearLayout;
     protected Preference preference;
 
@@ -35,11 +36,13 @@ public class BaseActivity extends Activity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(Menu.NONE, 0, 0, "usersDatabase");
-        menu.add(Menu.NONE, 1, 0, "logDatabase");
-        menu.add(Menu.NONE, 2, 0, "actlogDatabase");
-        menu.add(Menu.NONE, 3, 0, "スタート画面");
-        menu.add(Menu.NONE, 4, 0, "tempusersDatabase");
+        MenuInflater menu_inflater = getMenuInflater();
+        menu_inflater.inflate(R.menu.base_activity, menu);
+//        menu.add(Menu.NONE, 0, 0, "usersDatabase");
+//        menu.add(Menu.NONE, 1, 0, "logDatabase");
+//        menu.add(Menu.NONE, 2, 0, "actlogDatabase");
+//        menu.add(Menu.NONE, 3, 0, "スタート画面");
+//        menu.add(Menu.NONE, 4, 0, "tempusersDatabase");
         return super.onCreateOptionsMenu(menu);
     }//onCreateOptionsMenu
 
@@ -54,45 +57,49 @@ public class BaseActivity extends Activity{
             CountRelayTime.finish = true;
         }
         switch (mi.getItemId()) {
-            case 0:
+            case R.id.usersDatabase:
                 setContentView(R.layout.check_users);
                 TextView checkUsersText = (TextView) findViewById(R.id.textViewCheckUsers);
                 UsersDatabase.read(this);
                 checkUsersText.setText(UsersDatabase.usersText);
                 break;
 
-            case 1:
+            case R.id.logDatabase:
                 setContentView(R.layout.check_log);
                 TextView checkLogText = (TextView) findViewById(R.id.textViewCheckLog);
                 Database.read(this);
                 checkLogText.setText(Database.logText);
                 break;
 
-            case 2:
+            case R.id.actlogDatabase:
                 Intent intent = new Intent();
                 intent.setClass(this, ActLogDatabaseActivity.class);
                 startActivity(intent);
                 break;
 
-            case 3:
+            case R.id.start:
                 setContentView(R.layout.nfc_main);
                 linearLayout = (LinearLayout) findViewById(R.id.linearLayoutMain);
                 LayoutInflater li = getLayoutInflater();
                 li.inflate(R.layout.nfc_main_start, linearLayout);
                 break;
 
-            case 4:
+            case R.id.tempusersDatabase:
                 setContentView(R.layout.check_temp_users);
                 TextView tempusersText = (TextView) findViewById(R.id.textViewCheckTempUsers);
                 TemporaryUsersDatabaseOperate.getTheInstance(this).read();
                 tempusersText.setText(TemporaryUsersDatabaseOperate.tempText);
                 break;
 
+            case R.id.reset:
+                Preference.getTheInstance(this).resetPreference();
+                break;
+
             default:
                 Toast.makeText(getApplicationContext(), "fault", Toast.LENGTH_SHORT)
                         .show();
                 break;
-        }
+        }//switch
         return true;
-    }
-}
+    }//onOptionsItemSelected
+}//BaseActivity
