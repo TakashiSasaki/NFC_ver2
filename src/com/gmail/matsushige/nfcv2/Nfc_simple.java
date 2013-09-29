@@ -35,7 +35,7 @@ public class Nfc_simple extends BaseActivity {
 	private static final int TEMPORARY_USER = 2;
 	private static final int REGULAR_USER = 3;
 
-	public static String cardOwner = "";
+	//public static String cardOwner = "";
 
 	public int screenState = 0;
 
@@ -157,10 +157,10 @@ public class Nfc_simple extends BaseActivity {
 			return;
 		}
 
-		UsersDatabase.checkResist(this, type, id);
+		CardUser registered_user = UsersDatabase.getRegisteredUser(this, type, id);
 
-		if (!("".equals(cardOwner))) {
-			ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
+		if (registered_user != null) {
+			ActLogDatabase.getTheInstance(this).write(this, id, registered_user.getOwnerName(), "タッチ", timestamp);
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), RegularUserActivity.class);
             startActivity(intent);
@@ -170,13 +170,13 @@ public class Nfc_simple extends BaseActivity {
                 assert(temporary_user.getCardId().equals(id));
                 assert(temporary_user.getCardType().equals(type));
                 preference.setTypeAndId(type, id);
-				ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
+				ActLogDatabase.getTheInstance(this).write(this, id, registered_user.getOwnerName(), "タッチ", timestamp);
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), TempUserActivity.class);
                 startActivity(intent);
 			}else{
 				//cardOwner = "未登録者";
-				ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
+				ActLogDatabase.getTheInstance(this).write(this, id, registered_user.getOwnerName(), "タッチ", timestamp);
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), FirstUserActivity.class);
                 intent.putExtra("id", id);

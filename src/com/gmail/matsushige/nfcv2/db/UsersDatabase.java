@@ -56,7 +56,7 @@ public class UsersDatabase {
 		db.close();
 	}// read
 
-	public static void checkResist(Context context, String type, String ID) {
+	public static CardUser getRegisteredUser(Context context, String type, String ID) {
 		SQLiteDatabase users = (new UsersDatabaseHelper(context))
 				.getReadableDatabase();
 		String where = "ic_type = ?";
@@ -64,16 +64,18 @@ public class UsersDatabase {
 		/** 一致するtypeを確認 */
 		Cursor cursor = users.query("users", null, where, where_arg, null,
 				null, null);
-		Nfc_simple.cardOwner = "";
+		//Nfc_simple.cardOwner = "";
 		while (cursor.moveToNext()) {
 			String idre = cursor.getString(cursor.getColumnIndex("ic_id"));
 			/** 一致するidを確認 */
 			if (ID.equals(idre)) {
-				Nfc_simple.cardOwner = cursor.getString(cursor.getColumnIndex("user_name"));
-				break;
+                CardUser card_user = new CardUser(type, ID);
+                card_user.setOwnerName(cursor.getString(cursor.getColumnIndex("user_name")));
+				return card_user;
 			}// if
 		}// while
 		users.close();
+        return null;
 	}// checkResist
 	
 //	public static void deleteRecord(Context context, String type, String idD){
