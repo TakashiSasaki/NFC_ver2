@@ -19,6 +19,7 @@ import android.widget.ToggleButton;
 
 import com.gmail.matsushige.R;
 import com.gmail.matsushige.nfcv2.activity.BaseActivity;
+import com.gmail.matsushige.nfcv2.activity.FirstUserActivity;
 import com.gmail.matsushige.nfcv2.activity.TempUserActivity;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 import com.gmail.matsushige.nfcv2.db.Database;
@@ -26,7 +27,6 @@ import com.gmail.matsushige.nfcv2.db.TemporaryUser;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
 import com.gmail.matsushige.nfcv2.util.Preference;
-import com.gmail.matsushige.nfcv2.util.RegistrationCode;
 
 import java.util.Calendar;
 
@@ -109,59 +109,6 @@ public class Nfc_simple extends BaseActivity {
 		Relay.unRegisterReceiver(getApplicationContext());
 	}// onDestroy
 
-
-	private void firstUsersPic(){
-		linearLayout.removeAllViews();
-		LayoutInflater li = getLayoutInflater();
-		li.inflate(R.layout.nfc_main_first, linearLayout);
-		
-		screenState = FIRST_USER;
-		
-		startCountTimeFirstUser();
-		Button registYesButton = (Button) findViewById(R.id.buttonResistYes);
-		Button registNoButton = (Button) findViewById(R.id.buttonResistNo);
-		
-		registYesButton.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (CountTimeFirstUser.isUsed) {
-					CountTimeFirstUser.retainUserData = true;
-					CountTimeFirstUser.finish = true;
-				}
-
-
-
-				usersInput(type, hex(id).toUpperCase());
-//				if (type.equals("f")) {
-//					usersInput(type, hex(id).toUpperCase());
-//				} else if (type.equals("b")) {
-//					usersInput(type, hex(id).toUpperCase());
-//				} else if (type.equals("a")) {
-//					usersInput(type, hex(id).toUpperCase());
-//				}
-				if (!(SendDataService.getIsUsed())) {
-					Intent intent = new Intent(getApplicationContext(),
-							SendDataService.class);
-					startService(intent);
-				}
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), TempUserActivity.class);
-                startActivity(intent);
-			}// onClick
-		});
-		
-		registNoButton.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (CountTimeFirstUser.isUsed) {
-					CountTimeFirstUser.finish = true;
-				}
-				changeMainXto0();
-			}// onClick
-		});
-	}// firstUsersPic
 
 
 	private void reguUsersPic(){
@@ -320,14 +267,21 @@ public class Nfc_simple extends BaseActivity {
 		} else {
 			TemporaryUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
 			if(temporary_user != null){
+                Preference.getTheInstance(getApplication()).setTypeAndId(type, id);
 				ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), TempUserActivity.class);
                 startActivity(intent);
 			}else{
-				cardOwner = "未登録者";
+				//cardOwner = "未登録者";
 				ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
-				firstUsersPic();
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), FirstUserActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("type", type);
+                intent.putExtra("cardOwner", "未登録");
+                startActivity(intent);
+				//firstUsersPic();
 			}// else
 		}// else
 	}// recordId
@@ -341,20 +295,7 @@ public class Nfc_simple extends BaseActivity {
 			Log.d("Activity", "second~_pref");
 		}// else
 	}// checkOutletId
-	
-	/** TemporaryUsersDatabaseに記録 */
-	public void usersInput(String type, String id){
-        String registration_code = RegistrationCode.getTheInstance(getApplicationContext()).GenerateRegisterCode();
-        Log.d(this.getLocalClassName() + "#userInput", registration_code);
 
-        TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).write(type, id, registration_code);
-		Toast.makeText(getApplicationContext(), "登録しました" + "(" +registration_code + ")", Toast.LENGTH_SHORT).show();
-		
-		TemporaryUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
-		long time = Calendar.getInstance().getTimeInMillis();
-		ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "登録", time);
-	}// usersInput
-	
 	private void startCountTimeFirstUser(){
 		if(!(CountTimeFirstUser.isUsed)){
 			Intent intent = new Intent(getApplicationContext(),
