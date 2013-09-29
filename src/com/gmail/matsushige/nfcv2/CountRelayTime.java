@@ -19,6 +19,10 @@ public class CountRelayTime extends IntentService {
     private static boolean finish = false;
     private static int maxCount = 15;
 
+    public static int getMaxCount(){
+        return maxCount;
+    }//getMaxCount
+
     public static void startCountRelayTime(Context context, int seconds) {
         maxCount = seconds;
         if (!(CountRelayTime.isUsed)) {
