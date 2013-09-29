@@ -19,7 +19,7 @@ import com.gmail.matsushige.nfcv2.activity.RegularUserActivity;
 import com.gmail.matsushige.nfcv2.activity.TempUserActivity;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 import com.gmail.matsushige.nfcv2.db.TouchLogDatabase;
-import com.gmail.matsushige.nfcv2.db.TemporaryUser;
+import com.gmail.matsushige.nfcv2.db.CardUser;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
 
@@ -165,7 +165,7 @@ public class Nfc_simple extends BaseActivity {
             intent.setClass(getApplicationContext(), RegularUserActivity.class);
             startActivity(intent);
 		} else {
-			TemporaryUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
+			CardUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
 			if(temporary_user != null){
                 assert(temporary_user.getCardId().equals(id));
                 assert(temporary_user.getCardType().equals(type));

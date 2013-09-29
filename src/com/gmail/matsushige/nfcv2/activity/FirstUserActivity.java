@@ -16,7 +16,7 @@ import com.gmail.matsushige.nfcv2.CountTimeAllUser;
 import com.gmail.matsushige.nfcv2.Nfc_simple;
 import com.gmail.matsushige.nfcv2.SendDataService;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
-import com.gmail.matsushige.nfcv2.db.TemporaryUser;
+import com.gmail.matsushige.nfcv2.db.CardUser;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.util.RegistrationCode;
 
@@ -158,7 +158,7 @@ public class FirstUserActivity extends BaseActivity {
         TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).write(type, id, registration_code);
         Toast.makeText(getApplicationContext(), "登録しました" + "(" + registration_code + ")", Toast.LENGTH_SHORT).show();
 
-        TemporaryUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
+        CardUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
         long time = Calendar.getInstance().getTimeInMillis();
         ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "登録", time);
     }// usersInput

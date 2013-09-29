@@ -3,13 +3,13 @@ package com.gmail.matsushige.nfcv2.db;
 /**
  * Created by sasaki on 13/09/29.
  */
-public class TemporaryUser {
+public class CardUser {
     String cardType;
     String cardId;
     String ownerName;
     String registrationCode;
 
-    public TemporaryUser(String card_type, String card_id) {
+    public CardUser(String card_type, String card_id) {
         this.cardId = card_id;
         this.cardType = card_type;
     }
@@ -37,4 +37,4 @@ public class TemporaryUser {
     public String getRegistrationCode() {
         return this.registrationCode;
     }
-}//TemporaryUser
+}//CardUser

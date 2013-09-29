@@ -99,7 +99,7 @@ public class TemporaryUsersDatabaseOperate {
         db.close();
     }// deleteOldData
 
-    public TemporaryUser getRegisteredData(String type, String id) {
+    public CardUser getRegisteredData(String type, String id) {
         SQLiteDatabase db = this.temporaryUserDatabaseHelper.getReadableDatabase();
         String where = "card_type = ?";
         String[] where_arg = {type};
@@ -109,7 +109,7 @@ public class TemporaryUsersDatabaseOperate {
             if (id.equals(registeredId)) {
                 String serial = cursor.getString(cursor.getColumnIndex("serial"));
                 String regcode = cursor.getString(cursor.getColumnIndex("register_code"));
-                TemporaryUser temporary_user = new TemporaryUser(type, id);
+                CardUser temporary_user = new CardUser(type, id);
                 temporary_user.setOwnerName("ゲスト" + serial);
                 temporary_user.setRegistrationCode(regcode);
                 return temporary_user;
