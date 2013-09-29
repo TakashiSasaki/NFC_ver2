@@ -43,7 +43,8 @@ public class BaseActivity extends Activity {
 //        menu.add(Menu.NONE, 2, 0, "actlogDatabase");
 //        menu.add(Menu.NONE, 3, 0, "スタート画面");
 //        menu.add(Menu.NONE, 4, 0, "tempusersDatabase");
-        return super.onCreateOptionsMenu(menu);
+        //return super.onCreateOptionsMenu(menu);
+        return true;
     }//onCreateOptionsMenu
 
     @Override
@@ -94,6 +95,10 @@ public class BaseActivity extends Activity {
             case R.id.reset:
                 Preference.getTheInstance(this).resetPreference();
                 break;
+
+            case R.id.removeTempUser:
+                TemporaryUsersDatabaseOperate.getTheInstance(this).delete(preference.getUserType(),preference.getUserId());
+                preference.resetPreference();
 
             default:
                 Toast.makeText(getApplicationContext(), "fault", Toast.LENGTH_SHORT)
