@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gmail.matsushige"
-    android:versionCode="111"
-    android:versionName="1.1.1">
+    android:versionCode="120"
+    android:versionName="1.2.0">
 
     <uses-sdk android:minSdkVersion="14" />
 
@@ -57,6 +57,18 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".nfcv2.activity.FirstUserActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".nfcv2.db.TemporaryUsersDatabaseActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".nfcv2.activity.RegularUserActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".nfcv2.db.UserDatabaseActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
