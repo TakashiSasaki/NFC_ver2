@@ -12,7 +12,7 @@ import com.gmail.matsushige.nfcv2.CountRelayTime;
 
 public class TimerActivity extends BaseActivity {
 
-    public BroadcastReceiver countRelayTimeReceiver = new BroadcastReceiver() {
+    public BroadcastReceiver countRelayTimerReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
