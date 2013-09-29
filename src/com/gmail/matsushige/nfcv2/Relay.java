@@ -210,6 +210,9 @@ public class Relay{
 	}// test
 	
 	public static void unRegisterReceiver(Context context){
-		context.unregisterReceiver(mUsbReceiver);
+        try {
+		    context.unregisterReceiver(mUsbReceiver);
+        } catch (IllegalArgumentException e){
+        }//try
 	}// unRegisterReceiver
 }// Relay
