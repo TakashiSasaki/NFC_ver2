@@ -266,6 +266,8 @@ public class Nfc_simple extends BaseActivity {
 		} else {
 			TemporaryUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
 			if(temporary_user != null){
+                assert(temporary_user.getCardId().equals(id));
+                assert(temporary_user.getCardType().equals(type));
                 preference.setTypeAndId(type, id);
 				ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "タッチ", timestamp);
                 Intent intent = new Intent();
