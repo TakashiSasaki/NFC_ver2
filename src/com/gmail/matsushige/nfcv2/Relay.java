@@ -27,6 +27,12 @@ public class Relay{
         return " UNKNOWN";
     }
 
+    static public void closeAll(){
+        getRelay(0).close();
+        getRelay(1).close();
+    }//closeAll
+
+
     private static Relay relay0;
 	private static Relay relay1;
 	
