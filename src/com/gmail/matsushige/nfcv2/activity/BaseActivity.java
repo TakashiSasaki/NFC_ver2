@@ -3,7 +3,6 @@ package com.gmail.matsushige.nfcv2.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,12 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.matsushige.R;
-import com.gmail.matsushige.nfcv2.CountRelayTime;
-import com.gmail.matsushige.nfcv2.CountTimeAllUser;
 import com.gmail.matsushige.nfcv2.Nfc_simple;
-import com.gmail.matsushige.nfcv2.Relay;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabaseActivity;
-import com.gmail.matsushige.nfcv2.db.Database;
+import com.gmail.matsushige.nfcv2.db.TouchLogDatabase;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
 import com.gmail.matsushige.nfcv2.util.Preference;
@@ -64,8 +60,8 @@ public class BaseActivity extends Activity {
             case R.id.logDatabase:
                 setContentView(R.layout.check_log);
                 TextView checkLogText = (TextView) findViewById(R.id.textViewCheckLog);
-                Database.read(this);
-                checkLogText.setText(Database.logText);
+                TouchLogDatabase.read(this);
+                checkLogText.setText(TouchLogDatabase.logText);
                 break;
 
             case R.id.actlogDatabase:

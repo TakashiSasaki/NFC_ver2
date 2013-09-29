@@ -6,9 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class TouchLogDatabaseHelper extends SQLiteOpenHelper {
 
-	public DatabaseHelper(Context context) {
+	public TouchLogDatabaseHelper(Context context) {
 		super(context,"NFC.log.sqlite", null, 1);
 		// TODO Auto-generated constructor stub
 	}

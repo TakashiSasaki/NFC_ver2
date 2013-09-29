@@ -18,7 +18,7 @@ import com.gmail.matsushige.nfcv2.activity.FirstUserActivity;
 import com.gmail.matsushige.nfcv2.activity.RegularUserActivity;
 import com.gmail.matsushige.nfcv2.activity.TempUserActivity;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
-import com.gmail.matsushige.nfcv2.db.Database;
+import com.gmail.matsushige.nfcv2.db.TouchLogDatabase;
 import com.gmail.matsushige.nfcv2.db.TemporaryUser;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.UsersDatabase;
@@ -142,7 +142,7 @@ public class Nfc_simple extends BaseActivity {
 	private void recordId(String type, String id) {
 
 		long timestamp = Calendar.getInstance().getTimeInMillis();
-		Database.write(this, type, id, timestamp);
+		TouchLogDatabase.write(this, type, id, timestamp);
 
 		//TODO プリファレンスチェック
 		String userType = preference.getUserType();
