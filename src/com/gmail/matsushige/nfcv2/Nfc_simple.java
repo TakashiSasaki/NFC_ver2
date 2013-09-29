@@ -195,10 +195,10 @@ public class Nfc_simple extends BaseActivity {
 				Relay.getRelay(0).open();
 				Relay.getRelay(1).open();
 				if(CountTimeAllUser.isUsed){
-					CountTimeAllUser.finish = true;
+					CountTimeAllUser.stop();
 				}
 				if(CountRelayTime.isUsed){
-					CountRelayTime.finish =true;
+					CountRelayTime.stop();
 				}
 				changeMainXto0();
 			}// onClick
@@ -210,7 +210,7 @@ public class Nfc_simple extends BaseActivity {
 				// TODO Auto-generated method stub
 				if(CountTimeAllUser.isUsed){
 					CountTimeAllUser.retainUserData = true;
-					CountTimeAllUser.finish = true;
+					CountTimeAllUser.stop();
 				}
 				if(!(CountRelayTime.isUsed)){
 					CountRelayTime.startCountRelayTime(getApplicationContext());
@@ -231,7 +231,7 @@ public class Nfc_simple extends BaseActivity {
 				// TODO Auto-generated method stub
 				if(CountTimeAllUser.isUsed){
 					CountTimeAllUser.retainUserData = true;
-					CountTimeAllUser.finish = true;
+					CountTimeAllUser.stop();
 				}
 				if(!(CountRelayTime.isUsed)){
 					CountRelayTime.startCountRelayTime(getApplicationContext());

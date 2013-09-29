@@ -16,7 +16,7 @@ public class CountTimeAllUser extends IntentService{
 	private int count = 0;
 	public long startTime = 0;
 	public static boolean isUsed = false;
-	public static boolean finish = false;
+	private static boolean finish = false;
 	public static int maxCount = 20; 
 	public static boolean retainUserData = false;
 
@@ -34,6 +34,10 @@ public class CountTimeAllUser extends IntentService{
             Toast.makeText(context, "countTime > countTime2", Toast.LENGTH_SHORT).show();
         } // else
     }// startCountTimeAllUser
+
+   static public void stop(){
+       finish = true;
+   }//stop
 
     /** 利用画面からスタート画面に戻るまでの時間 */
 	public CountTimeAllUser() {

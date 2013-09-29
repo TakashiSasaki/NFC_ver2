@@ -16,7 +16,7 @@ public class CountRelayTime extends IntentService{
 	private int count = 0;
 	public long startTime = 0;
 	public static boolean isUsed = false;
-	public static boolean finish = false;
+	private static boolean finish = false;
 	public static int maxCount = 15;
 
     public static void startCountRelayTime(Context context){
@@ -29,7 +29,9 @@ public class CountRelayTime extends IntentService{
         }// else
     }// startCountTime
 
-
+    static public void stop(){
+        finish = true;
+    }//stop
 
 //	private UsbManager mUsbManager;
 //	private ParcelFileDescriptor mFileDescriptor;

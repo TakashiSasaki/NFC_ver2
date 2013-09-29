@@ -51,10 +51,10 @@ public class BaseActivity extends Activity {
         Relay.getRelay(0).open();
         Relay.getRelay(1).open();
         if (CountTimeAllUser.isUsed) {
-            CountTimeAllUser.finish = true;
+            CountTimeAllUser.stop();
         }
         if (CountRelayTime.isUsed) {
-            CountRelayTime.finish = true;
+            CountRelayTime.stop();
         }
         switch (mi.getItemId()) {
             case R.id.usersDatabase:
