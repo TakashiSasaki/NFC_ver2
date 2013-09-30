@@ -22,22 +22,8 @@ public class RegularUserActivity extends TimerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_regular);
+        setTitle("登録使用者");
     }//onCreate
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        reguUsersPic();
-        IntentFilter intent_filter = new IntentFilter();
-        intent_filter.addAction("TEST2_RECEIVE_ACTION");
-        registerReceiver(closeTimerBroadcastReceiver, intent_filter);
-    }//onResume
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        unregisterReceiver(closeTimerBroadcastReceiver);
-    }//onPause
 
     private void reguUsersPic() {
         TextView userNameText = (TextView) findViewById(R.id.textViewUserName);

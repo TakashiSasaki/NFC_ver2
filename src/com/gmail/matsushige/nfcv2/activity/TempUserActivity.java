@@ -20,9 +20,6 @@ import com.gmail.matsushige.nfcv2.util.MakeQRCode;
 
 import java.util.Calendar;
 
-/**
- * Created by sasaki on 13/09/29.
- */
 public class TempUserActivity extends TimerActivity {
     public static String regCode = "";
 
@@ -30,7 +27,7 @@ public class TempUserActivity extends TimerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_temporary);
-        setTitle("仮登録ユーザー");
+        setTitle("一時使用者");
         CountTimeAllUser.startCountTimeAllUser(this);
         tempUsersPic();
     }//onCreate
