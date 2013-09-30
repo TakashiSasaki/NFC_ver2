@@ -1,8 +1,8 @@
 package com.gmail.matsushige.nfcv2.activity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,7 +17,7 @@ import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 
 import java.util.Calendar;
 
-public class RegularUserActivity extends BaseActivity {
+public class RegularUserActivity extends TimerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,16 @@ public class RegularUserActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         reguUsersPic();
+        IntentFilter intent_filter = new IntentFilter();
+        intent_filter.addAction("TEST2_RECEIVE_ACTION");
+        registerReceiver(closeTimerBroadcastReceiver, intent_filter);
     }//onResume
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(closeTimerBroadcastReceiver);
+    }//onPause
 
     private void reguUsersPic() {
         TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
@@ -74,7 +83,7 @@ public class RegularUserActivity extends BaseActivity {
                     CountTimeAllUser.stop();
                 }
                 if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60*60);
+                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60 * 60);
                 }
                 if (Relay.getRelay(0).isOpened()) {
                     Relay.getRelay(0).close();
@@ -95,7 +104,7 @@ public class RegularUserActivity extends BaseActivity {
                     CountTimeAllUser.stop();
                 }
                 if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60*60);
+                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60 * 60);
                 }
                 if (Relay.getRelay(1).isOpened()) {
                     Relay.getRelay(1).close();

@@ -26,7 +26,7 @@ import java.util.Calendar;
 /**
  * Created by sasaki on 13/09/29.
  */
-public class TempUserActivity extends BaseActivity {
+public class TempUserActivity extends TimerActivity {
     public static String regCode = "";
 
     @Override
@@ -149,25 +149,6 @@ public class TempUserActivity extends BaseActivity {
         );//setOnClickListener
 
     }// tempUsersPic
-
-    BroadcastReceiver closeTimerBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            Bundle bundle = intent.getExtras();
-            if (action.equals("TEST2_RECEIVE_ACTION")) {
-                int count = bundle.getInt("count");
-                TextView timeText = (TextView) findViewById(R.id.textViewTime);
-                timeText.setText("あと" + (CountTimeAllUser.maxCount - count)
-                        + "秒でスタート画面に戻ります");
-                if (count == CountTimeAllUser.maxCount) {
-                    Intent intent_to_send = new Intent();
-                    intent_to_send.setClass(getApplicationContext(), Nfc_simple.class);
-                    startActivity(intent_to_send);
-                }// if
-            }
-        }// onReceive
-    };// closeCountdownBroadcastReceiver
 
     @Override
     protected void onResume() {

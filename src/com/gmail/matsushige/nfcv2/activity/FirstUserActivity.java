@@ -22,7 +22,7 @@ import com.gmail.matsushige.nfcv2.util.RegistrationCode;
 
 import java.util.Calendar;
 
-public class FirstUserActivity extends BaseActivity {
+public class FirstUserActivity extends TimerActivity {
 
     public String getType() {
         return type;
@@ -67,25 +67,6 @@ public class FirstUserActivity extends BaseActivity {
         intent_filter.addAction("TEST2_RECEIVE_ACTION");
         registerReceiver(closeTimerBroadcastReceiver, intent_filter);
     }//onResume
-
-    BroadcastReceiver closeTimerBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            Bundle bundle = intent.getExtras();
-            if (action.equals("TEST2_RECEIVE_ACTION")) {
-                int count = bundle.getInt("count");
-                TextView timeText = (TextView) findViewById(R.id.textViewTime);
-                timeText.setText("あと" + (CountTimeAllUser.maxCount - count)
-                        + "秒でスタート画面に戻ります");
-                if (count == CountTimeAllUser.maxCount) {
-                    Intent intent_to_send = new Intent();
-                    intent_to_send.setClass(getApplicationContext(), Nfc_simple.class);
-                    startActivity(intent_to_send);
-                }// if
-            }
-        }// onReceive
-    };// closeCountdownBroadcastReceiver
 
     @Override
     protected void onPause() {

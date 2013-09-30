@@ -63,14 +63,14 @@
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="90dp"
-            android:text="何もしないで終了" />
+            android:text="一時使用者として登録したまま終了" />
 
         <Button
             android:id="@+id/buttonDeleteUser"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="90dp"
-            android:text="ユーザーを削除して終了" />
+            android:text="一時使用者としての登録を抹消して終了" />
     </LinearLayout>
 
     <TextView
