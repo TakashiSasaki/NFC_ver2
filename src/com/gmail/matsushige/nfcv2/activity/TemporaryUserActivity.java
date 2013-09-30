@@ -41,9 +41,6 @@ public class TemporaryUserActivity extends TimerActivity {
     }//onResume
 
     private void tempUsersPic() {
-
-        TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
-        TextView explainText = (TextView) findViewById(R.id.textViewExplain);
         editTextRegistrationCode.setText(preference.getRegistrationCode());
         ImageView qrCode = (ImageView) findViewById(R.id.imageViewQR);
         qrCode.setImageBitmap(MakeQRCode.getQRCode("http://odenki.org/outletdemo?registrationCode=" + preference.getRegistrationCode()));
@@ -80,11 +77,7 @@ public class TemporaryUserActivity extends TimerActivity {
         relay1Toggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                if (CountTimeAllUser.isUsed) {
-                    //CountTimeAllUser.retainUserData = true;
-                    CountTimeAllUser.stop();
-                }
+                stopCloseTimer();
                 if (!(RelayOpenTimerIntentService.isUsed)) {
                     RelayOpenTimerIntentService.startCountRelayTime(getApplicationContext(), 60 * 10);
                 }
@@ -102,11 +95,7 @@ public class TemporaryUserActivity extends TimerActivity {
         relay2Toggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                if (CountTimeAllUser.isUsed) {
-                    //CountTimeAllUser.retainUserData = true;
-                    CountTimeAllUser.stop();
-                }
+                stopCloseTimer();
                 if (!(RelayOpenTimerIntentService.isUsed)) {
                     RelayOpenTimerIntentService.startCountRelayTime(getApplicationContext(), 60 * 10);
                 }

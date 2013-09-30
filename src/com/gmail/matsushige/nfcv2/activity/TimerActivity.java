@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class TimerActivity extends BaseActivity {
             int count = bundle.getInt("count");
             /** 本登録ユーザ画面であればテキスト表示 */
             TextView textViewRelayCountdown = (TextView) findViewById(R.id.textViewRelayCountdown);
+            textViewRelayCountdown.setVisibility(View.VISIBLE);
             if (textViewRelayCountdown != null)
                 textViewRelayCountdown.setText("あと" + secToMin(RelayOpenTimerIntentService.getMaxCount() - count) + "で通電を終了します");
             if (count >= RelayOpenTimerIntentService.getMaxCount()) {
@@ -74,6 +76,7 @@ public class TimerActivity extends BaseActivity {
             if (action.equals("TEST2_RECEIVE_ACTION")) {
                 int count = bundle.getInt("count");
                 TextView timeText = (TextView) findViewById(R.id.textViewTime);
+                timeText.setVisibility(View.VISIBLE);
                 if (timeText != null)
                     timeText.setText("あと" + (CountTimeAllUser.maxCount - count)
                             + "秒でスタート画面に戻ります");
@@ -85,5 +88,11 @@ public class TimerActivity extends BaseActivity {
             }//if
         }// onReceive
     };// closeCountdownBroadcastReceiver
+
+    protected  void stopCloseTimer(){
+        CountTimeAllUser.stop();
+        TextView timeText = (TextView) findViewById(R.id.textViewTime);
+        timeText.setVisibility(View.INVISIBLE);
+    }//stopCloseTimer
 
 }//TimerActivity
