@@ -64,7 +64,7 @@ public class Nfc_simple extends TimerActivity {
     @Override
     public void onPause() {
         super.onPause();
-        if (!(CountRelayTime.isUsed)) {
+        if (!(RelayOpenTimerIntentService.isUsed)) {
             Relay.closeAccessory();
         }
     }// onPause

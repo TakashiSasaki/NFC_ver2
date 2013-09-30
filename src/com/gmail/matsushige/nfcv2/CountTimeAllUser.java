@@ -24,7 +24,7 @@ public class CountTimeAllUser extends IntentService{
 
     static public void startCountTimeAllUser(Context context){
         finish = false;
-        if (!(CountRelayTime.isUsed)) {
+        if (!(RelayOpenTimerIntentService.isUsed)) {
             if (!(CountTimeAllUser.isUsed)) {
                 Intent intent = new Intent(context,
                         CountTimeAllUser.class);

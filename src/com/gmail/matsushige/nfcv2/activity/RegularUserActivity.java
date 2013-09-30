@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.gmail.matsushige.R;
-import com.gmail.matsushige.nfcv2.CountRelayTime;
+import com.gmail.matsushige.nfcv2.RelayOpenTimerIntentService;
 import com.gmail.matsushige.nfcv2.CountTimeAllUser;
 import com.gmail.matsushige.nfcv2.Nfc_simple;
 import com.gmail.matsushige.nfcv2.Relay;
@@ -46,7 +46,7 @@ public class RegularUserActivity extends TimerActivity {
             relay2Toggle.setChecked(true);
         }//if
 
-        //CountRelayTime.maxCount = 120;
+        //RelayOpenTimerIntentService.maxCount = 120;
         CountTimeAllUser.startCountTimeAllUser(this);
 
         powerCancelButton.setOnClickListener(new View.OnClickListener() {
@@ -56,8 +56,8 @@ public class RegularUserActivity extends TimerActivity {
                 if (CountTimeAllUser.isUsed) {
                     CountTimeAllUser.stop();
                 }
-                if (CountRelayTime.isUsed) {
-                    CountRelayTime.stop();
+                if (RelayOpenTimerIntentService.isUsed) {
+                    RelayOpenTimerIntentService.stop();
                 }
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), Nfc_simple.class);
@@ -73,8 +73,8 @@ public class RegularUserActivity extends TimerActivity {
                     CountTimeAllUser.retainUserData = true;
                     CountTimeAllUser.stop();
                 }
-                if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60 * 60);
+                if (!(RelayOpenTimerIntentService.isUsed)) {
+                    RelayOpenTimerIntentService.startCountRelayTime(getApplicationContext(), 60 * 60);
                 }
                 if (Relay.getRelay(0).isOpened()) {
                     Relay.getRelay(0).close();
@@ -94,8 +94,8 @@ public class RegularUserActivity extends TimerActivity {
                     CountTimeAllUser.retainUserData = true;
                     CountTimeAllUser.stop();
                 }
-                if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60 * 60);
+                if (!(RelayOpenTimerIntentService.isUsed)) {
+                    RelayOpenTimerIntentService.startCountRelayTime(getApplicationContext(), 60 * 60);
                 }
                 if (Relay.getRelay(1).isOpened()) {
                     Relay.getRelay(1).close();

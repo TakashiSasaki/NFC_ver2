@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.gmail.matsushige.R;
-import com.gmail.matsushige.nfcv2.CountRelayTime;
+import com.gmail.matsushige.nfcv2.RelayOpenTimerIntentService;
 import com.gmail.matsushige.nfcv2.CountTimeAllUser;
 import com.gmail.matsushige.nfcv2.Nfc_simple;
 import com.gmail.matsushige.nfcv2.Relay;
@@ -62,8 +62,8 @@ public class TemporaryUserActivity extends TimerActivity {
                 if (CountTimeAllUser.isUsed) {
                     CountTimeAllUser.stop();
                 }
-                if (CountRelayTime.isUsed) {
-                    CountRelayTime.stop();
+                if (RelayOpenTimerIntentService.isUsed) {
+                    RelayOpenTimerIntentService.stop();
                 }
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), Nfc_simple.class);
@@ -79,8 +79,8 @@ public class TemporaryUserActivity extends TimerActivity {
                     CountTimeAllUser.retainUserData = true;
                     CountTimeAllUser.stop();
                 }
-                if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60 * 10);
+                if (!(RelayOpenTimerIntentService.isUsed)) {
+                    RelayOpenTimerIntentService.startCountRelayTime(getApplicationContext(), 60 * 10);
                 }
                 if (Relay.getRelay(0).isOpened()) {
                     Relay.getRelay(0).close();
@@ -101,8 +101,8 @@ public class TemporaryUserActivity extends TimerActivity {
                     CountTimeAllUser.retainUserData = true;
                     CountTimeAllUser.stop();
                 }
-                if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60 * 10);
+                if (!(RelayOpenTimerIntentService.isUsed)) {
+                    RelayOpenTimerIntentService.startCountRelayTime(getApplicationContext(), 60 * 10);
                 }
                 if (Relay.getRelay(1).isOpened()) {
                     Relay.getRelay(1).close();
@@ -126,8 +126,8 @@ public class TemporaryUserActivity extends TimerActivity {
                         if (CountTimeAllUser.isUsed) {
                             CountTimeAllUser.stop();
                         }//if
-                        if (CountRelayTime.isUsed) {
-                            CountRelayTime.stop();
+                        if (RelayOpenTimerIntentService.isUsed) {
+                            RelayOpenTimerIntentService.stop();
                         }//if
                         Intent intent = new Intent();
                         intent.setClass(getApplicationContext(), Nfc_simple.class);

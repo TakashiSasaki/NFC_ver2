@@ -11,8 +11,8 @@ import com.gmail.matsushige.nfcv2.util.Preference;
 import java.util.Calendar;
 
 
-public class CountRelayTime extends IntentService {
-    private static String TAG = "CountRelayTime";
+public class RelayOpenTimerIntentService extends IntentService {
+    private static String TAG = "RelayOpenTimerIntentService";
     private int count = 0;
     public long startTime = 0;
     public static boolean isUsed = false;
@@ -25,12 +25,12 @@ public class CountRelayTime extends IntentService {
 
     public static void startCountRelayTime(Context context, int seconds) {
         maxCount = seconds;
-        if (!(CountRelayTime.isUsed)) {
-            Intent intent = new Intent(context, CountRelayTime.class);
+        if (!(RelayOpenTimerIntentService.isUsed)) {
+            Intent intent = new Intent(context, RelayOpenTimerIntentService.class);
 //			intent.putExtra("cardType", type);
             context.startService(intent);
         } else {
-            Toast.makeText(context, "CountRelayTimeisUsed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "RelayOpenTimerIntentService", Toast.LENGTH_SHORT).show();
         }// else
     }// startCountTime
 
@@ -44,7 +44,7 @@ public class CountRelayTime extends IntentService {
 //	private FileInputStream mfiFileInputStream;
 //	private FileOutputStream mFileOutputStream;
 
-    public CountRelayTime() {
+    public RelayOpenTimerIntentService() {
         super(TAG);
         // TODO Auto-generated constructor stub
     }// CountTime
@@ -95,4 +95,4 @@ public class CountRelayTime extends IntentService {
         super.onDestroy();
         Log.d(TAG, "onDestroy");
     }// onDestroy
-}//CountRelayTime
+}//RelayOpenTimerIntentService

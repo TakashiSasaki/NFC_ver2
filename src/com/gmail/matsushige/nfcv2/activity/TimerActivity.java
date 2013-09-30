@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.matsushige.R;
-import com.gmail.matsushige.nfcv2.CountRelayTime;
+import com.gmail.matsushige.nfcv2.RelayOpenTimerIntentService;
 import com.gmail.matsushige.nfcv2.CountTimeAllUser;
 import com.gmail.matsushige.nfcv2.Nfc_simple;
 
@@ -44,8 +44,8 @@ public class TimerActivity extends BaseActivity {
             /** 本登録ユーザ画面であればテキスト表示 */
             TextView textViewRelayCountdown = (TextView) findViewById(R.id.textViewRelayCountdown);
             if (textViewRelayCountdown != null)
-                textViewRelayCountdown.setText("あと" + secToMin(CountRelayTime.getMaxCount() - count) + "で通電を終了します");
-            if (count >= CountRelayTime.getMaxCount()) {
+                textViewRelayCountdown.setText("あと" + secToMin(RelayOpenTimerIntentService.getMaxCount() - count) + "で通電を終了します");
+            if (count >= RelayOpenTimerIntentService.getMaxCount()) {
                 preference.resetPreference();
                 if (textViewRelayCountdown != null) textViewRelayCountdown.setText("使用可能です。");
                 Toast.makeText(getApplicationContext(), "使用可能時間が過ぎました", Toast.LENGTH_SHORT).show();

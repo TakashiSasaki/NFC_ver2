@@ -46,8 +46,8 @@ public class BaseActivity extends Activity {
 //        if (CountTimeAllUser.isUsed) {
 //            CountTimeAllUser.stop();
 //        }
-//        if (CountRelayTime.isUsed) {
-//            CountRelayTime.stop();
+//        if (RelayOpenTimerIntentService.isUsed) {
+//            RelayOpenTimerIntentService.stop();
 //        }
         Intent intent = new Intent();
         switch (mi.getItemId()) {
