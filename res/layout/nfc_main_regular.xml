@@ -4,20 +4,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textViewUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="ゲストさん、こんにちは。"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/textView1"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_gravity="center">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:id="@+id/editTextUserName"
+            android:textSize="50dp"
+            android:editable="false"
+            android:focusable="false" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="さん、こんにちは。"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.83"
+        android:src="@drawable/electricaloutlet3"
+        android:cropToPadding="false"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +49,7 @@
             android:layout_height="100dp"
             android:layout_weight="0.99"
             android:textOff="リレー1\nOFF"
-            android:textOn="リレー1ON"
+            android:textOn="リレー1\nON"
             android:textSize="30dp" />
 
         <ToggleButton
@@ -47,7 +67,8 @@
         android:id="@+id/buttonPowerCancel"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:text="何もしないで終了" />
+        android:text="使用を終えて初期画面へ"
+        android:textSize="40dp" />
 
     <TextView
         android:id="@+id/textViewTime"
