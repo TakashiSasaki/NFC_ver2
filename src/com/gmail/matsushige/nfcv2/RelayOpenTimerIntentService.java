@@ -25,6 +25,7 @@ public class RelayOpenTimerIntentService extends IntentService {
 
     public static void startCountRelayTime(Context context, int seconds) {
         maxCount = seconds;
+        finish = false;
         if (!(RelayOpenTimerIntentService.isUsed)) {
             Intent intent = new Intent(context, RelayOpenTimerIntentService.class);
 //			intent.putExtra("cardType", type);
