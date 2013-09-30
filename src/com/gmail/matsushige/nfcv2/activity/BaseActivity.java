@@ -73,12 +73,6 @@ public class BaseActivity extends Activity {
                 startActivity(intent);
                 break;
 
-            case R.id.removeTempUser:
-                preference.resetPreference();
-                intent.setClass(this, Nfc_simple.class);
-                startActivity(intent);
-                break;
-
             default:
                 Toast.makeText(getApplicationContext(), "fault", Toast.LENGTH_SHORT)
                         .show();

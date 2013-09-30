@@ -29,7 +29,7 @@ public class Nfc_simple extends TimerActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_start);
-        setTitle("ソーシャル・コンセント");
+        setTitle("みんなでおでんき ソーシャル・コンセント 待受中");
 
         Relay.test(getApplicationContext());
     }// onCreate
@@ -37,10 +37,7 @@ public class Nfc_simple extends TimerActivity {
     @Override
     public void onResume() {
         super.onResume();
-
         Relay.setRelayOnResume();
-
-        //testReceiver = new testBroadcastReceiver();
 
         if (!(preference.getBoolean("timerSet", false))) {
             DayAlarmManager.regularShortTimerSet(getApplicationContext());
@@ -49,14 +46,19 @@ public class Nfc_simple extends TimerActivity {
             Log.d("Activity", "already_set");
         }//if
 
-        // when invoked by startActivity, it gets no intent..
-        String action = getIntent().getAction();
-
-        if (action == null) return;
+        final String action = getIntent().getAction();
+        if (action == null) {            // when invoked by startActivity, it gets no action..
+            preference.resetPreference();
+            Relay.openAll();
+            return;
+        }//if
         if (action.equals(NfcAdapter.ACTION_TECH_DISCOVERED)) {
             readNfc();
-        } else if (action.equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
+            return;
+        }//if
+        if (action.equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
             readNfc();
+            return;
         }// if
     }// onResume
 
@@ -65,7 +67,7 @@ public class Nfc_simple extends TimerActivity {
         super.onPause();
         if (!(RelayOpenTimerIntentService.isUsed)) {
             Relay.closeAccessory();
-        }
+        }//if
     }// onPause
 
     @Override

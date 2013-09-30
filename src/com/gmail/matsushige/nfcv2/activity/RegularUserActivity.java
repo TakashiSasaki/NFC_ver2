@@ -21,7 +21,7 @@ public class RegularUserActivity extends TimerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_regular);
-        setTitle("登録使用者");
+        setTitle("みんなでおでんき ソーシャル・コンセント 登録使用者");
     }//onCreate
 
     @Override
@@ -55,15 +55,15 @@ public class RegularUserActivity extends TimerActivity {
                 Relay.openAll();
                 if (CountTimeAllUser.isUsed) {
                     CountTimeAllUser.stop();
-                }
+                }//if
                 if (RelayOpenTimerIntentService.isUsed) {
                     RelayOpenTimerIntentService.stop();
-                }
+                }//if
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), Nfc_simple.class);
                 startActivity(intent);
             }// onClick
-        });
+        });//setOnClickListener
 
         relay1Toggle.setOnClickListener(new View.OnClickListener() {
 
@@ -84,7 +84,7 @@ public class RegularUserActivity extends TimerActivity {
                 long time = Calendar.getInstance().getTimeInMillis();
                 ActLogDatabase.getTheInstance().write(getApplicationContext(), preference.getUserId(), preference.getCardOwner(), "リレー0" + Relay.getRelayStateString(0), time);
             }// onClick
-        });
+        });//setOnClickListener
 
         relay2Toggle.setOnClickListener(new View.OnClickListener() {
 
@@ -105,7 +105,7 @@ public class RegularUserActivity extends TimerActivity {
                 long time = Calendar.getInstance().getTimeInMillis();
                 ActLogDatabase.getTheInstance().write(getApplicationContext(), preference.getUserId(), preference.getCardOwner(), "リレー1" + Relay.getRelayStateString(1), time);
             }// onClick
-        });
+        });//setOnClickListener
     }// reguUsersPic
 
 }//RegularUserActivity

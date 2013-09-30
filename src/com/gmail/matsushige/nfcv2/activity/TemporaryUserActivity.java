@@ -10,10 +10,10 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.gmail.matsushige.R;
-import com.gmail.matsushige.nfcv2.RelayOpenTimerIntentService;
 import com.gmail.matsushige.nfcv2.CountTimeAllUser;
 import com.gmail.matsushige.nfcv2.Nfc_simple;
 import com.gmail.matsushige.nfcv2.Relay;
+import com.gmail.matsushige.nfcv2.RelayOpenTimerIntentService;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.util.MakeQRCode;
@@ -126,8 +126,6 @@ public class TemporaryUserActivity extends TimerActivity {
                     public void onClick(View v) {
                         int n_deleted_rows = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).delete(preference.getUserType(), preference.getUserId());
                         assert (n_deleted_rows > 0);
-                        preference.resetPreference();
-                        Relay.openAll();
                         if (CountTimeAllUser.isUsed) {
                             CountTimeAllUser.stop();
                         }//if
