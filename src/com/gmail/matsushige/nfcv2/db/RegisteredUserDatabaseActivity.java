@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.gmail.matsushige.R;
 import com.gmail.matsushige.nfcv2.activity.BaseActivity;
 
-public class UserDatabaseActivity extends BaseActivity {
+public class RegisteredUserDatabaseActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,5 +54,5 @@ public class UserDatabaseActivity extends BaseActivity {
         RegisteredUsersDatabase.read(this);
         checkUsersText.setText(RegisteredUsersDatabase.usersText);
     }
-}//UserDatabaseActivity
+}//RegisteredUserDatabaseActivity
 

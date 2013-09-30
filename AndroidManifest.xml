@@ -68,7 +68,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".nfcv2.db.UserDatabaseActivity"
+            android:name=".nfcv2.db.RegisteredUserDatabaseActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 

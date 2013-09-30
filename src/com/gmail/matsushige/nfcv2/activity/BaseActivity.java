@@ -16,7 +16,7 @@ import com.gmail.matsushige.nfcv2.Nfc_simple;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabaseActivity;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseActivity;
 import com.gmail.matsushige.nfcv2.db.TouchLogDatabase;
-import com.gmail.matsushige.nfcv2.db.UserDatabaseActivity;
+import com.gmail.matsushige.nfcv2.db.RegisteredUserDatabaseActivity;
 import com.gmail.matsushige.nfcv2.util.Preference;
 
 public class BaseActivity extends Activity {
@@ -52,7 +52,7 @@ public class BaseActivity extends Activity {
         Intent intent = new Intent();
         switch (mi.getItemId()) {
             case R.id.usersDatabase:
-                intent.setClass(this, UserDatabaseActivity.class);
+                intent.setClass(this, RegisteredUserDatabaseActivity.class);
                 startActivity(intent);
                 break;
 
