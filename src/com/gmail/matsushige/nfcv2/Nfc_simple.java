@@ -126,39 +126,39 @@ public class Nfc_simple extends TimerActivity {
             Toast.makeText(getApplicationContext(), "あなたは使用中です", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), "ほかのユーザが使用中です", Toast.LENGTH_SHORT).show();
-            return;
+            //return;
         }//if
 
         CardUser registered_user = RegisteredUsersDatabase.getRegisteredUser(this, type, id);
-
         if (registered_user != null) {
             preference.setCardOwner(registered_user.getOwnerName());
             ActLogDatabase.getTheInstance(this).write(this, id, registered_user.getOwnerName(), "タッチ", timestamp);
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), RegularUserActivity.class);
             startActivity(intent);
-        } else {
-            CardUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
-            if (temporary_user != null) {
-                assert (temporary_user.getCardId().equals(id));
-                assert (temporary_user.getCardType().equals(type));
-                preference.setTypeAndId(type, id);
-                ActLogDatabase.getTheInstance(this).write(this, id, temporary_user.getOwnerName(), "タッチ", timestamp);
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), TemporaryUserActivity.class);
-                startActivity(intent);
-            } else {
-                //cardOwner = "未登録者";
-                ActLogDatabase.getTheInstance(this).write(this, id, "未知のカード", "タッチ", timestamp);
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), FirstUserActivity.class);
-                intent.putExtra("id", id);
-                intent.putExtra("type", type);
-                intent.putExtra("cardOwner", "未登録");
-                startActivity(intent);
-                //firstUsersPic();
-            }// if
-        }// if
+            return;
+        }//if
+
+        CardUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
+        if (temporary_user != null) {
+            assert (temporary_user.getCardId().equals(id));
+            assert (temporary_user.getCardType().equals(type));
+            preference.setTypeAndId(type, id);
+            ActLogDatabase.getTheInstance(this).write(this, id, temporary_user.getOwnerName(), "タッチ", timestamp);
+            Intent intent = new Intent();
+            intent.setClass(getApplicationContext(), TemporaryUserActivity.class);
+            startActivity(intent);
+            return;
+        }//if
+        //cardOwner = "未登録者";
+        ActLogDatabase.getTheInstance(this).write(this, id, "未知のカード", "タッチ", timestamp);
+        Intent intent = new Intent();
+        intent.setClass(getApplicationContext(), FirstUserActivity.class);
+        intent.putExtra("id", id);
+        intent.putExtra("type", type);
+        intent.putExtra("cardOwner", "未登録");
+        startActivity(intent);
+        return;
     }// recordId
 
 }// Nfc_simple
