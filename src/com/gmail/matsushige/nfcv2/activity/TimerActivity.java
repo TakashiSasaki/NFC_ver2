@@ -74,14 +74,15 @@ public class TimerActivity extends BaseActivity {
             if (action.equals("TEST2_RECEIVE_ACTION")) {
                 int count = bundle.getInt("count");
                 TextView timeText = (TextView) findViewById(R.id.textViewTime);
-                timeText.setText("あと" + (CountTimeAllUser.maxCount - count)
-                        + "秒でスタート画面に戻ります");
+                if (timeText != null)
+                    timeText.setText("あと" + (CountTimeAllUser.maxCount - count)
+                            + "秒でスタート画面に戻ります");
                 if (count == CountTimeAllUser.maxCount) {
                     Intent intent_to_send = new Intent();
                     intent_to_send.setClass(getApplicationContext(), Nfc_simple.class);
                     startActivity(intent_to_send);
                 }// if
-            }
+            }//if
         }// onReceive
     };// closeCountdownBroadcastReceiver
 
