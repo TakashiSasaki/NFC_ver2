@@ -13,7 +13,7 @@ public class TemporaryUsersDatabaseActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.check_temp_users);
-        setTitle("一時使用者データベース");
+        setTitle("一時使用者データベースの操作");
 
         ((Button) findViewById(R.id.buttonRemoveAllTemporaryUsers)).setOnClickListener(new View.OnClickListener() {
             @Override

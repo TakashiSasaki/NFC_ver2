@@ -58,7 +58,9 @@
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:id="@+id/editTextRegisteredUserName"
-            android:hint="使用者名をここに入力"></EditText>
+            android:hint="使用者名をここに入力"
+            android:textSize="40dp"
+            android:singleLine="true"></EditText>
     </LinearLayout>
 
 

@@ -42,16 +42,18 @@
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_weight="0.99"
-            android:textOff="リレー1OFF"
-            android:textOn="リレー1ON" />
+            android:textOff="リレー1\nOFF"
+            android:textOn="リレー1\nON"
+            android:textSize="40dp" />
 
         <ToggleButton
             android:id="@+id/toggleRelay2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1.00"
-            android:textOff="リレー2OFF"
-            android:textOn="リレー2ON" />
+            android:textOff="リレー2\nOFF"
+            android:textOn="リレー2\nON"
+            android:textSize="40dp" />
     </LinearLayout>
 
     <LinearLayout

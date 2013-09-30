@@ -27,7 +27,7 @@ public class TemporaryUserActivity extends TimerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_temporary);
-        setTitle("一時使用者");
+        setTitle("みんなでおでんき ソーシャル・コンセント 一時使用者");
     }//onCreate
 
     @Override

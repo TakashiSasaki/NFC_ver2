@@ -8,12 +8,11 @@
         android:id="@+id/usersDatabase"
         android:title="登録使用者データベースの操作" />
     <item
-        android:id="@+id/removeTempUser"
-        android:title="認識中のカードを忘れる" />
-    <item
         android:id="@+id/logDatabase"
-        android:title="logDatabase" />
+        android:title="logDatabase"
+        android:enabled="false" />
     <item
         android:id="@+id/actlogDatabase"
-        android:title="actlogDatabase" />
+        android:title="actlogDatabase"
+        android:enabled="false" />
 </menu>
