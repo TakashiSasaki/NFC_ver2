@@ -43,9 +43,6 @@ public class Nfc_simple extends TimerActivity {
         Relay.setRelayOnResume();
 
         //testReceiver = new testBroadcastReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("TEST_RECEIVE_ACTION");
-        registerReceiver(countRelayTimerReceiver, filter);
 
         if (!(preference.getBoolean("timerSet", false))) {
             DayAlarmManager.regularShortTimerSet(getApplicationContext());
@@ -71,7 +68,6 @@ public class Nfc_simple extends TimerActivity {
         if (!(CountRelayTime.isUsed)) {
             Relay.closeAccessory();
         }
-        unregisterReceiver(countRelayTimerReceiver);
     }// onPause
 
     @Override

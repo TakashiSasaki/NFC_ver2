@@ -3,6 +3,7 @@ package com.gmail.matsushige.nfcv2.activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,25 @@ import com.gmail.matsushige.nfcv2.CountTimeAllUser;
 import com.gmail.matsushige.nfcv2.Nfc_simple;
 
 public class TimerActivity extends BaseActivity {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter intent_filter = new IntentFilter();
+        intent_filter.addAction("TEST_RECEIVE_ACTION");
+        registerReceiver(countRelayTimerReceiver, intent_filter);
+
+        intent_filter = new IntentFilter();
+        intent_filter.addAction("TEST2_RECEIVE_ACTION");
+        registerReceiver(closeTimerBroadcastReceiver, intent_filter);
+    }//onResume
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        CountTimeAllUser.stop();
+        unregisterReceiver(closeTimerBroadcastReceiver);
+        unregisterReceiver(countRelayTimerReceiver);
+    }//onPause
 
     final protected BroadcastReceiver countRelayTimerReceiver = new BroadcastReceiver() {
 

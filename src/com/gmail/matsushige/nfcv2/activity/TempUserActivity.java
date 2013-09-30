@@ -1,9 +1,6 @@
 package com.gmail.matsushige.nfcv2.activity;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +31,7 @@ public class TempUserActivity extends TimerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_temporary);
         setTitle("仮登録ユーザー");
+        CountTimeAllUser.startCountTimeAllUser(this);
         tempUsersPic();
     }//onCreate
 
@@ -59,12 +57,11 @@ public class TempUserActivity extends TimerActivity {
         /** すでにリレー使用中であればトグルボタンを押した状態にする */
         if (Relay.getRelay(0).isClosed()) {
             relay1Toggle.setChecked(true);
-        }
+        }//if
         if (Relay.getRelay(1).isClosed()) {
             relay2Toggle.setChecked(true);
-        }
+        }//f
 
-        CountTimeAllUser.startCountTimeAllUser(this);
 
         powerCancelButton.setOnClickListener(new View.OnClickListener() {
 
@@ -92,7 +89,7 @@ public class TempUserActivity extends TimerActivity {
                     CountTimeAllUser.stop();
                 }
                 if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60*10);
+                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60 * 10);
                 }
                 if (Relay.getRelay(0).isOpened()) {
                     Relay.getRelay(0).close();
@@ -114,7 +111,7 @@ public class TempUserActivity extends TimerActivity {
                     CountTimeAllUser.stop();
                 }
                 if (!(CountRelayTime.isUsed)) {
-                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60*10);
+                    CountRelayTime.startCountRelayTime(getApplicationContext(), 60 * 10);
                 }
                 if (Relay.getRelay(1).isOpened()) {
                     Relay.getRelay(1).close();
@@ -132,7 +129,7 @@ public class TempUserActivity extends TimerActivity {
                     @Override
                     public void onClick(View v) {
                         int n_deleted_rows = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).delete(preference.getUserType(), preference.getUserId());
-                        assert(n_deleted_rows > 0);
+                        assert (n_deleted_rows > 0);
                         preference.resetPreference();
                         Relay.openAll();
                         if (CountTimeAllUser.isUsed) {
@@ -153,15 +150,10 @@ public class TempUserActivity extends TimerActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        IntentFilter intent_filter = new IntentFilter();
-        intent_filter.addAction("TEST2_RECEIVE_ACTION");
-        registerReceiver(closeTimerBroadcastReceiver, intent_filter);
-    }
+    }//onResume
 
     @Override
     protected void onPause() {
         super.onPause();
-        CountTimeAllUser.stop();
-        unregisterReceiver(closeTimerBroadcastReceiver);
-    }
+    }//onResume
 }//TempUserActivity

@@ -28,6 +28,7 @@ public class BaseActivity extends Activity {
         super.onCreate(savedInstanceState);
         this.preference = Preference.getTheInstance(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }//onCreate
 
     @Override
