@@ -32,6 +32,7 @@ public class TimerActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         CountTimeAllUser.stop();
+        RelayOpenTimerIntentService.stop();
         unregisterReceiver(closeTimerBroadcastReceiver);
         unregisterReceiver(countRelayTimerReceiver);
     }//onPause
@@ -49,8 +50,11 @@ public class TimerActivity extends BaseActivity {
                 textViewRelayCountdown.setText("あと" + secToMin(RelayOpenTimerIntentService.getMaxCount() - count) + "で通電を終了します");
             if (count >= RelayOpenTimerIntentService.getMaxCount()) {
                 //preference.reset  Preference();
-                if (textViewRelayCountdown != null) textViewRelayCountdown.setText("使用可能です。");
+                //if (textViewRelayCountdown != null) textViewRelayCountdown.setText("使用可能です。");
                 Toast.makeText(getApplicationContext(), "使用可能時間が過ぎました", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent();
+                intent2.setClass(getApplicationContext(), Nfc_simple.class);
+                startActivity(intent2);
             }// if
         }// onReceive
 
