@@ -22,6 +22,7 @@ import com.gmail.matsushige.nfcv2.util.MakeQRCode;
 import java.util.Calendar;
 
 public class TemporaryUserActivity extends TimerActivity {
+    private static final int MAX_RELAY_CLOSE_SECONDS = 10;
 
     private EditText editTextRegistrationCode;
 
@@ -36,6 +37,7 @@ public class TemporaryUserActivity extends TimerActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Relay.setRelayOnResume();
         CountTimeAllUser.startCountTimeAllUser(this);
         tempUsersPic();
     }//onResume
@@ -79,7 +81,7 @@ public class TemporaryUserActivity extends TimerActivity {
             public void onClick(View v) {
                 stopCloseTimer();
                 if (!(RelayOpenTimerIntentService.isUsed)) {
-                    RelayOpenTimerIntentService.startCountRelayTime(getApplicationContext(), 60 * 10);
+                    RelayOpenTimerIntentService.startCountRelayTime(getApplicationContext(), MAX_RELAY_CLOSE_SECONDS);
                 }
                 if (Relay.getRelay(0).isOpened()) {
                     Relay.getRelay(0).close();
@@ -97,7 +99,7 @@ public class TemporaryUserActivity extends TimerActivity {
             public void onClick(View v) {
                 stopCloseTimer();
                 if (!(RelayOpenTimerIntentService.isUsed)) {
-                    RelayOpenTimerIntentService.startCountRelayTime(getApplicationContext(), 60 * 10);
+                    RelayOpenTimerIntentService.startCountRelayTime(getApplicationContext(), MAX_RELAY_CLOSE_SECONDS);
                 }
                 if (Relay.getRelay(1).isOpened()) {
                     Relay.getRelay(1).close();
