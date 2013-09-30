@@ -6,7 +6,6 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,16 +25,7 @@ import java.util.Calendar;
 public class Nfc_simple extends TimerActivity {
     private TextView timeText;
     private byte[] id;
-    //	private String tech = "";
     private String type = "";
-
-    //private static final int FIRST_USER = 1;
-    //private static final int TEMPORARY_USER = 2;
-    //private static final int REGULAR_USER = 3;
-
-    //public static String cardOwner = "";
-
-    public int screenState = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,15 +80,6 @@ public class Nfc_simple extends TimerActivity {
         Relay.unRegisterReceiver(getApplicationContext());
     }// onDestroy
 
-    public void changeMainXto0() { // スタート画面へ
-        timeText = (TextView) findViewById(R.id.textViewTime);
-        timeText.setText("");
-        linearLayout.removeAllViews();
-        LayoutInflater li = getLayoutInflater();
-        li.inflate(R.layout.nfc_main_start, linearLayout);
-        screenState = 0;
-    }// changeMainXto0
-
     private void readNfc() {
         Intent intent = getIntent();
         id = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
@@ -142,7 +123,6 @@ public class Nfc_simple extends TimerActivity {
         long timestamp = Calendar.getInstance().getTimeInMillis();
         TouchLogDatabase.write(this, type, id, timestamp);
 
-        //TODO プリファレンスチェック
         String userType = preference.getUserType();
         String userId = preference.getUserId();
         if (userType == null && userId == null) {
@@ -153,7 +133,7 @@ public class Nfc_simple extends TimerActivity {
         } else {
             Toast.makeText(getApplicationContext(), "ほかのユーザが使用中です", Toast.LENGTH_SHORT).show();
             return;
-        }
+        }//if
 
         CardUser registered_user = UsersDatabase.getRegisteredUser(this, type, id);
 
