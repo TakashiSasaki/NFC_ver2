@@ -31,10 +31,6 @@ public class RegularUserActivity extends BaseActivity {
     }//onResume
 
     private void reguUsersPic() {
-        linearLayout.removeAllViews();
-        LayoutInflater li = getLayoutInflater();
-        li.inflate(R.layout.nfc_main_regular, linearLayout);
-
         TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
         userNameText.setText(preference.getCardOwner() + "さん、こんにちは。");
 
@@ -56,8 +52,7 @@ public class RegularUserActivity extends BaseActivity {
         powerCancelButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Relay.getRelay(0).open();
-                Relay.getRelay(1).open();
+                Relay.openAll();
                 if (CountTimeAllUser.isUsed) {
                     CountTimeAllUser.stop();
                 }
@@ -66,6 +61,7 @@ public class RegularUserActivity extends BaseActivity {
                 }
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), Nfc_simple.class);
+                startActivity(intent);
             }// onClick
         });
 
