@@ -52,7 +52,7 @@
             android:launchMode="singleTop"
             android:label="@string/title_activity_unknown_user" />
         <activity
-            android:name=".nfcv2.activity.TempUserActivity"
+            android:name=".nfcv2.activity.TemporaryUserActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity

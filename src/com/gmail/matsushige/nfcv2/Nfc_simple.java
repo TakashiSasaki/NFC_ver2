@@ -1,7 +1,6 @@
 package com.gmail.matsushige.nfcv2;
 
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -12,7 +11,7 @@ import android.widget.Toast;
 import com.gmail.matsushige.R;
 import com.gmail.matsushige.nfcv2.activity.FirstUserActivity;
 import com.gmail.matsushige.nfcv2.activity.RegularUserActivity;
-import com.gmail.matsushige.nfcv2.activity.TempUserActivity;
+import com.gmail.matsushige.nfcv2.activity.TemporaryUserActivity;
 import com.gmail.matsushige.nfcv2.activity.TimerActivity;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 import com.gmail.matsushige.nfcv2.db.CardUser;
@@ -147,7 +146,7 @@ public class Nfc_simple extends TimerActivity {
                 preference.setTypeAndId(type, id);
                 ActLogDatabase.getTheInstance(this).write(this, id, temporary_user.getOwnerName(), "タッチ", timestamp);
                 Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), TempUserActivity.class);
+                intent.setClass(getApplicationContext(), TemporaryUserActivity.class);
                 startActivity(intent);
             } else {
                 //cardOwner = "未登録者";

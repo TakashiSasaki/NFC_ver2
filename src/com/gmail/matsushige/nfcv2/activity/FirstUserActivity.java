@@ -90,7 +90,7 @@ public class FirstUserActivity extends TimerActivity {
                 }
                 preference.setTypeAndId(getType(), getId());
                 Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), TempUserActivity.class);
+                intent.setClass(getApplicationContext(), TemporaryUserActivity.class);
                 startActivity(intent);
             }// onClick
         });
