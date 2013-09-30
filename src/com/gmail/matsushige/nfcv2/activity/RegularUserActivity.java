@@ -1,7 +1,6 @@
 package com.gmail.matsushige.nfcv2.activity;
 
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +23,12 @@ public class RegularUserActivity extends TimerActivity {
         setContentView(R.layout.nfc_main_regular);
         setTitle("登録使用者");
     }//onCreate
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reguUsersPic();
+    }//onResume
 
     private void reguUsersPic() {
         TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
