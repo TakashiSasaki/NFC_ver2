@@ -86,7 +86,7 @@ public class RelayOpenTimerIntentService extends IntentService {
 
         isUsed = false;
         finish = false;
-        Preference.getTheInstance(getApplicationContext()).resetPreference();
+        //Preference.getTheInstance(getApplicationContext()).resetPreference();
 //		isUsed = false;
     }// onHandleIntent
 

@@ -79,14 +79,6 @@ public class CountTimeAllUser extends IntentService{
 		Log.d(TAG, "serviceEnd");
 		isUsed = false;
 		finish = false;
-		if(retainUserData){
-			Log.d(TAG, "retainUserData");
-			retainUserData = false;
-		} else {
-            Preference.getTheInstance(getApplicationContext()).resetPreference();
-//			retainUserData = false;
-		}
-//		isUsed = false;
 	}// onHandleIntent
 	
 	@Override

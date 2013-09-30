@@ -74,7 +74,6 @@ public class BaseActivity extends Activity {
                 break;
 
             case R.id.removeTempUser:
-                //TemporaryUsersDatabaseOperate.getTheInstance(this).delete(preference.getUserType(), preference.getUserId());
                 preference.resetPreference();
                 intent.setClass(this, Nfc_simple.class);
                 startActivity(intent);

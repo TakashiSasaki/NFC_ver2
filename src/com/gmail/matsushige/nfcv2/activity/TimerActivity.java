@@ -46,7 +46,7 @@ public class TimerActivity extends BaseActivity {
             if (textViewRelayCountdown != null)
                 textViewRelayCountdown.setText("あと" + secToMin(RelayOpenTimerIntentService.getMaxCount() - count) + "で通電を終了します");
             if (count >= RelayOpenTimerIntentService.getMaxCount()) {
-                preference.resetPreference();
+                //preference.reset  Preference();
                 if (textViewRelayCountdown != null) textViewRelayCountdown.setText("使用可能です。");
                 Toast.makeText(getApplicationContext(), "使用可能時間が過ぎました", Toast.LENGTH_SHORT).show();
             }// if
