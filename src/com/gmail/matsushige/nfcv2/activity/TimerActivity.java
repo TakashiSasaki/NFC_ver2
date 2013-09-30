@@ -10,9 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.matsushige.R;
-import com.gmail.matsushige.nfcv2.RelayOpenTimerIntentService;
 import com.gmail.matsushige.nfcv2.CountTimeAllUser;
 import com.gmail.matsushige.nfcv2.Nfc_simple;
+import com.gmail.matsushige.nfcv2.RelayOpenTimerIntentService;
 
 public class TimerActivity extends BaseActivity {
 
@@ -83,7 +83,7 @@ public class TimerActivity extends BaseActivity {
                 timeText.setVisibility(View.VISIBLE);
                 if (timeText != null)
                     timeText.setText("あと" + (CountTimeAllUser.maxCount - count)
-                            + "秒でスタート画面に戻ります");
+                            + "秒");
                 if (count == CountTimeAllUser.maxCount) {
                     Intent intent_to_send = new Intent();
                     intent_to_send.setClass(getApplicationContext(), Nfc_simple.class);
@@ -93,7 +93,7 @@ public class TimerActivity extends BaseActivity {
         }// onReceive
     };// closeCountdownBroadcastReceiver
 
-    protected  void stopCloseTimer(){
+    protected void stopCloseTimer() {
         CountTimeAllUser.stop();
         TextView timeText = (TextView) findViewById(R.id.textViewTime);
         timeText.setVisibility(View.INVISIBLE);
