@@ -13,7 +13,7 @@ public class RegisteredUserDatabaseActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.check_users);
+        setContentView(R.layout.registered_users);
         setTitle("登録使用者データベース");
 
         ((Button) findViewById(R.id.buttonRegisterUser)).setOnClickListener(new View.OnClickListener() {
