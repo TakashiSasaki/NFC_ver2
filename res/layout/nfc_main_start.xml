@@ -8,25 +8,24 @@
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.83"
-        android:src="@drawable/electricaloutlet3" />
+        android:src="@drawable/opening"
+        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:text="ソーシャルコンセントを使いたい人は、学生証または職員証をかざしてください。"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="ソーシャルコンセントはお手持ちのNFC対応カードもしくはおサイフケータイ、NFC対応スマートフォンでお使いいただけます。"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30dp" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.83"
         android:text="カードを識別するためにカードのID番号を読み取ります。なお、カードに記録されているその他の情報は読み取りません。カードへの書き込みも行いません。"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textViewRelayCountdown"

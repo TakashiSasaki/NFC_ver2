@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -21,13 +22,15 @@ import com.gmail.matsushige.nfcv2.util.MakeQRCode;
 import java.util.Calendar;
 
 public class TemporaryUserActivity extends TimerActivity {
-    //public static String regCode = "";
+
+    private EditText editTextRegistrationCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_temporary);
         setTitle("みんなでおでんき ソーシャル・コンセント 一時使用者");
+        editTextRegistrationCode = (EditText)findViewById(R.id.editTextRegistrationCode);
     }//onCreate
 
     @Override
@@ -41,11 +44,9 @@ public class TemporaryUserActivity extends TimerActivity {
 
         TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
         TextView explainText = (TextView) findViewById(R.id.textViewExplain);
-        userNameText.setText("ユーザー登録番号は、\n「" + preference.getRegistrationCode() + "」です。");
-        userNameText.setTextColor(Color.RED);
-        explainText.setText("みんなでおでんき\n(http://odenki.org)\nにアクセスしてユーザ登録番号を入力してください");
+        editTextRegistrationCode.setText(preference.getRegistrationCode());
         ImageView qrCode = (ImageView) findViewById(R.id.imageViewQR);
-        qrCode.setImageBitmap(MakeQRCode.getQRCode("http://odenki.org/api/outlet/" + preference.getRegistrationCode()));
+        qrCode.setImageBitmap(MakeQRCode.getQRCode("http://odenki.org/outletdemo?registrationCode=" + preference.getRegistrationCode()));
 
         Button powerCancelButton = (Button) findViewById(R.id.buttonPowerCancel);
         ToggleButton relay1Toggle = (ToggleButton) findViewById(R.id.toggleRelay1);

@@ -9,10 +9,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="ゲストさん、こんにちは。"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="こんにちは"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40dp" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="あなたの一時使用者コードは"
+            android:id="@+id/textView"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextRegistrationCode"
+            android:layout_gravity="center"
+            android:minWidth="100dp"
+            android:layout_weight="1"
+            android:hint="ZZ9999"
+            android:textSize="40dp"
+            android:editable="false"
+            android:focusable="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="です。"
+            android:id="@+id/textView2"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.83"
+        android:src="@drawable/electricaloutlet3"
+        android:cropToPadding="false"
+        android:scaleType="centerCrop" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -28,7 +72,7 @@
             android:id="@+id/textViewExplain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="TextView"
+            android:text="←一時使用者としてソーシャル・コンセントをお使いいただけます。左のQRコードを読み取ってブラウザでアクセスするか、http://odenki.org/outlet/demo で上記の一時使用者コードを登録すると、次回からは使用可能な時間が延長されます。登録にはしばらく時間がかかります。それまでは一時使用者としてお使いください。"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </LinearLayout>
@@ -65,14 +109,14 @@
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="90dp"
-            android:text="一時使用者として登録したまま終了" />
+            android:text="一時使用者としてカードを登録したまま終了" />
 
         <Button
             android:id="@+id/buttonDeleteUser"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="90dp"
-            android:text="一時使用者としての登録を抹消して終了" />
+            android:text="一時使用者としてのカードの登録を抹消して終了" />
     </LinearLayout>
 
     <TextView
