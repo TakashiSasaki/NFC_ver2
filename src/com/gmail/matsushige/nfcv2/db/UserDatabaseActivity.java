@@ -39,7 +39,7 @@ public class UserDatabaseActivity extends BaseActivity {
                 RegisteredUsersDatabase.delete(getApplicationContext(), preference.getUserType(), preference.getUserId());
                 updateView();
             }
-        });
+        });//setOnClickListener
 
     }//onCreate
 
