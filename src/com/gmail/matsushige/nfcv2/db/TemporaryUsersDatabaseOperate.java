@@ -120,4 +120,10 @@ public class TemporaryUsersDatabaseOperate {
         return null;
     }// getRegisteredData
 
+    public void deleteAll() {
+        SQLiteDatabase db = this.temporaryUserDatabaseHelper.getWritableDatabase();
+        db.delete("tempusers", null, null);
+        db.close();
+    }// deleteAllRecord
+
 }//TemporaryUsersDatabaseOperate
