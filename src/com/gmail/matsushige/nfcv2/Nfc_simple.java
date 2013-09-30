@@ -21,7 +21,6 @@ import com.gmail.matsushige.nfcv2.db.TouchLogDatabase;
 import java.util.Calendar;
 
 public class Nfc_simple extends TimerActivity {
-    //private TextView timeText;
     private byte[] id;
     private String type = "";
 
@@ -29,7 +28,7 @@ public class Nfc_simple extends TimerActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_start);
-        setTitle("みんなでおでんき ソーシャル・コンセント 待受中");
+        setTitle("みんなでおでんき ソーシャル・コンセント カード待受中");
 
         Relay.test(getApplicationContext());
     }// onCreate
