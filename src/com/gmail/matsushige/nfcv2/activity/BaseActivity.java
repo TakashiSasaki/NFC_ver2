@@ -14,9 +14,9 @@ import android.widget.Toast;
 import com.gmail.matsushige.R;
 import com.gmail.matsushige.nfcv2.Nfc_simple;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabaseActivity;
+import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseActivity;
 import com.gmail.matsushige.nfcv2.db.TouchLogDatabase;
-import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
-import com.gmail.matsushige.nfcv2.db.UsersDatabase;
+import com.gmail.matsushige.nfcv2.db.UserDatabaseActivity;
 import com.gmail.matsushige.nfcv2.util.Preference;
 
 public class BaseActivity extends Activity {
@@ -51,10 +51,8 @@ public class BaseActivity extends Activity {
         Intent intent = new Intent();
         switch (mi.getItemId()) {
             case R.id.usersDatabase:
-                setContentView(R.layout.check_users);
-                TextView checkUsersText = (TextView) findViewById(R.id.textViewCheckUsers);
-                UsersDatabase.read(this);
-                checkUsersText.setText(UsersDatabase.usersText);
+                intent.setClass(this, UserDatabaseActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.logDatabase:
@@ -69,25 +67,17 @@ public class BaseActivity extends Activity {
                 startActivity(intent);
                 break;
 
-            case R.id.start:
-                intent.setClass(this, Nfc_simple.class);
+            case R.id.tempusersDatabase:
+                intent.setClass(this, TemporaryUsersDatabaseActivity.class);
                 startActivity(intent);
                 break;
 
-            case R.id.tempusersDatabase:
-                setContentView(R.layout.check_temp_users);
-                TextView tempusersText = (TextView) findViewById(R.id.textViewCheckTempUsers);
-                TemporaryUsersDatabaseOperate.getTheInstance(this).read();
-                tempusersText.setText(TemporaryUsersDatabaseOperate.tempText);
-                break;
-
-            case R.id.reset:
-                Preference.getTheInstance(this).resetPreference();
-                break;
-
             case R.id.removeTempUser:
-                TemporaryUsersDatabaseOperate.getTheInstance(this).delete(preference.getUserType(), preference.getUserId());
+                //TemporaryUsersDatabaseOperate.getTheInstance(this).delete(preference.getUserType(), preference.getUserId());
                 preference.resetPreference();
+                intent.setClass(this, Nfc_simple.class);
+                startActivity(intent);
+                break;
 
             default:
                 Toast.makeText(getApplicationContext(), "fault", Toast.LENGTH_SHORT)
