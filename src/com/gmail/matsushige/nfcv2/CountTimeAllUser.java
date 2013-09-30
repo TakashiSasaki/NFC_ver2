@@ -78,7 +78,7 @@ public class CountTimeAllUser extends IntentService{
 		}// for
 		Log.d(TAG, "serviceEnd");
 		isUsed = false;
-		finish = false;
+		//finish = false;
 	}// onHandleIntent
 	
 	@Override
