@@ -28,9 +28,14 @@ public class TemporaryUserActivity extends TimerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_temporary);
         setTitle("一時使用者");
+    }//onCreate
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         CountTimeAllUser.startCountTimeAllUser(this);
         tempUsersPic();
-    }//onCreate
+    }//onResume
 
     private void tempUsersPic() {
 
