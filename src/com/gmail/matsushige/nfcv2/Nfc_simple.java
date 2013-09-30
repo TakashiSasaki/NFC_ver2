@@ -5,7 +5,6 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.matsushige.R;
@@ -22,7 +21,7 @@ import com.gmail.matsushige.nfcv2.db.TouchLogDatabase;
 import java.util.Calendar;
 
 public class Nfc_simple extends TimerActivity {
-    private TextView timeText;
+    //private TextView timeText;
     private byte[] id;
     private String type = "";
 
@@ -30,7 +29,7 @@ public class Nfc_simple extends TimerActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_start);
-        setTitle("ソーシャルコンセント");
+        setTitle("ソーシャル・コンセント");
 
         Relay.test(getApplicationContext());
     }// onCreate
