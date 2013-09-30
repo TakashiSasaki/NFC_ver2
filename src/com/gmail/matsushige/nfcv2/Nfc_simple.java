@@ -161,6 +161,7 @@ public class Nfc_simple extends TimerActivity {
 		CardUser registered_user = UsersDatabase.getRegisteredUser(this, type, id);
 
 		if (registered_user != null) {
+            preference.setCardOwner(registered_user.getOwnerName());
 			ActLogDatabase.getTheInstance(this).write(this, id, registered_user.getOwnerName(), "タッチ", timestamp);
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), RegularUserActivity.class);
@@ -171,13 +172,13 @@ public class Nfc_simple extends TimerActivity {
                 assert(temporary_user.getCardId().equals(id));
                 assert(temporary_user.getCardType().equals(type));
                 preference.setTypeAndId(type, id);
-				ActLogDatabase.getTheInstance(this).write(this, id, registered_user.getOwnerName(), "タッチ", timestamp);
+				ActLogDatabase.getTheInstance(this).write(this, id, temporary_user.getOwnerName(), "タッチ", timestamp);
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), TempUserActivity.class);
                 startActivity(intent);
 			}else{
 				//cardOwner = "未登録者";
-				ActLogDatabase.getTheInstance(this).write(this, id, registered_user.getOwnerName(), "タッチ", timestamp);
+				ActLogDatabase.getTheInstance(this).write(this, id, "未知のカード", "タッチ", timestamp);
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), FirstUserActivity.class);
                 intent.putExtra("id", id);
