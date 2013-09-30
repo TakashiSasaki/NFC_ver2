@@ -73,6 +73,7 @@ public class Preference {
         SharedPreferences.Editor edit = this.sharedPreferences.edit();
         edit.putString("userType", null);
         edit.putString("userId", null);
+        edit.putString("cardOwner", null);
         edit.commit();
     }// resetPreference
 
