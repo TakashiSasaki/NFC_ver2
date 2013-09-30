@@ -25,13 +25,13 @@ public class Relay{
             return " OFF";
         }//if
         return " UNKNOWN";
-    }
+    }//getRelayStateString
 
     // 'open' relay means cutting off current
     static public void openAll(){
-        getRelay(0).close();
-        getRelay(1).close();
-    }//closeAll
+        getRelay(0).open();
+        getRelay(1).open();
+    }//openAll
 
 
     private static Relay relay0;
