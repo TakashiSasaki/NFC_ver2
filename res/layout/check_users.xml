@@ -7,7 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:minHeight="100dp">
 
         <ScrollView
             android:layout_width="fill_parent"
@@ -19,6 +20,45 @@
                 android:layout_height="match_parent"
                 android:text="TextView" />
         </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="現在の使用者を登録済み使用者データベースから削除する"
+            android:id="@+id/buttonRemoveThisRegisteredUser"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/buttonRemoveAllRegisteredUsers"
+            android:text="すべての使用者を登録済み使用者データベースから削除する"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/buttonRegisterUser"
+            android:text="現在の使用者を下記の名前で登録済み使用者データベースに加える" />
+
+        <EditText
+            android:minWidth="100dp"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:id="@+id/editTextRegisteredUserName"
+            android:hint="使用者名をここに入力"></EditText>
     </LinearLayout>
 
 

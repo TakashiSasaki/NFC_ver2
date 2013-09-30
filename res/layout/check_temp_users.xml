@@ -2,16 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:minHeight="100dp">
 
         <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textViewCheckTempUsers"
@@ -20,5 +21,25 @@
                 android:text="TextView" />
         </ScrollView>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="現在の使用者を一時使用者データベースから削除する"
+            android:id="@+id/buttonRemoveThisTemporaryUser"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/buttonRemoveAllTemporaryUsers"
+            android:text="すべての使用者を一時使用者データベースから削除する"
+            android:layout_weight="1" />
+    </LinearLayout>
+
 
 </LinearLayout>
