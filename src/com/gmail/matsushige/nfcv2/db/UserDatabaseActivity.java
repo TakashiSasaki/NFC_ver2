@@ -1,7 +1,58 @@
 package com.gmail.matsushige.nfcv2.db;
 
-/**
- * Created by TakashiSasaki on 13/09/30.
- */
-public class UserDatabaseActivity {
-}
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.gmail.matsushige.R;
+import com.gmail.matsushige.nfcv2.activity.BaseActivity;
+
+public class UserDatabaseActivity extends BaseActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.check_users);
+        setTitle("登録使用者データベース");
+
+        ((Button) findViewById(R.id.buttonRegisterUser)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UsersDatabase.write(getApplicationContext(), null, preference.getUserType(), preference.getUserId(), null,
+                        ((EditText) findViewById(R.id.editTextRegisteredUserName)).getEditableText().toString(), null, null);
+                updateView();
+            }//onClick
+        });//setOnClickListener
+
+        ((Button) findViewById(R.id.buttonRemoveAllRegisteredUsers)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UsersDatabase.deleteAllRecord(getApplicationContext());
+                updateView();
+            }//onClick
+        });//setOnClickListener
+
+        ((Button) findViewById(R.id.buttonRemoveThisRegisteredUser)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UsersDatabase.delete(getApplicationContext(), preference.getUserType(), preference.getUserId());
+                updateView();
+            }
+        });
+
+    }//onCreate
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateView();
+    }//onResume
+
+    private void updateView() {
+        TextView checkUsersText = (TextView) findViewById(R.id.textViewCheckUsers);
+        UsersDatabase.read(this);
+        checkUsersText.setText(UsersDatabase.usersText);
+    }
+}//UserDatabaseActivity
+
