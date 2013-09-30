@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * 本登録ユーザーデータベース 要変更>Nfc_simple.java,UsersDatabase.java
+ * 本登録ユーザーデータベース 要変更>Nfc_simple.java,RegisteredUsersDatabase.java
  */
 public class UsersDatabaseHelper extends SQLiteOpenHelper {
 

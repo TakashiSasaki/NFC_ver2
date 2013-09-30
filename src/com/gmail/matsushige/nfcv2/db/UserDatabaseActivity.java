@@ -19,7 +19,7 @@ public class UserDatabaseActivity extends BaseActivity {
         ((Button) findViewById(R.id.buttonRegisterUser)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UsersDatabase.write(getApplicationContext(), null, preference.getUserType(), preference.getUserId(), null,
+                RegisteredUsersDatabase.write(getApplicationContext(), null, preference.getUserType(), preference.getUserId(), null,
                         ((EditText) findViewById(R.id.editTextRegisteredUserName)).getEditableText().toString(), null, null);
                 updateView();
             }//onClick
@@ -28,7 +28,7 @@ public class UserDatabaseActivity extends BaseActivity {
         ((Button) findViewById(R.id.buttonRemoveAllRegisteredUsers)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UsersDatabase.deleteAllRecord(getApplicationContext());
+                RegisteredUsersDatabase.deleteAllRecord(getApplicationContext());
                 updateView();
             }//onClick
         });//setOnClickListener
@@ -36,7 +36,7 @@ public class UserDatabaseActivity extends BaseActivity {
         ((Button) findViewById(R.id.buttonRemoveThisRegisteredUser)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UsersDatabase.delete(getApplicationContext(), preference.getUserType(), preference.getUserId());
+                RegisteredUsersDatabase.delete(getApplicationContext(), preference.getUserType(), preference.getUserId());
                 updateView();
             }
         });
@@ -51,8 +51,8 @@ public class UserDatabaseActivity extends BaseActivity {
 
     private void updateView() {
         TextView checkUsersText = (TextView) findViewById(R.id.textViewCheckUsers);
-        UsersDatabase.read(this);
-        checkUsersText.setText(UsersDatabase.usersText);
+        RegisteredUsersDatabase.read(this);
+        checkUsersText.setText(RegisteredUsersDatabase.usersText);
     }
 }//UserDatabaseActivity
 

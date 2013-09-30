@@ -4,7 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
-import com.gmail.matsushige.nfcv2.db.UsersDatabase;
+import com.gmail.matsushige.nfcv2.db.RegisteredUsersDatabase;
 import com.gmail.matsushige.nfcv2.util.Preference;
 
 import java.io.BufferedReader;
@@ -128,7 +128,7 @@ public class ReceiveDataService extends IntentService {
                 InputStreamReader inRead = new InputStreamReader(in);
                 BufferedReader bufRead = new BufferedReader(inRead);
                 String str;
-                UsersDatabase.deleteAllRecord(getApplicationContext());
+                RegisteredUsersDatabase.deleteAllRecord(getApplicationContext());
 
                 while ((str = bufRead.readLine()) != null) {
                     Log.d(TAG, str);
@@ -142,7 +142,7 @@ public class ReceiveDataService extends IntentService {
                         }// if
                         Log.d(TAG, strSplit[i] + "@" + i);
                     }// for
-                    UsersDatabase.write(getApplicationContext(), strSplit[0], strSplit[1], strSplit[2], strSplit[3], strSplit[4], strSplit[5], strSplit[6]);
+                    RegisteredUsersDatabase.write(getApplicationContext(), strSplit[0], strSplit[1], strSplit[2], strSplit[3], strSplit[4], strSplit[5], strSplit[6]);
                 }// while
                 in.close();
             }// in

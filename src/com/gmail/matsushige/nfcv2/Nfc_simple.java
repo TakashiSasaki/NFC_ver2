@@ -15,9 +15,9 @@ import com.gmail.matsushige.nfcv2.activity.TemporaryUserActivity;
 import com.gmail.matsushige.nfcv2.activity.TimerActivity;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 import com.gmail.matsushige.nfcv2.db.CardUser;
+import com.gmail.matsushige.nfcv2.db.RegisteredUsersDatabase;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.TouchLogDatabase;
-import com.gmail.matsushige.nfcv2.db.UsersDatabase;
 
 import java.util.Calendar;
 
@@ -130,7 +130,7 @@ public class Nfc_simple extends TimerActivity {
             return;
         }//if
 
-        CardUser registered_user = UsersDatabase.getRegisteredUser(this, type, id);
+        CardUser registered_user = RegisteredUsersDatabase.getRegisteredUser(this, type, id);
 
         if (registered_user != null) {
             preference.setCardOwner(registered_user.getOwnerName());

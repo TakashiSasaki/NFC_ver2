@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class UsersDatabase {
+public class RegisteredUsersDatabase {
     public static String usersText = "";
 
 //	public static void write(Context context, String type, String id,
@@ -108,4 +108,4 @@ public class UsersDatabase {
         return rows;
     }//delete
 
-}// UsersDatabase
+}// RegisteredUsersDatabase
