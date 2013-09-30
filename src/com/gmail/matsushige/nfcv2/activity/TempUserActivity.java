@@ -21,7 +21,7 @@ import com.gmail.matsushige.nfcv2.util.MakeQRCode;
 import java.util.Calendar;
 
 public class TempUserActivity extends TimerActivity {
-    public static String regCode = "";
+    //public static String regCode = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +34,13 @@ public class TempUserActivity extends TimerActivity {
 
     private void tempUsersPic() {
 
-        //screenState = TEMPORARY_USER;
-
-        //CountRelayTime.maxCount = 10;
-
-        //TODO 以下操作部分
         TextView userNameText = (TextView) findViewById(R.id.textViewUserName);
         TextView explainText = (TextView) findViewById(R.id.textViewExplain);
-        userNameText.setText("ユーザー登録番号は、\n「" + regCode + "」です。");
+        userNameText.setText("ユーザー登録番号は、\n「" + preference.getRegistrationCode() + "」です。");
         userNameText.setTextColor(Color.RED);
         explainText.setText("みんなでおでんき\n(http://odenki.org)\nにアクセスしてユーザ登録番号を入力してください");
         ImageView qrCode = (ImageView) findViewById(R.id.imageViewQR);
-        qrCode.setImageBitmap(MakeQRCode.getQRCode("http://odenki.org/api/outlet/" + regCode));
+        qrCode.setImageBitmap(MakeQRCode.getQRCode("http://odenki.org/api/outlet/" + preference.getRegistrationCode()));
 
         Button powerCancelButton = (Button) findViewById(R.id.buttonPowerCancel);
         ToggleButton relay1Toggle = (ToggleButton) findViewById(R.id.toggleRelay1);
@@ -63,8 +58,7 @@ public class TempUserActivity extends TimerActivity {
         powerCancelButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Relay.getRelay(0).open();
-                Relay.getRelay(1).open();
+                Relay.openAll();
                 if (CountTimeAllUser.isUsed) {
                     CountTimeAllUser.stop();
                 }
@@ -144,13 +138,4 @@ public class TempUserActivity extends TimerActivity {
 
     }// tempUsersPic
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }//onResume
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }//onResume
 }//TempUserActivity

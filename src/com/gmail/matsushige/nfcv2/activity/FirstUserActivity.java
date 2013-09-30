@@ -12,7 +12,6 @@ import com.gmail.matsushige.nfcv2.CountTimeAllUser;
 import com.gmail.matsushige.nfcv2.Nfc_simple;
 import com.gmail.matsushige.nfcv2.SendDataService;
 import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
-import com.gmail.matsushige.nfcv2.db.CardUser;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.util.RegistrationCode;
 
@@ -40,14 +39,11 @@ public class FirstUserActivity extends TimerActivity {
 
     private String id;
 
-    private String cardOwner;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_first);
-        setTitle("未知使用者");
+        setTitle("初回使用者");
     }//onCreate
 
     @Override
@@ -56,7 +52,6 @@ public class FirstUserActivity extends TimerActivity {
         Intent intent = getIntent();
         this.type = intent.getStringExtra("type");
         this.id = intent.getStringExtra("id");
-        this.cardOwner = intent.getStringExtra("cardOwner");
         firstUsersPic();
     }//onResume
 
@@ -67,10 +62,6 @@ public class FirstUserActivity extends TimerActivity {
     }//onPause
 
     private void firstUsersPic() {
-
-        //screenState = FIRST_USER;
-
-        //startCountTimeFirstUser();
         CountTimeAllUser.startCountTimeAllUser(this);
         Button registYesButton = (Button) findViewById(R.id.buttonResistYes);
         Button registNoButton = (Button) findViewById(R.id.buttonResistNo);
@@ -125,14 +116,14 @@ public class FirstUserActivity extends TimerActivity {
      */
     public void usersInput(String type, String id) {
         String registration_code = RegistrationCode.getTheInstance(getApplicationContext()).GenerateRegisterCode();
+        preference.setRegistrationCode(registration_code);
         Log.d(this.getLocalClassName() + "#userInput", registration_code);
 
         TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).write(type, id, registration_code);
         Toast.makeText(getApplicationContext(), "登録しました" + "(" + registration_code + ")", Toast.LENGTH_SHORT).show();
 
-        CardUser temporary_user = TemporaryUsersDatabaseOperate.getTheInstance(getApplicationContext()).getRegisteredData(type, id);
         long time = Calendar.getInstance().getTimeInMillis();
-        ActLogDatabase.getTheInstance(this).write(this, id, cardOwner, "登録", time);
+        ActLogDatabase.getTheInstance(this).write(this, id, registration_code, "登録", time);
     }// usersInput
 
 }//FirstUserActivity

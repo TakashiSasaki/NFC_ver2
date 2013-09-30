@@ -89,4 +89,15 @@ public class Preference {
         edit.commit();
     }//setCardOwner
 
+    public void setRegistrationCode(String registration_code) {
+        if ("".equals(registration_code))
+            throw new IllegalArgumentException("registration code shold not be empty string");
+        SharedPreferences.Editor edit = this.sharedPreferences.edit();
+        edit.putString("registrationCode", registration_code);
+        edit.commit();
+    }//setRegistrationCode
+
+    public String getRegistrationCode() {
+        return this.sharedPreferences.getString("registrationCode", null);
+    }//getRegistrationCode
 }//Preference
