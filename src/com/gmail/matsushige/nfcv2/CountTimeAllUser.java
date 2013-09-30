@@ -20,7 +20,7 @@ public class CountTimeAllUser extends IntentService{
 	public static boolean isUsed = false;
 	private static boolean finish = false;
 	public static int maxCount = 20; 
-	public static boolean retainUserData = false;
+	//public static boolean retainUserData = false;
 
     static public void startCountTimeAllUser(Context context){
         finish = false;

@@ -71,7 +71,7 @@ public class FirstUserActivity extends TimerActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 if (CountTimeAllUser.isUsed) {
-                    CountTimeAllUser.retainUserData = true;
+                    //CountTimeAllUser.retainUserData = true;
                     CountTimeAllUser.stop();
                 }//if
 
