@@ -45,7 +45,7 @@ public class TemporaryUserActivity extends TimerActivity {
     private void tempUsersPic() {
         editTextRegistrationCode.setText(preference.getRegistrationCode());
         ImageView qrCode = (ImageView) findViewById(R.id.imageViewQR);
-        qrCode.setImageBitmap(MakeQRCode.getQRCode("http://odenki.org/outletdemo?registrationCode=" + preference.getRegistrationCode()));
+        qrCode.setImageBitmap(MakeQRCode.getQRCode("http://odenki.org/api/outlet/" + preference.getRegistrationCode()));
 
         Button powerCancelButton = (Button) findViewById(R.id.buttonPowerCancel);
         ToggleButton relay1Toggle = (ToggleButton) findViewById(R.id.toggleRelay1);
