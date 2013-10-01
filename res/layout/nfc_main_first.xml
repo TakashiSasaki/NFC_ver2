@@ -2,7 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/welcome" />
 
     <TextView
         android:id="@+id/textView1"
@@ -17,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="このカードで使用した記録はありません。このカードのID番号を登録してよいですか？"
+        android:text="このカードで使用した記録はありません。このカードを登録してよいですか？"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -36,14 +43,16 @@
             android:layout_width="wrap_content"
             android:layout_height="125dp"
             android:layout_weight="0.98"
-            android:text="はい" />
+            android:text="一時使用者としてカードを登録する"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/buttonResistNo"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1.00"
-            android:text="いいえ" />
+            android:text="ソーシャル・コンセントを使用しない"
+            android:textSize="30dp" />
     </LinearLayout>
 
 

@@ -22,7 +22,7 @@ import com.gmail.matsushige.nfcv2.util.MakeQRCode;
 import java.util.Calendar;
 
 public class TemporaryUserActivity extends TimerActivity {
-    private static final int MAX_RELAY_CLOSE_SECONDS = 10;
+    private static final int MAX_RELAY_CLOSE_SECONDS = 60 * 10;
 
     private EditText editTextRegistrationCode;
 

@@ -43,7 +43,7 @@ public class FirstUserActivity extends TimerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_main_first);
-        setTitle("初回使用者");
+        setTitle("みんなでおでんき ソーシャル・コンセント 初回使用者");
     }//onCreate
 
     @Override
