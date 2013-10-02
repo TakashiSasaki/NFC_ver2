@@ -2,10 +2,13 @@ package com.gmail.matsushige.nfcv2.ndef;
 
 import android.nfc.NdefRecord;
 
+import java.io.UnsupportedEncodingException;
+
 public class TextNdefRecord {
 
     private boolean isUtf8;
     private boolean isUtf16;
+    private String text;
 
     public TextNdefRecord(NdefRecord ndef_record) {
         byte[] recordType = ndef_record.getType();
@@ -27,6 +30,27 @@ public class TextNdefRecord {
             this.isUtf8 = false;
             this.isUtf16 = true;
         }//if
+
+        if (isUtf8) {
+            try {
+                text = new String(actual_text, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                text = null;
+            }//try
+        } else if (isUtf16) {
+            try {
+                text = new String(actual_text, "UTF-16");
+            } catch (UnsupportedEncodingException e) {
+                text = null;
+            }//try
+        } else {
+            text = null;
+        }//if
+
     }//TextNdefRecord
+
+    public String getText() {
+        return this.text;
+    }//getText
 
 }//TextNdefRecord
