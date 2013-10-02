@@ -18,7 +18,7 @@ import com.gmail.matsushige.nfcv2.db.ActLogDatabase;
 import java.util.Calendar;
 
 public class RegularUserActivity extends TimerActivity {
-    static final int MAX_RELAY_CLOSE_SECONDS = 10;
+    static final int MAX_RELAY_CLOSE_SECONDS = 60 * 60;
     private EditText editTextUserName;
 
     @Override
