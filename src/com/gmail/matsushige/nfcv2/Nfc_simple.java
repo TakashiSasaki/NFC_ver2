@@ -17,12 +17,14 @@ import com.gmail.matsushige.nfcv2.db.CardUser;
 import com.gmail.matsushige.nfcv2.db.RegisteredUsersDatabase;
 import com.gmail.matsushige.nfcv2.db.TemporaryUsersDatabaseOperate;
 import com.gmail.matsushige.nfcv2.db.TouchLogDatabase;
+import com.gmail.matsushige.nfcv2.ndef.TextNdefRecord;
 
 import java.util.Calendar;
 
 public class Nfc_simple extends TimerActivity {
     private byte[] id;
     private String type = "";
+    private TextNdefRecord textNdefRecord;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,11 @@ public class Nfc_simple extends TimerActivity {
             Relay.openAll();
             return;
         }//if
+
+        if (action.equals(NfcAdapter.ACTION_NDEF_DISCOVERED)) {
+
+        }//if
+
         if (action.equals(NfcAdapter.ACTION_TECH_DISCOVERED)) {
             readNfc();
             return;
